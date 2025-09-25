@@ -1,8 +1,8 @@
 :root {
-  --primary: #4169e1;   /* Bleu royal */
+  --primary: #00579d;   /* Bleu royal */
   --secondary: #ffffff; /* Blanc */
-  --accent: #ffcc00;    /* Jaune */
-  --dark: #1a1a1a;
+  --accent: #edaf3d;    /* Jaune */
+  --dark: #1f2d44;
 }
 
 * {
