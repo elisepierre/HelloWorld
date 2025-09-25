@@ -17,7 +17,7 @@ body {
   color: var(--dark);
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero {
   position: relative;
   height: 60vh;
@@ -52,59 +52,72 @@ body {
   margin-top: 10px;
 }
 
-/* CONTINENTS */
+/* CONTINENTS EN 3 COLONNES */
 .continents {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
   padding: 60px 20px;
-  max-width: 900px;
-  margin: auto;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
-.continents section {
-  margin-bottom: 50px;
-}
-
-.continents h2 {
-  font-size: 2rem;
+.continent h2 {
   color: var(--primary);
-  margin-bottom: 20px;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
 }
 
-.continents ul {
+.box {
+  background: var(--secondary);
+  border: 3px solid var(--primary);
+  border-radius: 12px;
+  padding: 20px 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  min-width: 200px;
+  transition: transform 0.3s;
+}
+
+.box:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+}
+
+ul {
   list-style: none;
-  padding: 0;
 }
 
-.continents li {
-  margin: 10px 0;
+li {
+  margin: 12px 0;
 }
 
-.continents a {
+a {
   text-decoration: none;
-  font-size: 1.2rem;
   color: var(--dark);
+  font-size: 1.2rem;
   font-weight: 500;
   position: relative;
-  padding: 5px 10px;
+  padding: 5px;
   transition: color 0.3s;
 }
 
-.continents a::after {
+a::after {
   content: "";
   position: absolute;
+  left: 0;
   bottom: 0;
-  left: 10px;
   width: 0%;
   height: 3px;
   background: var(--accent);
   transition: width 0.3s;
 }
 
-.continents a:hover {
+a:hover {
   color: var(--primary);
 }
 
-.continents a:hover::after {
-  width: 80%;
+a:hover::after {
+  width: 100%;
 }
 
 /* FOOTER */
