@@ -173,6 +173,22 @@ footer {
   margin-top: 40px;
 }
 
+.signature {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.signature strong {
+  color: var(--accent);
+}
+
+.project-note {
+  font-style: italic;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
 /* FADE-IN GÉNÉRAL */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
