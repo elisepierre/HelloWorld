@@ -1,3 +1,6 @@
+/* ==============================
+   VARIABLES GLOBALES
+============================== */
 :root {
   --primary: #00579d;   /* Bleu royal */
   --secondary: #ffffff; /* Blanc */
@@ -5,6 +8,9 @@
   --dark: #1f2d44;
 }
 
+/* ==============================
+   RESET
+============================== */
 * {
   margin: 0;
   padding: 0;
@@ -18,13 +24,36 @@ body {
   animation: pageFadeIn 1.2s ease-in-out;
 }
 
-/* ANIMATION ENTRÉE DE PAGE */
+/* ==============================
+   ANIMATIONS GLOBALES
+============================== */
 @keyframes pageFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* HERO */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal {
+  0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* ==============================
+   HERO PRINCIPAL
+============================== */
 .hero {
   position: relative;
   height: 100vh;
@@ -48,7 +77,6 @@ body {
   animation: fadeIn 1.5s ease-in-out;
 }
 
-/* TITRE PRINCIPAL */
 .hero h1 {
   font-family: "Raleway", sans-serif;
   font-size: 4.5rem;
@@ -61,19 +89,6 @@ body {
   animation: reveal 2s ease forwards;
 }
 
-/* EFFET DE RÉVÉLATION DU TITRE */
-@keyframes reveal {
-  0% { 
-    opacity: 0;
-    transform: translateY(50px) scale(0.95);
-  }
-  100% { 
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* SOUS-TITRE ANIMÉ */
 .subtitle {
   display: inline-block;
   overflow: hidden;
@@ -86,16 +101,61 @@ body {
   animation: typing 3s steps(30, end) 1s forwards, blink 0.8s step-end infinite;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+/* ==============================
+   INTRO
+============================== */
+.intro {
+  padding: 60px 20px;
+  background-color: var(--secondary);
+  text-align: center;
 }
 
-@keyframes blink {
-  50% { border-color: transparent; }
+.intro h2 {
+  font-family: "Raleway", sans-serif;
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 20px;
 }
 
-/* CONTINENTS */
+.intro p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: var(--dark);
+}
+
+/* ==============================
+   MINI HERO EUROPE
+============================== */
+.mini-hero {
+  position: relative;
+  height: 40vh;
+  background: url("hero.jpg") center/cover no-repeat fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.mini-hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,87,157,0.5);
+}
+
+.mini-hero .hero-content h2 {
+  font-family: "Raleway", sans-serif;
+  font-size: 3rem;
+  color: var(--secondary);
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* ==============================
+   CONTINENTS
+============================== */
 .continents {
   display: flex;
   justify-content: center;
@@ -126,7 +186,6 @@ body {
   border-color: var(--accent);
 }
 
-/* LIENS */
 ul {
   list-style: none;
 }
@@ -164,7 +223,43 @@ a:hover::after {
   width: 100%;
 }
 
-/* FOOTER */
+/* ==============================
+   PAYS EUROPEENS
+============================== */
+.europe-countries {
+  padding: 40px 20px;
+  background: var(--secondary);
+  display: flex;
+  justify-content: center;
+}
+
+.countries-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.country-box {
+  background: var(--primary);
+  color: var(--secondary);
+  padding: 20px 30px;
+  border-radius: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.country-box:hover {
+  transform: translateY(-5px);
+  background: var(--accent);
+  color: var(--dark);
+}
+
+/* ==============================
+   FOOTER
+============================== */
 footer {
   text-align: center;
   padding: 20px;
@@ -189,8 +284,17 @@ footer {
   opacity: 0.8;
 }
 
-/* FADE-IN GÉNÉRAL */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ==============================
+   AJUSTEMENT RESPONSIVE
+============================== */
+@media(max-width: 768px){
+  .hero h1 {
+    font-size: 3rem;
+  }
+  .mini-hero .hero-content h2 {
+    font-size: 2rem;
+  }
+  .country-box {
+    padding: 15px 20px;
+  }
 }
