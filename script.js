@@ -1,22 +1,24 @@
+// Fonction de navigation
 function goTo(page) {
   window.location.href = page;
 }
 
-// Récupération du conteneur
+// ------------------------
+// GENERATION DES CONTINENTS
+// ------------------------
 const container = document.getElementById("continents-container");
 
-// Génération des blocs continents
 continentsData.forEach(continent => {
-  // Création de l'encadré
+  // Création du conteneur du continent
   const continentDiv = document.createElement("div");
   continentDiv.classList.add("continent");
 
-  // Titre
+  // Titre du continent avec icône
   const title = document.createElement("h2");
   title.textContent = `${continent.icon} ${continent.name}`;
   continentDiv.appendChild(title);
 
-  // Encadré (box)
+  // Box pour les pays
   const box = document.createElement("div");
   box.classList.add("box");
 
@@ -36,3 +38,25 @@ continentsData.forEach(continent => {
   container.appendChild(continentDiv);
 });
 
+// ------------------------
+// GENERATION DES PAYS EUROPEENS
+// ------------------------
+const europeCountries = [
+  "France", "Allemagne", "Italie", "Espagne", "Portugal",
+  "Pays-Bas", "Belgique", "Suède", "Norvège", "Suisse"
+];
+
+const europeContainer = document.getElementById("europe-countries-container");
+
+europeCountries.forEach(country => {
+  const div = document.createElement("div");
+  div.classList.add("country-box");
+  div.textContent = country;
+
+  // Optionnel : clic sur un pays
+  div.addEventListener("click", () => {
+    alert(`Vous avez sélectionné : ${country}`);
+  });
+
+  europeContainer.appendChild(div);
+});
