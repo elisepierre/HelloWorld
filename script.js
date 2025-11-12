@@ -47,9 +47,7 @@ if (continentsContainer && continentsData) {
 // ==============================
 const europeContainer = document.getElementById("europe-countries-container");
 
-// Vérifier que la section existe et que data.js est chargé
 if (europeContainer && continentsData) {
-  // Trouver l'Europe dans data.js
   const europe = continentsData.find(continent => continent.name === "Europe");
 
   if (europe) {
@@ -58,7 +56,7 @@ if (europeContainer && continentsData) {
       div.classList.add("country-box");
       div.textContent = country.name;
 
-      // Clic sur un pays (optionnel)
+      // Clic sur un pays
       div.addEventListener("click", () => {
         alert(`Vous avez sélectionné : ${country.name}`);
       });
