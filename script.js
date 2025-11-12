@@ -3,60 +3,49 @@ function goTo(page) {
   window.location.href = page;
 }
 
-// ------------------------
-// GENERATION DES CONTINENTS
-// ------------------------
+// Récupération des conteneurs
 const container = document.getElementById("continents-container");
-
-continentsData.forEach(continent => {
-  // Création du conteneur du continent
-  const continentDiv = document.createElement("div");
-  continentDiv.classList.add("continent");
-
-  // Titre du continent avec icône
-  const title = document.createElement("h2");
-  title.textContent = `${continent.icon} ${continent.name}`;
-  continentDiv.appendChild(title);
-
-  // Box pour les pays
-  const box = document.createElement("div");
-  box.classList.add("box");
-
-  // Liste de pays
-  const ul = document.createElement("ul");
-  continent.countries.forEach(country => {
-    const li = document.createElement("li");
-    const a = document.createElement("a");
-    a.href = country.link;
-    a.textContent = country.name;
-    li.appendChild(a);
-    ul.appendChild(li);
-  });
-
-  box.appendChild(ul);
-  continentDiv.appendChild(box);
-  container.appendChild(continentDiv);
-});
-
-// ------------------------
-// GENERATION DES PAYS EUROPEENS
-// ------------------------
-const europeCountries = [
-  "France", "Allemagne", "Italie", "Espagne", "Portugal",
-  "Pays-Bas", "Belgique", "Suède", "Norvège", "Suisse"
-];
-
 const europeContainer = document.getElementById("europe-countries-container");
 
-europeCountries.forEach(country => {
-  const div = document.createElement("div");
-  div.classList.add("country-box");
-  div.textContent = country;
+// Génération des continents et de leurs pays
+continentsData.forEach(continent => {
+  // Création du conteneur du continent
+  if (container) {
+    const continentDiv = document.createElement("div");
+    continentDiv.classList.add("continent");
 
-  // Optionnel : clic sur un pays
-  div.addEventListener("click", () => {
-    alert(`Vous avez sélectionné : ${country}`);
-  });
+    const title = document.createElement("h2");
+    title.textContent = `${continent.icon} ${continent.name}`;
+    continentDiv.appendChild(title);
 
-  europeContainer.appendChild(div);
+    const box = document.createElement("div");
+    box.classList.add("box");
+
+    const ul = document.createElement("ul");
+    continent.countries.forEach(country => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = country.link;
+      a.textContent = country.name;
+      li.appendChild(a);
+      ul.appendChild(li);
+
+      // Si Europe, ajoute aussi dans la section mini-hero
+      if (continent.name === "Europe" && europeContainer) {
+        const div = document.createElement("div");
+        div.classList.add("country-box");
+        div.textContent = country.name;
+
+        div.addEventListener("click", () => {
+          alert(`Vous avez sélectionné : ${country.name}`);
+        });
+
+        europeContainer.appendChild(div);
+      }
+    });
+
+    box.appendChild(ul);
+    continentDiv.appendChild(box);
+    container.appendChild(continentDiv);
+  }
 });
