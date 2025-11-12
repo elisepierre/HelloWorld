@@ -131,7 +131,7 @@ body {
 .mini-hero {
   position: relative;
   height: 40vh;
-  background: url("hero.jpg") center/cover no-repeat fixed;
+  background: url("europe.jpg") center/cover no-repeat fixed;
   display: flex;
   align-items: center;
   justify-content: center;
