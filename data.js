@@ -6,7 +6,8 @@ const continentsData = [
     countries: [
       { name: "France", link: "france.html" },
       { name: "Allemagne", link: "allemagne.html" },
-      { name: "Espagne", link: "espagne.html" }
+      { name: "Espagne", link: "espagne.html" },
+      { name: "Royaume-Uni", link: "royaume-uni.html" }
     ]
   },
   {
@@ -32,6 +33,7 @@ const continentsData = [
     icon: "🌏",
     countries: [
       { name: "Japon", link: "japon.html" },
+      { name: "Corée du Sud", link: "coree-du-sud.html" },
       { name: "Chine", link: "chine.html" },
       { name: "Taïwan", link: "taiwan.html" }
     ]
