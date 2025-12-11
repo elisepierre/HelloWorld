@@ -4,14 +4,14 @@ const continentsData = [
     name: "Europe",
     icon: "🌍",
     countries: [
-      { name: "Royaume-Uni", link: "royaume-uni.html" }
+      { name: "Royaume-Uni", link: "royaume-uni.html" },
       { name: "Allemagne", link: "allemagne.html" },
       { name: "Espagne", link: "espagne.html" },
       { name: "Danemark", link: "danemark.html" },
       { name: "Luxembourg", link: "luxembourg.html" },
       { name: "Croatie", link: "croatie.html" },
       { name: "Pologne", link: "pologne.html" },
-      { name: "Roumanie", link: "roumanie.html" },
+      { name: "Roumanie", link: "roumanie.html" }
     ]
   },
   {
