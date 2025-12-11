@@ -6,26 +6,22 @@ function goTo(page) {
 }
 
 // ==============================
-// GENERATION DES CONTINENTS
+// GENERATION DES CONTINENTS (mini-liste)
 // ==============================
 const continentsContainer = document.getElementById("continents-container");
 
 if (continentsContainer && continentsData) {
   continentsData.forEach(continent => {
-    // Conteneur du continent
     const continentDiv = document.createElement("div");
     continentDiv.classList.add("continent");
 
-    // Titre du continent avec icône
     const title = document.createElement("h2");
     title.textContent = `${continent.icon} ${continent.name}`;
     continentDiv.appendChild(title);
 
-    // Box pour les pays
     const box = document.createElement("div");
     box.classList.add("box");
 
-    // Liste des pays
     const ul = document.createElement("ul");
     continent.countries.forEach(country => {
       const li = document.createElement("li");
@@ -43,25 +39,33 @@ if (continentsContainer && continentsData) {
 }
 
 // ==============================
-// GENERATION DES PAYS EUROPEENS
+// GENERATION DES PAYS PAR CONTINENT (grandes cartes)
 // ==============================
-const europeContainer = document.getElementById("europe-countries-container");
+// Fonction générique
+function generateCountryBoxes(continentName, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container || !continentsData) return;
 
-if (europeContainer && continentsData) {
-  const europe = continentsData.find(continent => continent.name === "Europe");
+  const continent = continentsData.find(c => c.name === continentName);
+  if (!continent) return;
 
-  if (europe) {
-    europe.countries.forEach(country => {
-      const div = document.createElement("div");
-      div.classList.add("country-box");
-      div.textContent = country.name;
+  continent.countries.forEach(country => {
+    const div = document.createElement("div");
+    div.classList.add("country-box");
+    div.textContent = country.name;
 
-      // Clic sur un pays
-      div.addEventListener("click", () => {
-        alert(`Vous avez sélectionné : ${country.name}`);
-      });
-
-      europeContainer.appendChild(div);
+    // clic sur un pays → navigation
+    div.addEventListener("click", () => {
+      goTo(country.link); // remplace alert par navigation
     });
-  }
+
+    container.appendChild(div);
+  });
 }
+
+// Appel pour tous les continents
+generateCountryBoxes("Europe", "europe-countries-container");
+generateCountryBoxes("Asie", "asia-countries-container");
+generateCountryBoxes("Amérique", "america-countries-container");
+generateCountryBoxes("Afrique", "africa-countries-container");
+
