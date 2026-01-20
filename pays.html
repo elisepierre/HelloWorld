@@ -76,9 +76,9 @@
 
     .header-content {
       position: absolute;
-      bottom: 15%; /* Remonté pour éviter les boutons */
-      left: 5%;
-      right: 5%; /* Contraint la largeur */
+      bottom: 15%;
+      left: 130px;
+      right: 5%;
       z-index: 3;
       color: white;
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
@@ -161,9 +161,22 @@
 
     @media (max-width: 768px) {
       .country-title { font-size: 2.5rem; }
-      .header-content { bottom: 100px; } /* Encore plus haut sur mobile */
+      
+      /* On remonte le texte et on le centre sur mobile */
+      .header-content { 
+          bottom: 80px; 
+          left: 20px;   /* On annule les 130px du desktop */
+          right: 20px;
+          text-align: center; /* Plus propre sur mobile */
+      }
+
+      /* On réduit un peu la taille des boutons sur mobile */
+      .slider-btn { width: 50px; height: 50px; font-size: 1rem; }
+      .slider-nav { padding: 0 10px; } /* On les rapproche du bord */
+
       .testimonial-card { flex-direction: column; }
       .t-left { width: 100%; flex-direction: row; justify-content: flex-start; }
+    }
     }
   </style>
 </head>
