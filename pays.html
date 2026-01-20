@@ -220,10 +220,123 @@
   </section>
 
   <script>
+
     // ==========================================
-    // 1. BASE DE DONNÉES DES PAYS (A COMPLÉTER)
+    // 1. BASE DE DONNÉES COMPLÈTE (12 PAYS)
     // ==========================================
     const db = {
+      // --- EUROPE ---
+      allemagne: {
+        name: "Allemagne",
+        flag: "🇩🇪",
+        desc: "Le cœur industriel de l'Europe. Une rigueur technologique exemplaire et une qualité de vie étudiante optimale.",
+        capital: "Berlin",
+        lang: "Allemand",
+        currency: "Euro (€)",
+        images: [
+          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80", // Munich/Berlin vibe
+          "https://images.unsplash.com/photo-1599946347371-68eb71b16afc?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+          { type: "erasmus", name: "Lucas Weber", promo: "F2", city: "Munich", org: "TU München", link: "#" },
+          { type: "stage", name: "Sarah Cohen", promo: "F4", city: "Berlin", org: "SAP", link: "#" }
+        ]
+      },
+      espagne: {
+        name: "Espagne",
+        flag: "🇪🇸",
+        desc: "L'équilibre parfait entre excellence académique et vie sociale dynamique sous le soleil méditerranéen.",
+        capital: "Madrid",
+        lang: "Espagnol",
+        currency: "Euro (€)",
+        images: [
+          "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+          { type: "erasmus", name: "Camille Durand", promo: "F1", city: "Barcelone", org: "UPC", link: "#" }
+        ]
+      },
+      norvege: {
+        name: "Norvège",
+        flag: "🇳🇴",
+        desc: "Des paysages à couper le souffle et une société tournée vers le numérique et l'écologie.",
+        capital: "Oslo",
+        lang: "Norvégien",
+        currency: "Couronne (NOK)",
+        images: [
+          "https://images.unsplash.com/photo-1516333916323-2895f36c57da?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1520183802803-06f731a2059f?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+           { type: "erasmus", name: "Adrien Moreau", promo: "F3", city: "Trondheim", org: "NTNU", link: "#" }
+        ]
+      },
+      pologne: {
+        name: "Pologne",
+        flag: "🇵🇱",
+        desc: "Un hub technologique en pleine croissance au cœur de l'Europe centrale, avec un coût de la vie très attractif.",
+        capital: "Varsovie",
+        lang: "Polonais",
+        currency: "Złoty (PLN)",
+        images: [
+          "https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1603513492128-ba7bc9b3e143?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+           { type: "erasmus", name: "Elise Pierre", promo: "F2", city: "Wrocław", org: "Politechnika", link: "#" }
+        ]
+      },
+
+      // --- ASIE ---
+      japon: {
+        name: "Japon",
+        flag: "🇯🇵",
+        desc: "Le choc culturel ultime. Un mélange fascinant de traditions millénaires et de futurisme technologique.",
+        capital: "Tokyo",
+        lang: "Japonais",
+        currency: "Yen (¥)",
+        images: [
+          "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+           { type: "stage", name: "Yanis Belkacem", promo: "F5", city: "Tokyo", org: "Rakuten", link: "#" },
+           { type: "double", name: "Sophie Tran", promo: "F3", city: "Kyoto", org: "Kyoto U", link: "#" }
+        ]
+      },
+      chine: {
+        name: "Chine",
+        flag: "🇨🇳",
+        desc: "Plongez dans la démesure et l'innovation à grande échelle. Une expérience valorisante sur le CV.",
+        capital: "Pékin",
+        lang: "Mandarin",
+        currency: "Yuan (CNY)",
+        images: [
+          "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+           { type: "stage", name: "Julien R.", promo: "F4", city: "Shanghai", org: "Start-up IA", link: "#" }
+        ]
+      },
+      coree: {
+        name: "Corée du Sud",
+        flag: "🇰🇷",
+        desc: "Le pays le plus connecté au monde. Idéal pour les passionnés de réseaux, de gaming et de culture pop.",
+        capital: "Séoul",
+        lang: "Coréen",
+        currency: "Won (KRW)",
+        images: [
+          "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1616053630366-07e32488d55c?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+           { type: "erasmus", name: "Clara M.", promo: "F2", city: "Séoul", org: "KAIST", link: "#" }
+        ]
+      },
+
+      // --- AMÉRIQUE ---
       canada: {
         name: "Canada",
         flag: "🇨🇦",
@@ -236,38 +349,73 @@
           "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1600&q=80"
         ],
         testimonials: [
-          { type: "stage", name: "Julie Martin", promo: "F3", city: "Montréal", org: "Ubisoft", link: "temoignage-1.html" },
-          { type: "erasmus", name: "Thomas Dubois", promo: "F2", city: "Chicoutimi", org: "UQAC", link: "temoignage-2.html" }
+          { type: "stage", name: "Julie Martin", promo: "F3", city: "Montréal", org: "Ubisoft", link: "#" },
+          { type: "erasmus", name: "Thomas Dubois", promo: "F2", city: "Chicoutimi", org: "UQAC", link: "#" }
         ]
       },
-      japon: {
-        name: "Japon",
-        flag: "🇯🇵",
-        desc: "Un mélange fascinant de traditions millénaires et de futurisme technologique.",
-        capital: "Tokyo",
-        lang: "Japonais",
-        currency: "Yen (¥)",
+      usa: {
+        name: "États-Unis",
+        flag: "🇺🇸",
+        desc: "La Silicon Valley, NYC, les campus à l'américaine... Le rêve pour beaucoup d'ingénieurs.",
+        capital: "Washington D.C.",
+        lang: "Anglais",
+        currency: "USD ($)",
         images: [
-          "https://images.unsplash.com/photo-1528164344705-4754268798dd?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80"
+          "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1600&q=80", // NYC
+          "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&w=1600&q=80"  // California vibe
         ],
         testimonials: [
-           { type: "stage", name: "Lucas Perrin", promo: "F4", city: "Tokyo", org: "Sony AI", link: "#" }
+          { type: "stage", name: "Maxime L.", promo: "F5", city: "San Francisco", org: "Tech Company", link: "#" },
+           { type: "erasmus", name: "Lea P.", promo: "F2", city: "Oklahoma", org: "OU", link: "#" }
         ]
       },
-      allemagne: {
-        name: "Allemagne",
-        flag: "🇩🇪",
-        desc: "Le moteur économique de l'Europe, parfait pour l'industrie et la recherche.",
-        capital: "Berlin",
-        lang: "Allemand",
-        currency: "Euro (€)",
+      bresil: {
+        name: "Brésil",
+        flag: "🇧🇷",
+        desc: "Une culture chaleureuse et une économie émergente pleine de défis informatiques passionnants.",
+        capital: "Brasilia",
+        lang: "Portugais",
+        currency: "Réal (BRL)",
         images: [
-          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80"
+          "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?auto=format&fit=crop&w=1600&q=80"
         ],
-        testimonials: [] // Pas encore de témoignage
+        testimonials: [
+           { type: "erasmus", name: "Hugo V.", promo: "F1", city: "Rio de Janeiro", org: "PUC-Rio", link: "#" }
+        ]
+      },
+
+      // --- AFRIQUE ---
+      maroc: {
+        name: "Maroc",
+        flag: "🇲🇦",
+        desc: "Une porte d'entrée vers l'Afrique avec un secteur IT en pleine explosion et une proximité culturelle.",
+        capital: "Rabat",
+        lang: "Arabe / Français",
+        currency: "Dirham (MAD)",
+        images: [
+          "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1564507004663-b6dfb3c824d5?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+           { type: "stage", name: "Amine K.", promo: "F4", city: "Casablanca", org: "Banque Info", link: "#" }
+        ]
+      },
+      senegal: {
+        name: "Sénégal",
+        flag: "🇸🇳",
+        desc: "Le pays de la Teranga. Une plaque tournante du numérique en Afrique de l'Ouest.",
+        capital: "Dakar",
+        lang: "Français / Wolof",
+        currency: "Franc CFA",
+        images: [
+          "https://images.unsplash.com/photo-1572986422732-c6b0c2395565?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1577793399438-2af387c9dc2e?auto=format&fit=crop&w=1600&q=80"
+        ],
+        testimonials: [
+           { type: "stage", name: "Fatou D.", promo: "F3", city: "Dakar", org: "Orange SN", link: "#" }
+        ]
       }
-      // Ajoute les autres pays ici...
     };
 
     // ==========================================
