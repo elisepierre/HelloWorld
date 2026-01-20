@@ -9,268 +9,203 @@
 
   <style>
     /* ==============================
-       VARIABLES & RESET
+       VARIABLES & ESTHÉTIQUE
     ============================== */
     :root {
-      /* Palette de couleurs "Voyage & Pro" */
-      --primary-bg: #f8f9fa;      /* Blanc cassé pour le fond principal */
-      --secondary-bg: #ffffff;    /* Blanc pur pour les sections et cartes */
-      --accent: #009688;          /* Un beau "Teal" (bleu canard) pour l'accentuation */
-      --accent-dark: #00796b;     /* Version plus foncée pour les survols */
-      --text-dark: #2d3436;       /* Anthracite pour le texte, moins dur que le noir */
-      --text-light: #636e72;      /* Gris pour les sous-titres */
+      --bg-color: #f4f7f6;        /* Gris très clair pour le fond de page */
+      --card-bg: #ffffff;         /* Blanc pur pour les cartes */
+      --text-main: #2c3e50;
+      --text-sub: #7f8c8d;
+      --accent: #00b894;          /* Vert menthe moderne */
+      --accent-hover: #55efc4;    /* Plus clair pour les effets */
       
-      /* Ombres pour donner de la profondeur */
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-      --shadow-md: 0 6px 12px rgba(0,0,0,0.1);
-      --shadow-lg: 0 15px 30px rgba(0,0,0,0.15);
+      /* Ombres douces (Soft UI) */
+      --shadow-rest: 0 10px 20px rgba(0,0,0,0.05), 0 6px 6px rgba(0,0,0,0.05);
+      --shadow-hover: 0 15px 30px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.05);
       
-      /* Dégradé pour les images Hero */
-      --hero-overlay-gradient: linear-gradient(135deg, rgba(0, 50, 60, 0.8), rgba(0, 0, 0, 0.4));
+      /* Dégradé sombre sur les images hero pour lisibilité texte */
+      --overlay: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Open Sans', sans-serif;
-      color: var(--text-dark);
-      line-height: 1.7;
-      background-color: var(--primary-bg);
-    }
-
-    h1, h2, h3 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 800;
-      letter-spacing: -0.5px;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
     }
 
     /* ==============================
-       STYLES HERO (Principal & Mini)
+       GESTION DES IMAGES (HERO)
     ============================== */
     .hero, .mini-hero {
       position: relative;
-      /* Effet Parallaxe : l'image de fond reste fixe quand on scrolle */
-      background-attachment: fixed;
       background-size: cover;
       background-position: center;
+      background-attachment: fixed; /* Effet Parallaxe */
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
-      overflow: hidden;
     }
-
-    .hero {
-      height: 85vh; /* Un peu plus grand */
-      /* Image d'inspiration voyage globale */
-      background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
-    }
-
-    .mini-hero {
-      height: 300px; /* Séparateurs plus imposants */
-      margin-top: 0; /* Collé à la section précédente */
-    }
-    
-    /* Images spécifiques pour les continents (Utilisation d'Unsplash) */
-    .europe-hero { background-image: url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-    .asia-hero { background-image: url('https://images.unsplash.com/photo-1535139262971-c51845709a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-    .america-hero { background-image: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
-    .africa-hero { background-image: url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); }
 
     .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--hero-overlay-gradient);
-      z-index: 1;
+      background: var(--overlay);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      padding: 20px;
-      max-width: 800px;
+      padding: 0 20px;
     }
 
+    /* --- IMAGES LOCALES --- */
+    .hero { 
+      height: 90vh; 
+      background-image: url('hero.jpg'); 
+    }
+    
+    .europe-hero { background-image: url('europe.jpg'); }
+    .asia-hero   { background-image: url('asia.jpg'); }
+    .america-hero { background-image: url('america.jpg'); }
+    .africa-hero { background-image: url('africa.jpg'); }
+
+    .mini-hero {
+      height: 250px;
+      margin-top: 0;
+    }
+
+    /* TYPOGRAPHIE HERO */
     .hero h1 {
-      font-size: 5rem;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-    }
-
-    .hero .subtitle {
-      font-size: 1.8rem;
-      font-weight: 400;
       font-family: 'Poppins', sans-serif;
-      opacity: 0.9;
+      font-size: 4.5rem;
+      font-weight: 800;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      letter-spacing: -2px;
     }
-
+    .hero .subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
     .mini-hero h2 {
-        font-size: 3.5rem;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      font-family: 'Poppins', sans-serif;
+      font-size: 3rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     /* ==============================
-       SECTION INTRO
+       INTRO
     ============================== */
     .intro {
+      background: white;
       padding: 80px 20px;
       text-align: center;
-      background: var(--secondary-bg);
-      position: relative;
-      z-index: 10;
-      box-shadow: var(--shadow-md); /* Petite ombre pour qu'elle passe au dessus du hero */
-      margin-top: -50px; /* Chevauchement léger sur le hero */
-      border-radius: 20px 20px 0 0; /* Coins arrondis en haut */
     }
-
-    .intro-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .intro h2 {
-        color: var(--accent);
-        margin-bottom: 25px;
-        font-size: 2.2rem;
-    }
-
-    .intro p {
-        font-size: 1.1rem;
-        color: var(--text-light);
-    }
-    
-    .intro strong {
-        color: var(--accent-dark);
-        font-weight: 700;
-    }
+    .intro-content { max-width: 700px; margin: 0 auto; }
+    .intro h2 { font-family: 'Poppins', sans-serif; color: var(--accent); margin-bottom: 20px; }
 
     /* ==============================
-       SECTIONS PAYS & CARTES
+       GRID & BOUTONS PAYS (MODERNE)
     ============================== */
-    .europe-countries,
-    .asia-countries,
-    .america-countries,
-    .africa-countries {
-      padding: 60px 20px 80px; /* Plus d'espace en bas */
-      background: var(--primary-bg);
-      display: flex;
-      justify-content: center;
+    section[class$="-countries"] {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .countries-container {
       display: grid;
-      /* Grille responsive automatique : des colonnes d'au moins 220px */
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      /* Grille responsive : s'adapte automatiquement */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 30px;
-      width: 100%;
-      max-width: 1200px;
+      justify-items: center;
     }
 
-    /* Le style des boîtes de pays */
     .country-box {
-      background: var(--secondary-bg);
-      color: var(--text-dark);
-      padding: 25px;
-      border-radius: 16px; /* Coins bien arrondis */
-      font-family: "Poppins", sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 250px;
+      height: 180px; /* Hauteur fixe pour uniformité */
+      border-radius: 20px;
+      box-shadow: var(--shadow-rest);
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
       cursor: pointer;
       text-align: center;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       position: relative;
       overflow: hidden;
-      
-      /* Transitions fluides */
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond léger */
-      box-shadow: var(--shadow-sm);
-      border: 2px solid transparent; /* Préparation pour le hover */
-    }
-    
-    /* Ajout d'un petit élément décoratif avant le nom */
-    .country-box::before {
-        content: '';
-        display: block;
-        width: 40px;
-        height: 4px;
-        background: var(--accent);
-        margin: 0 auto 15px auto;
-        border-radius: 10px;
-        transition: width 0.3s;
+      border: 1px solid rgba(0,0,0,0.02);
     }
 
-    /* Effet au survol */
+    /* Le drapeau */
+    .country-flag {
+      font-size: 4rem; /* Grand drapeau */
+      margin-bottom: 10px;
+      transition: transform 0.3s;
+    }
+
+    /* Le nom du pays */
+    .country-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      transition: color 0.3s;
+    }
+
+    /* --- EFFETS SURVOL & CLIC --- */
+    
+    /* Hover : Le bouton monte + ombre + bordure accentuée */
     .country-box:hover {
-      transform: translateY(-10px) scale(1.02); /* Monte et grossit légèrement */
-      box-shadow: var(--shadow-lg);
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-    
-    .country-box:hover::before {
-        width: 60px; /* La barre s'élargit au survol */
+      transform: translateY(-10px); /* Lévitation */
+      box-shadow: var(--shadow-hover);
+      border-bottom: 4px solid var(--accent); /* Petite touche de couleur en bas */
     }
 
-    /* Style pour l'icône emoji ajoutée via JS */
-    .country-icon {
-        display: block;
-        font-size: 3rem;
-        margin-bottom: 10px;
-        opacity: 0.8;
+    .country-box:hover .country-flag {
+      transform: scale(1.1); /* Le drapeau grossit un peu */
+    }
+    
+    .country-box:hover .country-name {
+      color: var(--accent); /* Le texte prend la couleur */
+    }
+
+    /* Active : Clic enfoncé */
+    .country-box:active {
+      transform: translateY(-2px) scale(0.98);
+      box-shadow: var(--shadow-rest);
+      transition: 0.1s;
     }
 
     /* ==============================
        FOOTER
     ============================== */
     footer {
+      background: #1e272e;
+      color: #dfe6e9;
       text-align: center;
-      padding: 60px 20px;
-      background: var(--text-dark); /* Fond foncé */
-      color: rgba(255,255,255,0.7);
+      padding: 40px 20px;
+      margin-top: 40px;
     }
+    .signature strong { color: var(--accent); }
+    .project-note { font-size: 0.8rem; opacity: 0.5; margin-top: 10px; }
 
-    footer p:first-child {
-        font-family: 'Poppins', sans-serif;
-        font-size: 1.2rem;
-        color: white;
-        margin-bottom: 20px;
-    }
-
-    .signature strong {
-      color: var(--accent);
-    }
-
-    .project-note {
-      font-style: italic;
-      font-size: 0.9rem;
-      margin-top: 10px;
-      opacity: 0.6;
-    }
-
-    /* ==============================
-       RESPONSIVE
-    ============================== */
+    /* MOBILE */
     @media(max-width: 768px){
-      .hero h1 { font-size: 3.5rem; }
-      .hero .subtitle { font-size: 1.4rem; }
-      .mini-hero { height: 220px; }
-      .mini-hero h2 { font-size: 2.5rem; }
-      .intro { 
-          margin-top: 0; 
-          border-radius: 0;
-          padding: 50px 20px;
-      }
-      .countries-container {
-          gap: 15px;
-      }
-      .country-box {
-        padding: 20px;
-        font-size: 1.1rem;
-      }
+      .hero h1 { font-size: 3rem; }
+      .mini-hero { height: 200px; }
+      .country-box { height: 160px; }
     }
   </style>
 </head>
@@ -288,17 +223,14 @@
     <div class="intro-content">
       <h2>À propos de ce projet</h2>
       <p>
-        Ce site a été conçu par <strong>Elise Pierre</strong> dans le cadre d’un projet personnel pour mettre en valeur les opportunités internationales proposées par l’ISIMA. 
-        L’idée est de permettre aux étudiants de découvrir les continents et pays où ils peuvent étudier, à travers les témoignages de ceux qui y sont allés.
+        Bienvenue sur le portail des mobilités de l'ISIMA. Cliquez sur un pays pour découvrir les récits de voyage, les conseils et les photos des étudiants qui y ont vécu leur expérience internationale.
       </p>
     </div>
   </section>
 
   <section class="mini-hero europe-hero">
     <div class="overlay"></div>
-    <div class="hero-content">
-      <h2>Europe</h2>
-    </div>
+    <div class="hero-content"><h2>Europe</h2></div>
   </section>
   <section class="europe-countries">
     <div class="countries-container" id="europe-countries-container"></div>
@@ -306,9 +238,7 @@
 
   <section class="mini-hero asia-hero">
     <div class="overlay"></div>
-    <div class="hero-content">
-      <h2>Asie</h2>
-    </div>
+    <div class="hero-content"><h2>Asie</h2></div>
   </section>
   <section class="asia-countries">
     <div class="countries-container" id="asia-countries-container"></div>
@@ -316,9 +246,7 @@
 
   <section class="mini-hero america-hero">
     <div class="overlay"></div>
-    <div class="hero-content">
-      <h2>Amérique</h2>
-    </div>
+    <div class="hero-content"><h2>Amérique</h2></div>
   </section>
   <section class="america-countries">
     <div class="countries-container" id="america-countries-container"></div>
@@ -326,9 +254,7 @@
 
   <section class="mini-hero africa-hero">
     <div class="overlay"></div>
-    <div class="hero-content">
-      <h2>Afrique</h2>
-    </div>
+    <div class="hero-content"><h2>Afrique</h2></div>
   </section>
   <section class="africa-countries">
     <div class="countries-container" id="africa-countries-container"></div>
@@ -337,63 +263,65 @@
   <footer>
     <p>&copy; 2025 Hello World - ISIMA</p>
     <div class="signature">
-      <p>Conçu et développé par <strong>Elise Pierre</strong>, étudiante à l’ISIMA</p>
-      <p class="project-note">Projet personnel proposé pour une utilisation institutionnelle</p>
+      <p>Réalisé par <strong>Elise Pierre</strong></p>
+      <p class="project-note">Projet Étudiant</p>
     </div>
   </footer>
 
   <script>
     // ==============================
-    // DONNÉES
+    // DONNÉES AVEC DRAPEAUX
     // ==============================
     const continentsData = [
       {
-        name: "Europe", icon: "🇪🇺",
+        name: "Europe",
         countries: [
-          { name: "Allemagne", link: "allemagne.html" },
-          { name: "Espagne", link: "espagne.html" },
-          { name: "Norvège", link: "norvege.html" },
-          { name: "Pologne", link: "pologne.html" },
-          { name: "Italie", link: "#" } // Ajout pour tester la grille
+          { name: "Allemagne", flag: "🇩🇪", link: "allemagne.html" },
+          { name: "Espagne", flag: "🇪🇸", link: "espagne.html" },
+          { name: "Norvège", flag: "🇳🇴", link: "norvege.html" },
+          { name: "Pologne", flag: "🇵🇱", link: "pologne.html" },
+          { name: "Italie", flag: "🇮🇹", link: "#" }
         ]
       },
       {
-        name: "Asie", icon: "🌏",
+        name: "Asie",
         countries: [
-          { name: "Japon", link: "japon.html" },
-          { name: "Chine", link: "chine.html" },
-          { name: "Corée du Sud", link: "coree.html" },
-          { name: "Vietnam", link: "#" }
+          { name: "Japon", flag: "🇯🇵", link: "japon.html" },
+          { name: "Chine", flag: "🇨🇳", link: "chine.html" },
+          { name: "Corée du Sud", flag: "🇰🇷", link: "coree.html" },
+          { name: "Vietnam", flag: "🇻🇳", link: "#" }
         ]
       },
       {
-        name: "Amérique", icon: "🌎",
+        name: "Amérique",
         countries: [
-          { name: "Canada", link: "canada.html" },
-          { name: "Brésil", link: "bresil.html" },
-          { name: "États-Unis", link: "usa.html" },
-          { name: "Mexique", link: "#" }
+          { name: "Canada", flag: "🇨🇦", link: "canada.html" },
+          { name: "Brésil", flag: "🇧🇷", link: "bresil.html" },
+          { name: "États-Unis", flag: "🇺🇸", link: "usa.html" },
+          { name: "Mexique", flag: "🇲🇽", link: "#" }
         ]
       },
       {
-        name: "Afrique", icon: "🌍",
+        name: "Afrique",
         countries: [
-          { name: "Maroc", link: "maroc.html" },
-          { name: "Sénégal", link: "senegal.html" }
+          { name: "Maroc", flag: "🇲🇦", link: "maroc.html" },
+          { name: "Sénégal", flag: "🇸🇳", link: "senegal.html" }
         ]
       }
     ];
 
     // ==============================
-    // FONCTION DE NAVIGATION
+    // NAVIGATION
     // ==============================
     function goTo(page) {
-      // Remplacer par window.location.href = page; pour la version finale
-      console.log("Navigation vers : " + page);
+      // Pour tester sans créer les pages, on log juste dans la console
+      console.log("Vers : " + page);
+      // Décommenter ci-dessous pour activer la vraie navigation
+      // window.location.href = page;
     }
 
     // ==============================
-    // GÉNÉRATION DES PAYS (Mise à jour pour inclure l'icône)
+    // GÉNÉRATION DES BOUTONS PAYS
     // ==============================
     function generateCountryBoxes(continentName, containerId) {
       const container = document.getElementById(containerId);
@@ -406,16 +334,18 @@
         const div = document.createElement("div");
         div.classList.add("country-box");
         
-        // Ajout de l'icône du continent dans la boîte du pays
-        // On utilise innerHTML pour insérer le span de l'icône puis le texte
-        div.innerHTML = `<span class="country-icon">${continent.icon}</span>${country.name}`;
+        // Structure HTML interne du bouton : Drapeau + Nom
+        div.innerHTML = `
+            <div class="country-flag">${country.flag}</div>
+            <div class="country-name">${country.name}</div>
+        `;
 
         div.addEventListener("click", () => goTo(country.link));
         container.appendChild(div);
       });
     }
 
-    // Appel au chargement
+    // Initialisation
     document.addEventListener('DOMContentLoaded', () => {
         generateCountryBoxes("Europe", "europe-countries-container");
         generateCountryBoxes("Asie", "asia-countries-container");
