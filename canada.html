@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Canada - Hello World ISIMA</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==============================
+       1. VARIABLES & CHARTE (IDENTIQUE INDEX)
+    ============================== */
+    :root {
+      --isima-blue-dark: #0d2c4d;
+      --isima-blue-light: #005b96;
+      --isima-yellow: #f3b749;
+      --isima-red: #bf4b3b;
+      --bg-color: #f8f9fa;
+      --text-main: #2c3e50;
+      --card-radius: 12px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background: var(--bg-color); color: var(--text-main); }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    a { text-decoration: none; }
+
+    /* ==============================
+       2. HEADER & NAV
+    ============================== */
+    .navbar {
+      background: var(--isima-blue-dark);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .brand { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; }
+    .brand span { color: var(--isima-yellow); }
+    .btn-back {
+      color: white;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+    .btn-back:hover { color: var(--isima-yellow); transform: translateX(-5px); }
+
+    /* ==============================
+       3. CAROUSEL / SLIDER PHOTOS
+    ============================== */
+    .country-header {
+      position: relative;
+      height: 60vh; /* Hauteur du header */
+      overflow: hidden;
+      background: #000;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .slide.active { opacity: 1; }
+
+    /* Overlay dégradé pour lisibilité titre */
+    .header-overlay {
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to top, var(--isima-blue-dark) 0%, transparent 60%);
+      z-index: 2;
+    }
+
+    .header-content {
+      position: absolute;
+      bottom: 40px;
+      left: 5%;
+      z-index: 3;
+      color: white;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .country-flag { font-size: 3rem; margin-bottom: 10px; display: block; }
+    .country-title { font-size: 4rem; font-weight: 800; line-height: 1; }
+    .country-subtitle { font-size: 1.2rem; font-weight: 300; margin-top: 10px; opacity: 0.9; }
+
+    /* Boutons navigation slider */
+    .slider-nav {
+      position: absolute;
+      top: 50%; width: 100%;
+      display: flex; justify-content: space-between;
+      padding: 0 20px; z-index: 4; transform: translateY(-50%);
+    }
+    .slider-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: 0.3s;
+    }
+    .slider-btn:hover { background: var(--isima-yellow); color: var(--isima-blue-dark); border-color: var(--isima-yellow); }
+
+    /* ==============================
+       4. INFOS GÉNÉRALES (DATA GRID)
+    ============================== */
+    .info-section {
+      max-width: 1200px;
+      margin: -60px auto 40px; /* Chevauche le header */
+      position: relative;
+      z-index: 10;
+      padding: 0 20px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .info-card {
+      background: white;
+      padding: 25px;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      border-bottom: 4px solid var(--isima-blue-light);
+      transition: transform 0.3s;
+    }
+    .info-card:hover { transform: translateY(-5px); border-bottom-color: var(--isima-yellow); }
+
+    .info-icon { font-size: 1.5rem; color: var(--isima-blue-dark); margin-bottom: 10px; }
+    .info-label { font-size: 0.85rem; color: #7f8c8d; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .info-value { font-size: 1.3rem; font-weight: 700; color: var(--text-main); margin-top: 5px; }
+
+    /* ==============================
+       5. LISTE TÉMOIGNAGES
+    ============================== */
+    .testimonials-section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .section-header {
+      display: flex; align-items: center; margin-bottom: 40px;
+    }
+    .section-header h2 { font-size: 2rem; color: var(--isima-blue-dark); margin-right: 20px; }
+    .line { height: 3px; background: var(--isima-yellow); flex-grow: 1; border-radius: 2px; opacity: 0.7; }
+
+    /* Carte Témoignage Style "Ticket" */
+    .testimonial-card {
+      background: white;
+      border-radius: var(--card-radius);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      display: flex;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(0,0,0,0.05);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .testimonial-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--isima-blue-dark) !important; /* Force la couleur au hover */
+    }
+
+    /* Partie Gauche : Type & Date */
+    .t-left {
+      width: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+    
+    /* Couleurs dynamiques selon le type */
+    .type-stage { background: var(--isima-blue-dark); }
+    .type-erasmus { background: var(--isima-blue-light); }
+    .type-double { background: var(--isima-red); }
+
+    .t-type-icon { font-size: 1.5rem; margin-bottom: 5px; }
+    .t-type-text { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
+    
+    /* Partie Droite : Contenu */
+    .t-content {
+      flex-grow: 1;
+      padding: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .t-info h3 { font-size: 1.3rem; margin-bottom: 5px; color: var(--text-main); }
+    .t-info p { color: #666; font-size: 0.95rem; margin-bottom: 5px; }
+    .t-highlight { color: var(--isima-blue-light); font-weight: 600; }
+
+    .t-action {
+      background: var(--bg-color);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--isima-blue-dark);
+      transition: 0.3s;
+    }
+    .testimonial-card:hover .t-action { background: var(--isima-yellow); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .country-title { font-size: 2.5rem; }
+      .testimonial-card { flex-direction: column; }
+      .t-left { width: 100%; flex-direction: row; justify-content: flex-start; padding: 10px 20px; }
+      .t-type-icon { margin-right: 10px; margin-bottom: 0; }
+      .t-content { flex-direction: column; align-items: flex-start; }
+      .t-action { margin-top: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Retour carte</a>
+    <div class="brand">HELLO <span>WORLD</span></div>
+    <div style="width: 80px;"></div> </nav>
+
+  <header class="country-header">
+    <div class="header-overlay"></div>
+    
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?auto=format&fit=crop&w=1600&q=80');"></div>
+
+    <div class="header-content">
+      <span class="country-flag">🇨🇦</span>
+      <h1 class="country-title">CANADA</h1>
+      <p class="country-subtitle">Terre de grands espaces et d'innovation technologique</p>
+    </div>
+
+    <div class="slider-nav">
+      <button class="slider-btn" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-btn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </header>
+
+  <div class="info-section">
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-city"></i></div>
+        <div class="info-label">Capitale</div>
+        <div class="info-value">Ottawa</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-users"></i></div>
+        <div class="info-label">Population</div>
+        <div class="info-value">38 M</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-comments"></i></div>
+        <div class="info-label">Langues</div>
+        <div class="info-value">Anglais / Français</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-coins"></i></div>
+        <div class="info-label">Monnaie</div>
+        <div class="info-value">CAD ($)</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="testimonials-section">
+    <div class="section-header">
+      <h2>Retours d'Expérience</h2>
+      <div class="line"></div>
+    </div>
+
+    <a href="temoignage-julie.html" class="testimonial-card" style="border-left: 5px solid var(--isima-blue-dark);">
+      <div class="t-left type-stage">
+        <i class="fas fa-briefcase t-type-icon"></i>
+        <span class="t-type-text">Stage</span>
+      </div>
+      <div class="t-content">
+        <div class="t-info">
+          <h3>Julie Martin <span style="font-size:0.8rem; font-weight:400; color:#888;">(F3)</span></h3>
+          <p><i class="fas fa-map-marker-alt" style="color:var(--isima-red); width:20px;"></i> <span class="t-highlight">Montréal</span>, Québec</p>
+          <p><i class="fas fa-building" style="color:#7f8c8d; width:20px;"></i> Entreprise : <strong>Ubisoft Montréal</strong></p>
+        </div>
+        <div class="t-action">Lire le récit &rarr;</div>
+      </div>
+    </a>
+
+    <a href="temoignage-thomas.html" class="testimonial-card" style="border-left: 5px solid var(--isima-blue-light);">
+      <div class="t-left type-erasmus">
+        <i class="fas fa-university t-type-icon"></i>
+        <span class="t-type-text">Échange</span>
+      </div>
+      <div class="t-content">
+        <div class="t-info">
+          <h3>Thomas Dubois <span style="font-size:0.8rem; font-weight:400; color:#888;">(F2)</span></h3>
+          <p><i class="fas fa-map-marker-alt" style="color:var(--isima-red); width:20px;"></i> <span class="t-highlight">Chicoutimi</span>, Québec</p>
+          <p><i class="fas fa-graduation-cap" style="color:#7f8c8d; width:20px;"></i> Université : <strong>UQAC</strong></p>
+        </div>
+        <div class="t-action">Lire le récit &rarr;</div>
+      </div>
+    </a>
+
+    <a href="temoignage-sarah.html" class="testimonial-card" style="border-left: 5px solid var(--isima-red);">
+      <div class="t-left type-double">
+        <i class="fas fa-certificate t-type-icon"></i>
+        <span class="t-type-text">Double D.</span>
+      </div>
+      <div class="t-content">
+        <div class="t-info">
+          <h3>Sarah Lemoine <span style="font-size:0.8rem; font-weight:400; color:#888;">(F3)</span></h3>
+          <p><i class="fas fa-map-marker-alt" style="color:var(--isima-red); width:20px;"></i> <span class="t-highlight">Sherbrooke</span>, Québec</p>
+          <p><i class="fas fa-graduation-cap" style="color:#7f8c8d; width:20px;"></i> Université : <strong>UdeS</strong></p>
+        </div>
+        <div class="t-action">Lire le récit &rarr;</div>
+      </div>
+    </a>
+
+  </section>
+
+  <script>
+    // SCRIPT CAROUSEL SIMPLE
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      // Gestion boucle infinie
+      if (index >= totalSlides) currentSlide = 0;
+      else if (index < 0) currentSlide = totalSlides - 1;
+      else currentSlide = index;
+      
+      slides[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+
+    // Auto-play optionnel (toutes les 5 secondes)
+    setInterval(nextSlide, 5000);
+  </script>
+
+</body>
+</html>
