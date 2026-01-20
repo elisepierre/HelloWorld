@@ -6,33 +6,25 @@
   <title>Hello World - ISIMA à l’international</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
   <style>
     /* ==============================
-       VARIABLES & ESTHÉTIQUE (COULEURS ISIMA)
+       VARIABLES & ESTHÉTIQUE
     ============================== */
     :root {
-      /* Palette extraite du logo ISIMA */
-      --isima-blue-dark: #004a87;    /* Bleu foncé du cercle extérieur */
-      --isima-blue-light: #006db0;   /* Bleu clair des icônes */
-      --isima-red: #c04d40;          /* Rouge brique de l'icône */
-      --isima-orange: #e6ac40;       /* Orange/Jaune de l'icône */
-      --isima-dark-icon: #1a2639;    /* Bleu très foncé de l'icône centrale supérieure */
-
       --bg-color: #f4f7f6;        /* Gris très clair pour le fond de page */
       --card-bg: #ffffff;         /* Blanc pur pour les cartes */
-      --text-main: var(--isima-blue-dark); /* Texte principal en bleu foncé */
+      --text-main: #2c3e50;
       --text-sub: #7f8c8d;
-      --accent: var(--isima-blue-light);          /* Accent en bleu clair */
-      --accent-hover: var(--isima-blue-dark);    /* Survol en bleu plus foncé */
+      --accent: #00b894;          /* Vert menthe moderne */
+      --accent-hover: #55efc4;    /* Plus clair pour les effets */
       
       /* Ombres douces (Soft UI) */
-      --shadow-rest: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-hover: 0 10px 20px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
+      --shadow-rest: 0 10px 20px rgba(0,0,0,0.05), 0 6px 6px rgba(0,0,0,0.05);
+      --shadow-hover: 0 15px 30px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.05);
       
-      /* Dégradé sombre sur les images hero pour lisibilité texte, avec une teinte bleue */
-      --overlay: linear-gradient(180deg, rgba(0,74,135,0.4) 0%, rgba(26,38,57,0.7) 100%);
+      /* Dégradé sombre sur les images hero pour lisibilité texte */
+      --overlay: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -45,103 +37,66 @@
     }
 
     /* ==============================
-       HERO MODERNE ET DYNAMIQUE
+       GESTION DES IMAGES (HERO)
     ============================== */
-    .hero-section {
+    .hero, .mini-hero {
       position: relative;
-      height: 90vh;
-      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* Effet Parallaxe */
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
-    }
-
-    /* Arrière-plan animé (simulé avec un slideshow) */
-    .hero-slideshow {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 1;
-    }
-    .hero-slideshow div {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      animation: slideShow 24s infinite;
-    }
-    .hero-slideshow div:nth-child(1) { background-image: url('hero.jpg'); animation-delay: 0s; }
-    .hero-slideshow div:nth-child(2) { background-image: url('europe.jpg'); animation-delay: 6s; }
-    .hero-slideshow div:nth-child(3) { background-image: url('asia.jpg'); animation-delay: 12s; }
-    .hero-slideshow div:nth-child(4) { background-image: url('america.jpg'); animation-delay: 18s; }
-
-    @keyframes slideShow {
-      0% { opacity: 0; transform: scale(1.1); }
-      4% { opacity: 1; transform: scale(1); }
-      24% { opacity: 1; transform: scale(1.05); }
-      28% { opacity: 0; transform: scale(1.1); }
-      100% { opacity: 0; }
     }
 
     .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: var(--overlay);
-      z-index: 2;
     }
 
     .hero-content {
       position: relative;
-      z-index: 3;
+      z-index: 2;
       padding: 0 20px;
     }
 
-    /* TYPOGRAPHIE HERO ANIMÉE */
-    .hero h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 5rem;
-      font-weight: 800;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      letter-spacing: -2px;
-      margin-bottom: 10px;
+    /* --- IMAGES LOCALES --- */
+    .hero { 
+      height: 90vh; 
+      background-image: url('hero.jpg'); 
     }
-    .hero .subtitle {
-      font-size: 1.8rem;
-      font-weight: 300;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--isima-orange); /* Accent orange */
-    }
-
-    /* ==============================
-       MINI-HERO (Séparateurs)
-    ============================== */
-    .mini-hero {
-      position: relative;
-      height: 250px;
-      margin-top: 0;
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-    }
+    
     .europe-hero { background-image: url('europe.jpg'); }
     .asia-hero   { background-image: url('asia.jpg'); }
     .america-hero { background-image: url('america.jpg'); }
     .africa-hero { background-image: url('africa.jpg'); }
 
+    .mini-hero {
+      height: 250px;
+      margin-top: 0;
+    }
+
+    /* TYPOGRAPHIE HERO */
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 800;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      letter-spacing: -2px;
+    }
+    .hero .subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
     .mini-hero h2 {
       font-family: 'Poppins', sans-serif;
       font-size: 3rem;
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      position: relative;
-      z-index: 3;
     }
 
     /* ==============================
@@ -153,10 +108,10 @@
       text-align: center;
     }
     .intro-content { max-width: 700px; margin: 0 auto; }
-    .intro h2 { font-family: 'Poppins', sans-serif; color: var(--isima-blue-dark); margin-bottom: 20px; }
+    .intro h2 { font-family: 'Poppins', sans-serif; color: var(--accent); margin-bottom: 20px; }
 
     /* ==============================
-       GRID & BOUTONS PAYS (PLUS PETITS & MODERNES)
+       GRID & BOUTONS PAYS (MODERNE)
     ============================== */
     section[class$="-countries"] {
       padding: 60px 20px;
@@ -165,17 +120,19 @@
     }
 
     .countries-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+      display: grid;
+      /* Grille responsive : s'adapte automatiquement */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      justify-items: center;
     }
 
     .country-box {
       background: var(--card-bg);
-      width: 160px; /* Plus petit */
-      height: 120px; /* Plus petit */
-      border-radius: 12px;
+      width: 100%;
+      max-width: 250px;
+      height: 180px; /* Hauteur fixe pour uniformité */
+      border-radius: 20px;
       box-shadow: var(--shadow-rest);
       
       display: flex;
@@ -188,13 +145,13 @@
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(0,74,135,0.1); /* Bordure subtile bleue */
+      border: 1px solid rgba(0,0,0,0.02);
     }
 
     /* Le drapeau */
     .country-flag {
-      font-size: 2.5rem; /* Drapeau plus petit */
-      margin-bottom: 8px;
+      font-size: 4rem; /* Grand drapeau */
+      margin-bottom: 10px;
       transition: transform 0.3s;
     }
 
@@ -202,29 +159,29 @@
     .country-name {
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       color: var(--text-main);
       transition: color 0.3s;
     }
 
-    /* --- EFFETS SURVOL & CLIC (MODERNISÉS) --- */
+    /* --- EFFETS SURVOL & CLIC --- */
     
-    /* Hover : Soulèvement subtil et changement de couleur */
+    /* Hover : Le bouton monte + ombre + bordure accentuée */
     .country-box:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px); /* Lévitation */
       box-shadow: var(--shadow-hover);
-      border-color: var(--isima-blue-light);
+      border-bottom: 4px solid var(--accent); /* Petite touche de couleur en bas */
     }
 
     .country-box:hover .country-flag {
-      transform: scale(1.1);
+      transform: scale(1.1); /* Le drapeau grossit un peu */
     }
     
     .country-box:hover .country-name {
-      color: var(--isima-blue-light); /* Le texte devient bleu clair */
+      color: var(--accent); /* Le texte prend la couleur */
     }
 
-    /* Active : Clic rapide */
+    /* Active : Clic enfoncé */
     .country-box:active {
       transform: translateY(-2px) scale(0.98);
       box-shadow: var(--shadow-rest);
@@ -235,38 +192,30 @@
        FOOTER
     ============================== */
     footer {
-      background: var(--isima-blue-dark);
+      background: #1e272e;
       color: #dfe6e9;
       text-align: center;
       padding: 40px 20px;
       margin-top: 40px;
     }
-    .signature strong { color: var(--isima-orange); }
-    .project-note { font-size: 0.8rem; opacity: 0.7; margin-top: 10px; color: var(--isima-blue-light); }
+    .signature strong { color: var(--accent); }
+    .project-note { font-size: 0.8rem; opacity: 0.5; margin-top: 10px; }
 
     /* MOBILE */
     @media(max-width: 768px){
       .hero h1 { font-size: 3rem; }
-      .hero .subtitle { font-size: 1.2rem; }
       .mini-hero { height: 200px; }
-      .country-box { width: 140px; height: 110px; }
-      .country-flag { font-size: 2rem; }
+      .country-box { height: 160px; }
     }
   </style>
 </head>
 <body>
 
-  <header class="hero-section">
-    <div class="hero-slideshow">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+  <header class="hero">
     <div class="overlay"></div>
     <div class="hero-content">
-      <h1 class="animate__animated animate__fadeInDown">Hello World</h1>
-      <p class="subtitle animate__animated animate__fadeInUp animate__delay-1s">ISIMA à l'international</p>
+      <h1>Hello World</h1>
+      <p class="subtitle">ISIMA à l'international</p>
     </div>
   </header>
 
