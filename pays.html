@@ -129,12 +129,46 @@
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
     }
 
+    /* ==============================
+       MISE A JOUR : CARTES INFOS
+    ============================== */
     .info-card {
-      background: white; padding: 25px; border-radius: var(--card-radius);
-      box-shadow: var(--shadow); text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      /* Bordure bleue par défaut */
       border-bottom: 4px solid var(--isima-blue-light);
+      
+      /* C'est ici que la magie opère : transition fluide */
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: default; /* Montre que ce n'est pas un bouton cliquable mais interactif */
     }
-    .info-icon { font-size: 1.5rem; color: var(--isima-blue-dark); margin-bottom: 10px; }
+
+    /* EFFET AU SURVOL DE LA CARTE */
+    .info-card:hover {
+      /* La carte monte de 10 pixels */
+      transform: translateY(-10px);
+      /* L'ombre devient plus grande et plus floue (effet 3D) */
+      box-shadow: 0 20px 40px rgba(0, 44, 77, 0.15);
+      /* La bordure passe au JAUNE ISIMA */
+      border-bottom-color: var(--isima-yellow);
+    }
+
+    /* BONUS : ANIMATION DE L'ICÔNE */
+    .info-icon {
+      font-size: 1.5rem;
+      color: var(--isima-blue-dark);
+      margin-bottom: 10px;
+      transition: 0.3s; /* Transition pour l'icône aussi */
+    }
+
+    /* Quand on survole la carte, l'icône grossit et tourne un peu */
+    .info-card:hover .info-icon {
+      transform: scale(1.2) rotate(10deg);
+      color: var(--isima-yellow);
+    }
     .info-value { font-size: 1.3rem; font-weight: 700; }
 
     .testimonials-section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
