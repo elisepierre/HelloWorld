@@ -3,355 +3,433 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hello World - ISIMA à l’international</title>
+  <title>ISIMA World - Mobilité Internationale</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     /* ==============================
-       VARIABLES & ESTHÉTIQUE
+       1. IDENTITÉ ISIMA & VARIABLES
     ============================== */
     :root {
-      --bg-color: #f4f7f6;        /* Gris très clair pour le fond de page */
-      --card-bg: #ffffff;         /* Blanc pur pour les cartes */
+      /* Couleurs extraites de ton logo */
+      --isima-blue-dark: #0d2c4d;   /* Bleu nuit fond logo */
+      --isima-blue-light: #005b96;  /* Bleu plus clair */
+      --isima-yellow: #f3b749;      /* Jaune des nœuds */
+      --isima-red: #bf4b3b;         /* Rouge des nœuds */
+      
+      --bg-color: #f8f9fa;
       --text-main: #2c3e50;
-      --text-sub: #7f8c8d;
-      --accent: #00b894;          /* Vert menthe moderne */
-      --accent-hover: #55efc4;    /* Plus clair pour les effets */
+      --text-light: #ecf0f1;
       
-      /* Ombres douces (Soft UI) */
-      --shadow-rest: 0 10px 20px rgba(0,0,0,0.05), 0 6px 6px rgba(0,0,0,0.05);
-      --shadow-hover: 0 15px 30px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.05);
-      
-      /* Dégradé sombre sur les images hero pour lisibilité texte */
-      --overlay: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+      --card-radius: 16px;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Effet rebond */
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
     body {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Roboto', sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
-      line-height: 1.6;
+      overflow-x: hidden;
     }
+
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
     /* ==============================
-       GESTION DES IMAGES (HERO)
+       2. HERO SECTION DYNAMIQUE
     ============================== */
-    .hero, .mini-hero {
+    .hero {
       position: relative;
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed; /* Effet Parallaxe */
+      height: 85vh;
+      background: linear-gradient(135deg, var(--isima-blue-dark) 0%, var(--isima-blue-light) 100%);
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
       text-align: center;
       color: white;
+      overflow: hidden;
     }
 
-    .overlay {
+    /* Décoration d'arrière-plan (Réseau/Noeuds) */
+    .hero::before {
+      content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--overlay);
+      background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 0%, transparent 20%),
+                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 20%);
+      background-size: 50px 50px;
+      opacity: 0.6;
     }
 
     .hero-content {
-      position: relative;
       z-index: 2;
-      padding: 0 20px;
+      max-width: 800px;
+      padding: 20px;
+      animation: fadeIn Up 1s ease-out;
     }
 
-    /* --- IMAGES LOCALES --- */
-    .hero { 
-      height: 90vh; 
-      background-image: url('hero.jpg'); 
-    }
-    
-    .europe-hero { background-image: url('europe.jpg'); }
-    .asia-hero   { background-image: url('asia.jpg'); }
-    .america-hero { background-image: url('america.jpg'); }
-    .africa-hero { background-image: url('africa.jpg'); }
-
-    .mini-hero {
-      height: 250px;
-      margin-top: 0;
-    }
-
-    /* TYPOGRAPHIE HERO */
     .hero h1 {
-      font-family: 'Poppins', sans-serif;
       font-size: 4.5rem;
       font-weight: 800;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      letter-spacing: -2px;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
     }
-    .hero .subtitle {
+    
+    .hero h1 span { color: var(--isima-yellow); }
+
+    .hero p {
       font-size: 1.5rem;
       font-weight: 300;
-      letter-spacing: 2px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: var(--isima-yellow);
+      color: var(--isima-blue-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(243, 183, 73, 0.3);
+      transition: var(--transition);
+    }
+    .cta-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(243, 183, 73, 0.5);
+      background: white;
+    }
+
+    /* Vague de séparation SVG en bas du hero */
+    .wave-bottom {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .wave-bottom svg {
+      position: relative;
+      display: block;
+      width: calc(138% + 1.3px);
+      height: 80px;
+    }
+    .wave-bottom .shape-fill { fill: var(--bg-color); }
+
+    /* ==============================
+       3. NAVIGATION CONTINENTS
+    ============================== */
+    .nav-tabs {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+    }
+
+    .nav-tabs a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      margin: 0 15px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: 0.3s;
+      font-size: 0.9rem;
       text-transform: uppercase;
     }
-    .mini-hero h2 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 3rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+
+    .nav-tabs a:hover, .nav-tabs a.active {
+      background-color: var(--isima-blue-light);
+      color: white;
     }
 
     /* ==============================
-       INTRO
+       4. SECTIONS & CARTES
     ============================== */
-    .intro {
-      background: white;
+    section {
       padding: 80px 20px;
-      text-align: center;
-    }
-    .intro-content { max-width: 700px; margin: 0 auto; }
-    .intro h2 { font-family: 'Poppins', sans-serif; color: var(--accent); margin-bottom: 20px; }
-
-    /* ==============================
-       GRID & BOUTONS PAYS (MODERNE)
-    ============================== */
-    section[class$="-countries"] {
-      padding: 60px 20px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .countries-container {
-      display: grid;
-      /* Grille responsive : s'adapte automatiquement */
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      justify-items: center;
+    .section-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--isima-blue-dark);
+      margin-right: 20px;
+    }
+    
+    .section-line {
+      flex-grow: 1;
+      height: 4px;
+      background: linear-gradient(90deg, var(--isima-yellow), transparent);
+      border-radius: 2px;
     }
 
-    .country-box {
-      background: var(--card-bg);
-      width: 100%;
-      max-width: 250px;
-      height: 180px; /* Hauteur fixe pour uniformité */
-      border-radius: 20px;
-      box-shadow: var(--shadow-rest);
-      
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      
+    .countries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    /* Design des cartes */
+    .card {
+      background: white;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       cursor: pointer;
-      text-align: center;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition: var(--transition);
+      position: relative;
+      border-top: 5px solid transparent;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,91,150, 0.15);
+      border-top: 5px solid var(--isima-yellow);
+    }
+
+    .card-img-wrapper {
+      height: 140px;
+      background-color: #eee;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.02);
+    }
+    
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+    
+    .card:hover .card-img { transform: scale(1.1); }
+
+    .card-body {
+      padding: 20px;
+      text-align: center;
     }
 
-    /* Le drapeau */
-    .country-flag {
-      font-size: 4rem; /* Grand drapeau */
-      margin-bottom: 10px;
-      transition: transform 0.3s;
+    .card-flag {
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin: -45px auto 10px; /* Chevauche l'image */
+      position: relative;
+      z-index: 2;
     }
 
-    /* Le nom du pays */
-    .country-name {
-      font-family: 'Poppins', sans-serif;
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      color: var(--isima-blue-dark);
+    }
+
+    .card span {
+      font-size: 0.8rem;
+      color: var(--isima-red);
       font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--text-main);
-      transition: color 0.3s;
-    }
-
-    /* --- EFFETS SURVOL & CLIC --- */
-    
-    /* Hover : Le bouton monte + ombre + bordure accentuée */
-    .country-box:hover {
-      transform: translateY(-10px); /* Lévitation */
-      box-shadow: var(--shadow-hover);
-      border-bottom: 4px solid var(--accent); /* Petite touche de couleur en bas */
-    }
-
-    .country-box:hover .country-flag {
-      transform: scale(1.1); /* Le drapeau grossit un peu */
-    }
-    
-    .country-box:hover .country-name {
-      color: var(--accent); /* Le texte prend la couleur */
-    }
-
-    /* Active : Clic enfoncé */
-    .country-box:active {
-      transform: translateY(-2px) scale(0.98);
-      box-shadow: var(--shadow-rest);
-      transition: 0.1s;
+      text-transform: uppercase;
     }
 
     /* ==============================
-       FOOTER
+       5. FOOTER
     ============================== */
     footer {
-      background: #1e272e;
-      color: #dfe6e9;
+      background: var(--isima-blue-dark);
+      color: white;
       text-align: center;
-      padding: 40px 20px;
-      margin-top: 40px;
+      padding: 60px 20px;
+      margin-top: 60px;
     }
-    .signature strong { color: var(--accent); }
-    .project-note { font-size: 0.8rem; opacity: 0.5; margin-top: 10px; }
+    .footer-logo {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .footer-logo span { color: var(--isima-yellow); }
 
-    /* MOBILE */
+    /* MEDIA QUERIES */
     @media(max-width: 768px){
       .hero h1 { font-size: 3rem; }
-      .mini-hero { height: 200px; }
-      .country-box { height: 160px; }
+      .nav-tabs { flex-wrap: wrap; }
+      .nav-tabs a { margin: 5px; font-size: 0.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <header class="hero">
-    <div class="overlay"></div>
+  <header class="hero" id="accueil">
     <div class="hero-content">
-      <h1>Hello World</h1>
-      <p class="subtitle">ISIMA à l'international</p>
+      <h1>ISIMA <span>WORLD</span></h1>
+      <p>Explorez les retours d'expérience de nos étudiants à travers le monde.</p>
+      <a href="#europe" class="cta-button">Découvrir la carte</a>
+    </div>
+    
+    <div class="wave-bottom">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+        </svg>
     </div>
   </header>
 
-  <section class="intro">
-    <div class="intro-content">
-      <h2>À propos de ce projet</h2>
-      <p>
-        Bienvenue sur le portail des mobilités de l'ISIMA. Cliquez sur un pays pour découvrir les récits de voyage, les conseils et les photos des étudiants qui y ont vécu leur expérience internationale.
-      </p>
+  <nav class="nav-tabs">
+    <a href="#europe">Europe</a>
+    <a href="#asia">Asie</a>
+    <a href="#america">Amérique</a>
+    <a href="#africa">Afrique</a>
+  </nav>
+
+  <section id="europe">
+    <div class="section-title">
+      <h2>Europe</h2>
+      <div class="section-line"></div>
     </div>
+    <div class="countries-grid" id="europe-grid"></div>
   </section>
 
-  <section class="mini-hero europe-hero">
-    <div class="overlay"></div>
-    <div class="hero-content"><h2>Europe</h2></div>
-  </section>
-  <section class="europe-countries">
-    <div class="countries-container" id="europe-countries-container"></div>
-  </section>
-
-  <section class="mini-hero asia-hero">
-    <div class="overlay"></div>
-    <div class="hero-content"><h2>Asie</h2></div>
-  </section>
-  <section class="asia-countries">
-    <div class="countries-container" id="asia-countries-container"></div>
+  <section id="asia">
+    <div class="section-title">
+      <h2>Asie</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="countries-grid" id="asia-grid"></div>
   </section>
 
-  <section class="mini-hero america-hero">
-    <div class="overlay"></div>
-    <div class="hero-content"><h2>Amérique</h2></div>
-  </section>
-  <section class="america-countries">
-    <div class="countries-container" id="america-countries-container"></div>
+  <section id="america">
+    <div class="section-title">
+      <h2>Amérique</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="countries-grid" id="america-grid"></div>
   </section>
 
-  <section class="mini-hero africa-hero">
-    <div class="overlay"></div>
-    <div class="hero-content"><h2>Afrique</h2></div>
-  </section>
-  <section class="africa-countries">
-    <div class="countries-container" id="africa-countries-container"></div>
+  <section id="africa">
+    <div class="section-title">
+      <h2>Afrique</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="countries-grid" id="africa-grid"></div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Hello World - ISIMA</p>
-    <div class="signature">
-      <p>Réalisé par <strong>Elise Pierre</strong></p>
-      <p class="project-note">Projet Étudiant</p>
-    </div>
+    <div class="footer-logo">ISIMA <span>WORLD</span></div>
+    <p>Projet Étudiant - Mobilité Internationale</p>
+    <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 20px;">Design inspiré par l'identité ISIMA</p>
   </footer>
 
   <script>
-    // ==============================
-    // DONNÉES AVEC DRAPEAUX
-    // ==============================
+    // DONNÉES (J'ai ajouté des liens d'images Placeholder "Unsplash" pour la démo)
+    // IMPORTANT : Tu devras remplacer les URL par tes propres images
     const continentsData = [
       {
-        name: "Europe",
+        id: "europe",
         countries: [
-          { name: "Allemagne", flag: "🇩🇪", link: "allemagne.html" },
-          { name: "Espagne", flag: "🇪🇸", link: "espagne.html" },
-          { name: "Norvège", flag: "🇳🇴", link: "norvege.html" },
-          { name: "Pologne", flag: "🇵🇱", link: "pologne.html" },
-          { name: "Italie", flag: "🇮🇹", link: "#" }
+          { name: "Allemagne", flag: "🇩🇪", link: "allemagne.html", img: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&q=80" },
+          { name: "Espagne", flag: "🇪🇸", link: "espagne.html", img: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=400&q=80" },
+          { name: "Norvège", flag: "🇳🇴", link: "norvege.html", img: "https://images.unsplash.com/photo-1516333916323-2895f36c57da?auto=format&fit=crop&w=400&q=80" },
+          { name: "Pologne", flag: "🇵🇱", link: "pologne.html", img: "https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=400&q=80" }
         ]
       },
       {
-        name: "Asie",
+        id: "asia",
         countries: [
-          { name: "Japon", flag: "🇯🇵", link: "japon.html" },
-          { name: "Chine", flag: "🇨🇳", link: "chine.html" },
-          { name: "Corée du Sud", flag: "🇰🇷", link: "coree.html" },
-          { name: "Vietnam", flag: "🇻🇳", link: "#" }
+          { name: "Japon", flag: "🇯🇵", link: "japon.html", img: "https://images.unsplash.com/photo-1528164344705-4754268798dd?auto=format&fit=crop&w=400&q=80" },
+          { name: "Chine", flag: "🇨🇳", link: "chine.html", img: "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=400&q=80" },
+          { name: "Corée du Sud", flag: "🇰🇷", link: "coree.html", img: "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=400&q=80" }
         ]
       },
       {
-        name: "Amérique",
+        id: "america",
         countries: [
-          { name: "Canada", flag: "🇨🇦", link: "canada.html" },
-          { name: "Brésil", flag: "🇧🇷", link: "bresil.html" },
-          { name: "États-Unis", flag: "🇺🇸", link: "usa.html" },
-          { name: "Mexique", flag: "🇲🇽", link: "#" }
+          { name: "Canada", flag: "🇨🇦", link: "canada.html", img: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=400&q=80" },
+          { name: "Brésil", flag: "🇧🇷", link: "bresil.html", img: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=400&q=80" },
+          { name: "États-Unis", flag: "🇺🇸", link: "usa.html", img: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=400&q=80" }
         ]
       },
       {
-        name: "Afrique",
+        id: "africa",
         countries: [
-          { name: "Maroc", flag: "🇲🇦", link: "maroc.html" },
-          { name: "Sénégal", flag: "🇸🇳", link: "senegal.html" }
+          { name: "Maroc", flag: "🇲🇦", link: "maroc.html", img: "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=400&q=80" },
+          { name: "Sénégal", flag: "🇸🇳", link: "senegal.html", img: "https://images.unsplash.com/photo-1543327653-5d3c8f85f573?auto=format&fit=crop&w=400&q=80" }
         ]
       }
     ];
 
-    // ==============================
-    // NAVIGATION
-    // ==============================
-    function goTo(page) {
-      // Pour tester sans créer les pages, on log juste dans la console
-      console.log("Vers : " + page);
-      // Décommenter ci-dessous pour activer la vraie navigation
-      // window.location.href = page;
-    }
+    // GÉNÉRATION AUTOMATIQUE
+    function renderGrid() {
+      continentsData.forEach(continent => {
+        const container = document.getElementById(continent.id + "-grid");
+        if(!container) return;
 
-    // ==============================
-    // GÉNÉRATION DES BOUTONS PAYS
-    // ==============================
-    function generateCountryBoxes(continentName, containerId) {
-      const container = document.getElementById(containerId);
-      if (!container || typeof continentsData === 'undefined') return;
+        continent.countries.forEach(country => {
+          const card = document.createElement("div");
+          card.classList.add("card");
+          card.onclick = () => window.location.href = country.link;
 
-      const continent = continentsData.find(c => c.name === continentName);
-      if (!continent) return;
-
-      continent.countries.forEach(country => {
-        const div = document.createElement("div");
-        div.classList.add("country-box");
-        
-        // Structure HTML interne du bouton : Drapeau + Nom
-        div.innerHTML = `
-            <div class="country-flag">${country.flag}</div>
-            <div class="country-name">${country.name}</div>
-        `;
-
-        div.addEventListener("click", () => goTo(country.link));
-        container.appendChild(div);
+          card.innerHTML = `
+            <div class="card-img-wrapper">
+              <img src="${country.img}" alt="${country.name}" class="card-img">
+            </div>
+            <div class="card-flag">${country.flag}</div>
+            <div class="card-body">
+              <h3>${country.name}</h3>
+              <span>Voir les témoignages &rarr;</span>
+            </div>
+          `;
+          container.appendChild(card);
+        });
       });
     }
 
-    // Initialisation
-    document.addEventListener('DOMContentLoaded', () => {
-        generateCountryBoxes("Europe", "europe-countries-container");
-        generateCountryBoxes("Asie", "asia-countries-container");
-        generateCountryBoxes("Amérique", "america-countries-container");
-        generateCountryBoxes("Afrique", "africa-countries-container");
+    // Gestion de la nav active au scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-tabs a');
+      
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (scrollY >= sectionTop - 150) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
     });
+
+    document.addEventListener('DOMContentLoaded', renderGrid);
   </script>
 </body>
 </html>
