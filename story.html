@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Récit d'Expérience - Hello World ISIMA</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==============================
+       1. CHARTE GRAPHIQUE
+    ============================== */
+    :root {
+      --isima-blue-dark: #0d2c4d;
+      --isima-blue-light: #005b96;
+      --isima-yellow: #f3b749;
+      --isima-red: #bf4b3b;
+      --isima-green: #27ae60;
+      --bg-color: #f8f9fa;
+      --text-main: #2c3e50;
+      --card-radius: 12px;
+      --shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; background: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+    a { text-decoration: none; }
+
+    /* NAVBAR */
+    .navbar {
+      background: var(--isima-blue-dark); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; color: white;
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .brand { font-weight: 800; font-size: 1.2rem; }
+    .brand span { color: var(--isima-yellow); }
+    .btn-back { color: white; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
+    .btn-back:hover { color: var(--isima-yellow); transform: translateX(-5px); }
+
+    /* ==============================
+       2. HEADER PROFIL
+    ============================== */
+    .story-hero {
+      height: 350px;
+      background-size: cover; background-position: center;
+      position: relative;
+    }
+    .hero-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(13,44,77,0.3), rgba(13,44,77,0.9));
+    }
+
+    .profile-container {
+      max-width: 1000px; margin: -100px auto 40px; padding: 0 20px; position: relative; z-index: 10;
+      display: flex; align-items: flex-end; gap: 30px;
+    }
+
+    /* Photo de l'étudiant */
+    .student-pic {
+      width: 180px; height: 180px; border-radius: 50%; border: 5px solid white;
+      object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.2); background: white;
+    }
+
+    .student-info { color: white; margin-bottom: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .student-info h1 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 5px; }
+    .student-place { font-size: 1.2rem; opacity: 0.9; margin-bottom: 10px; }
+    
+    .tags { display: flex; gap: 10px; flex-wrap: wrap; }
+    .tag {
+      padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .tag-filiere { background: var(--isima-yellow); color: var(--isima-blue-dark); }
+    .tag-type { background: white; color: var(--isima-blue-dark); }
+
+    /* ==============================
+       3. CONTENU (GRID)
+    ============================== */
+    .content-wrapper {
+      max-width: 1000px; margin: 0 auto 60px; padding: 0 20px;
+      display: grid; grid-template-columns: 2fr 1fr; gap: 40px;
+    }
+
+    .main-col { display: flex; flex-direction: column; gap: 30px; }
+    
+    /* Carte Section (Visa, Logement...) */
+    .story-section {
+      background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow);
+      border-left: 5px solid var(--isima-blue-light);
+    }
+    .section-title {
+      display: flex; align-items: center; font-size: 1.4rem; color: var(--isima-blue-dark); margin-bottom: 20px;
+      padding-bottom: 10px; border-bottom: 1px solid #eee;
+    }
+    .section-title i { margin-right: 15px; color: var(--isima-yellow); font-size: 1.2rem; }
+    .section-text { color: #555; white-space: pre-line; /* Gère les sauts de ligne */ }
+
+    /* Sidebar (Photos) */
+    .sidebar-col { display: flex; flex-direction: column; gap: 30px; }
+    .photo-card {
+      background: white; padding: 15px; border-radius: var(--card-radius); box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .photo-card img { width: 100%; border-radius: 8px; margin-bottom: 10px; transition: transform 0.3s; }
+    .photo-card img:hover { transform: scale(1.02); }
+    .photo-caption { font-size: 0.85rem; color: #7f8c8d; font-style: italic; }
+
+    /* ==============================
+       4. PROS & CONS + CONTACT
+    ============================== */
+    .pros-cons-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;
+    }
+    .pc-box { padding: 20px; border-radius: 8px; background: rgba(0,0,0,0.02); }
+    .pc-box h4 { margin-bottom: 15px; display: flex; align-items: center; }
+    .pc-pros { border-top: 4px solid var(--isima-green); }
+    .pc-pros h4 { color: var(--isima-green); }
+    .pc-cons { border-top: 4px solid var(--isima-red); }
+    .pc-cons h4 { color: var(--isima-red); }
+    .pc-list li { margin-bottom: 8px; list-style: none; position: relative; padding-left: 20px; }
+    .pc-list li::before { content: '•'; position: absolute; left: 0; font-weight: bold; }
+
+    .contact-footer {
+      background: white; padding: 40px; text-align: center; border-radius: var(--card-radius); box-shadow: var(--shadow); margin-top: 40px;
+    }
+    .social-btn {
+      display: inline-flex; align-items: center; padding: 10px 25px; margin: 0 10px; border-radius: 50px;
+      color: white; font-weight: 600; transition: 0.3s; margin-top: 20px;
+    }
+    .btn-linkedin { background: #0077b5; }
+    .btn-insta { background: #E1306C; }
+    .btn-mail { background: #333; }
+    .social-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .profile-container { flex-direction: column; align-items: center; text-align: center; margin-top: -60px; }
+      .student-info { color: var(--text-main); text-shadow: none; margin-top: 10px; }
+      .content-wrapper { grid-template-columns: 1fr; }
+      .pros-cons-grid { grid-template-columns: 1fr; }
+      .social-btn { display: flex; margin-bottom: 10px; width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Retour au pays</div>
+    <div class="brand">HELLO <span>WORLD</span></div>
+    <div style="width: 100px;"></div>
+  </nav>
+
+  <header class="story-hero" id="hero-bg">
+    <div class="hero-overlay"></div>
+  </header>
+
+  <div class="profile-container">
+    <img src="" alt="Etudiant" class="student-pic" id="s-pic">
+    <div class="student-info">
+      <h1 id="s-name">Chargement...</h1>
+      <div class="student-place">
+        <i class="fas fa-map-marker-alt"></i> <span id="s-place">...</span>
+      </div>
+      <div class="tags">
+        <span class="tag tag-filiere" id="s-filiere">F3</span>
+        <span class="tag tag-type" id="s-type">Stage</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    
+    <div class="main-col">
+      
+      <div class="story-section">
+        <h3 class="section-title"><i class="fas fa-info-circle"></i> Le Contexte</h3>
+        <p class="section-text" id="txt-intro">...</p>
+      </div>
+
+      <div class="story-section">
+        <h3 class="section-title"><i class="fas fa-passport"></i> Visa & Administratif</h3>
+        <p class="section-text" id="txt-visa">...</p>
+      </div>
+
+      <div class="story-section">
+        <h3 class="section-title"><i class="fas fa-home"></i> Logement</h3>
+        <p class="section-text" id="txt-logement">...</p>
+      </div>
+
+      <div class="story-section">
+        <h3 class="section-title"><i class="fas fa-wallet"></i> Argent & Vie Quotidienne</h3>
+        <p class="section-text" id="txt-vie">...</p>
+      </div>
+      
+      <div class="story-section">
+        <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Vie Universitaire / Entreprise</h3>
+        <p class="section-text" id="txt-univ">...</p>
+      </div>
+
+      <div class="story-section">
+        <h3 class="section-title"><i class="fas fa-balance-scale"></i> Bilan</h3>
+        <div class="pros-cons-grid">
+          <div class="pc-box pc-pros">
+            <h4><i class="fas fa-thumbs-up" style="margin-right:10px;"></i> Les +</h4>
+            <ul class="pc-list" id="list-pros"></ul>
+          </div>
+          <div class="pc-box pc-cons">
+            <h4><i class="fas fa-thumbs-down" style="margin-right:10px;"></i> Les -</h4>
+            <ul class="pc-list" id="list-cons"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-footer">
+        <h3>Une question ?</h3>
+        <p>N'hésite pas à me contacter si tu veux plus d'infos sur cette destination !</p>
+        <div id="contact-buttons"></div>
+      </div>
+
+    </div>
+
+    <div class="sidebar-col">
+      
+      <div class="photo-card">
+        <img src="" id="img-1" alt="Illustration">
+        <div class="photo-caption">Le campus / L'entreprise</div>
+      </div>
+
+      <div class="story-section" style="padding: 20px;">
+        <h4 style="margin-bottom:10px; color:var(--isima-blue-dark);"><i class="fas fa-first-aid"></i> Santé</h4>
+        <p style="font-size:0.9rem; margin-bottom:20px;" id="txt-sante">...</p>
+
+        <h4 style="margin-bottom:10px; color:var(--isima-blue-dark);"><i class="fas fa-wifi"></i> Télécom</h4>
+        <p style="font-size:0.9rem;" id="txt-telecom">...</p>
+      </div>
+
+      <div class="photo-card">
+        <img src="" id="img-2" alt="Illustration">
+        <div class="photo-caption">La vie sur place</div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // ==========================================
+    // BASE DE DONNÉES RECITS (Exemple)
+    // ==========================================
+    const storiesDB = {
+      "temoignage-julie": {
+        countryId: "canada", // Important pour le bouton retour
+        name: "Julie Martin",
+        filiere: "F3 - SI",
+        type: "Stage",
+        place: "Ubisoft Montréal",
+        city: "Montréal, Canada",
+        // Photos
+        avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+        cover: "https://images.unsplash.com/photo-1519178173668-2fc416dde9e7?auto=format&fit=crop&w=1600&q=80",
+        img1: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fit=crop&w=600&q=80", // Ubisoft/Bureau
+        img2: "https://images.unsplash.com/photo-1548695602-95f743c72e26?auto=format&fit=crop&w=600&q=80", // Montréal hiver
+        
+        // Contenu
+        intro: "J'ai effectué mon stage de fin de 2ème année chez Ubisoft. Je voulais absolument découvrir le Québec et travailler dans le jeu vidéo.",
+        visa: "Le visa EIC (Expérience Internationale Canada) ou Stage Coop est obligatoire. Attention, les démarches prennent 2 à 3 mois ! Il faut s'y prendre dès janvier. Coût environ 150$.",
+        logement: "J'ai trouvé une colocation sur le plateau Mont-Royal via Facebook Marketplace. Loyer : 600 CAD/mois tout compris. C'est cher mais très bien situé.",
+        vie: "La vie est chère, surtout la nourriture (fromage hors de prix !). Comptez 1200 CAD/mois min. Mais les salaires de stage en tech sont bons.",
+        univ: "Ambiance incroyable chez Ubisoft. Horaires flexibles, salle de sport, événements sociaux le jeudi soir. On apprend énormément techniquement.",
+        sante: "Prendre l'assurance de l'ISIMA ou une privée type Chapka. Les médecins sont chers ici.",
+        telecom: "Forfait mobile très cher (50$/mois pour 10Go). Prenez Fido ou Koodo.",
+        
+        // Listes
+        pros: ["L'ambiance québécoise", "La nature à proximité", "L'expertise technique"],
+        cons: ["L'hiver interminable", "Le coût de la vie", "Les démarches visa"],
+        
+        // Contacts
+        contact: {
+          linkedin: "https://linkedin.com",
+          insta: "https://instagram.com",
+          mail: "mailto:julie@isima.fr"
+        }
+      },
+      
+      "temoignage-thomas": {
+        countryId: "canada",
+        name: "Thomas Dubois",
+        filiere: "F2",
+        type: "Semestre Échange",
+        place: "UQAC (Chicoutimi)",
+        city: "Chicoutimi, Québec",
+        avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+        cover: "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?auto=format&fit=crop&w=1600&q=80",
+        img1: "https://images.unsplash.com/photo-1549637642-90187f64f420?auto=format&fit=crop&w=600&q=80",
+        img2: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80",
+        
+        intro: "Une immersion totale dans le grand nord ! L'UQAC est connue pour l'accueil des étudiants internationaux.",
+        visa: "Permis d'études requis car plus de 6 mois.",
+        logement: "Résidence universitaire sur le campus. Pas cher (350 CAD) mais rustique.",
+        vie: "Chicoutimi c'est petit, on vit au rythme de la nature. Budget raisonnable.",
+        univ: "Les cours sont très pratiques. Beaucoup de projets de groupe.",
+        sante: "RAMQ (Sécu québécoise) gratuite pour les français grâce à l'accord France-Québec.",
+        telecom: "Wifi partout sur le campus.",
+        pros: ["La neige", "L'accueil chaleureux", "Les voyages en fin de semaine"],
+        cons: ["Besoin d'une voiture", "Le froid extrême (-30°C)"],
+        contact: {
+          linkedin: "https://linkedin.com"
+        }
+      }
+    };
+
+    // ==========================================
+    // LOGIQUE
+    // ==========================================
+    function loadStory() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const data = storiesDB[id];
+
+      if (!data) {
+        document.body.innerHTML = "<h1 style='text-align:center; margin-top:50px;'>Témoignage introuvable :(</h1>";
+        return;
+      }
+
+      // Remplissage Header
+      document.title = "Récit de " + data.name;
+      document.getElementById('hero-bg').style.backgroundImage = `url('${data.cover}')`;
+      document.getElementById('s-pic').src = data.avatar;
+      document.getElementById('s-name').innerText = data.name;
+      document.getElementById('s-place').innerText = `${data.type} @ ${data.place} - ${data.city}`;
+      document.getElementById('s-filiere').innerText = data.filiere;
+      document.getElementById('s-type').innerText = data.type;
+
+      // Remplissage Textes
+      const fields = ['intro', 'visa', 'logement', 'vie', 'univ', 'sante', 'telecom'];
+      fields.forEach(field => {
+        const el = document.getElementById('txt-' + field);
+        if(el) el.innerText = data[field] || "Non renseigné.";
+      });
+
+      // Images Sidebar
+      document.getElementById('img-1').src = data.img1;
+      document.getElementById('img-2').src = data.img2;
+
+      // Listes Pros/Cons
+      const ulPros = document.getElementById('list-pros');
+      data.pros.forEach(item => ulPros.innerHTML += `<li>${item}</li>`);
+      
+      const ulCons = document.getElementById('list-cons');
+      data.cons.forEach(item => ulCons.innerHTML += `<li>${item}</li>`);
+
+      // Boutons Contact
+      const contactDiv = document.getElementById('contact-buttons');
+      if (data.contact.linkedin) contactDiv.innerHTML += `<a href="${data.contact.linkedin}" target="_blank" class="social-btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>`;
+      if (data.contact.insta) contactDiv.innerHTML += `<a href="${data.contact.insta}" target="_blank" class="social-btn btn-insta"><i class="fab fa-instagram"></i> Instagram</a>`;
+      if (data.contact.mail) contactDiv.innerHTML += `<a href="${data.contact.mail}" class="social-btn btn-mail"><i class="fas fa-envelope"></i> Email</a>`;
+
+      // Sauvegarde ID pays pour retour
+      window.countryBackId = data.countryId;
+    }
+
+    // Fonction Retour Intelligente
+    function goBack() {
+      if (window.countryBackId) {
+        window.location.href = `pays.html?id=${window.countryBackId}`;
+      } else {
+        window.history.back();
+      }
+    }
+
+    // Lancer le chargement
+    document.addEventListener('DOMContentLoaded', loadStory);
+  </script>
+
+</body>
+</html>
