@@ -240,21 +240,33 @@
 
   <div class="info-section">
     <div class="info-grid">
+      
       <div class="info-card">
         <div class="info-icon"><i class="fas fa-city"></i></div>
         <div class="info-label">Capitale</div>
         <div class="info-value" id="d-capital">-</div>
       </div>
+
       <div class="info-card">
-        <div class="info-icon"><i class="fas fa-users"></i></div>
-        <div class="info-label">Langue</div>
+        <div class="info-icon"><i class="fas fa-users"></i></div> <div class="info-label">Population</div>
+        <div class="info-value" id="d-pop">-</div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-landmark"></i></div> <div class="info-label">Politique</div>
+        <div class="info-value" id="d-pol" style="font-size: 1.1rem;">-</div> </div>
+
+      <div class="info-card">
+        <div class="info-icon"><i class="fas fa-comments"></i></div> <div class="info-label">Langue</div>
         <div class="info-value" id="d-lang">-</div>
       </div>
+
       <div class="info-card">
         <div class="info-icon"><i class="fas fa-coins"></i></div>
         <div class="info-label">Monnaie</div>
         <div class="info-value" id="d-currency">-</div>
       </div>
+
     </div>
   </div>
 
@@ -276,192 +288,152 @@
       allemagne: {
         name: "Allemagne",
         flag: "🇩🇪",
-        desc: "Le cœur industriel de l'Europe. Une rigueur technologique exemplaire et une qualité de vie étudiante optimale.",
+        desc: "Le moteur économique de l'Europe, alliant rigueur industrielle et qualité de vie.",
         capital: "Berlin",
+        pop: "84 M",
+        pol: "République Fédérale<br><small>Chancelier : Olaf Scholz</small>",
         lang: "Allemand",
         currency: "Euro (€)",
-        images: [
-          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80", // Munich/Berlin vibe
-          "https://images.unsplash.com/photo-1599946347371-68eb71b16afc?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-          { type: "erasmus", name: "Lucas Weber", promo: "F2", city: "Munich", org: "TU München", link: "#" },
-          { type: "stage", name: "Sarah Cohen", promo: "F4", city: "Berlin", org: "SAP", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1599946347371-68eb71b16afc?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "erasmus", name: "Lucas W.", promo: "F2", city: "Munich", org: "TU München", link: "#" }]
       },
       espagne: {
         name: "Espagne",
         flag: "🇪🇸",
-        desc: "L'équilibre parfait entre excellence académique et vie sociale dynamique sous le soleil méditerranéen.",
+        desc: "L'excellence académique sous le soleil méditerranéen.",
         capital: "Madrid",
+        pop: "47 M",
+        pol: "Monarchie Parlem.<br><small>Roi : Felipe VI</small>",
         lang: "Espagnol",
         currency: "Euro (€)",
-        images: [
-          "https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-          { type: "erasmus", name: "Camille Durand", promo: "F1", city: "Barcelone", org: "UPC", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "erasmus", name: "Camille D.", promo: "F1", city: "Barcelone", org: "UPC", link: "#" }]
       },
       norvege: {
         name: "Norvège",
         flag: "🇳🇴",
-        desc: "Des paysages à couper le souffle et une société tournée vers le numérique et l'écologie.",
+        desc: "Nature grandiose et société numérique avancée.",
         capital: "Oslo",
+        pop: "5.5 M",
+        pol: "Monarchie Constit.<br><small>PM : Jonas Gahr Støre</small>",
         lang: "Norvégien",
         currency: "Couronne (NOK)",
-        images: [
-          "https://images.unsplash.com/photo-1516333916323-2895f36c57da?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1520183802803-06f731a2059f?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-           { type: "erasmus", name: "Adrien Moreau", promo: "F3", city: "Trondheim", org: "NTNU", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1516333916323-2895f36c57da?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1520183802803-06f731a2059f?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "erasmus", name: "Adrien M.", promo: "F3", city: "Trondheim", org: "NTNU", link: "#" }]
       },
       pologne: {
         name: "Pologne",
         flag: "🇵🇱",
-        desc: "Un hub technologique en pleine croissance au cœur de l'Europe centrale, avec un coût de la vie très attractif.",
+        desc: "Un hub technologique en pleine croissance en Europe centrale.",
         capital: "Varsovie",
+        pop: "37 M",
+        pol: "République Parlem.<br><small>PM : Donald Tusk</small>",
         lang: "Polonais",
         currency: "Złoty (PLN)",
-        images: [
-          "https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1603513492128-ba7bc9b3e143?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-           { type: "erasmus", name: "Elise Pierre", promo: "F2", city: "Wrocław", org: "Politechnika", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1603513492128-ba7bc9b3e143?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "erasmus", name: "Elise P.", promo: "F2", city: "Wrocław", org: "Politechnika", link: "#" }]
       },
 
       // --- ASIE ---
       japon: {
         name: "Japon",
         flag: "🇯🇵",
-        desc: "Le choc culturel ultime. Un mélange fascinant de traditions millénaires et de futurisme technologique.",
+        desc: "Traditions millénaires et futurisme technologique.",
         capital: "Tokyo",
+        pop: "125 M",
+        pol: "Monarchie Constit.<br><small>Empereur : Naruhito</small>",
         lang: "Japonais",
         currency: "Yen (¥)",
-        images: [
-          "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-           { type: "stage", name: "Yanis Belkacem", promo: "F5", city: "Tokyo", org: "Rakuten", link: "#" },
-           { type: "double", name: "Sophie Tran", promo: "F3", city: "Kyoto", org: "Kyoto U", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "stage", name: "Yanis B.", promo: "F5", city: "Tokyo", org: "Rakuten", link: "#" }]
       },
       chine: {
         name: "Chine",
         flag: "🇨🇳",
-        desc: "Plongez dans la démesure et l'innovation à grande échelle. Une expérience valorisante sur le CV.",
+        desc: "La démesure et l'innovation à grande échelle.",
         capital: "Pékin",
+        pop: "1.4 Md",
+        pol: "République Populaire<br><small>Président : Xi Jinping</small>",
         lang: "Mandarin",
         currency: "Yuan (CNY)",
-        images: [
-          "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-           { type: "stage", name: "Julien R.", promo: "F4", city: "Shanghai", org: "Start-up IA", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "stage", name: "Julien R.", promo: "F4", city: "Shanghai", org: "Start-up IA", link: "#" }]
       },
       coree: {
         name: "Corée du Sud",
         flag: "🇰🇷",
-        desc: "Le pays le plus connecté au monde. Idéal pour les passionnés de réseaux, de gaming et de culture pop.",
+        desc: "Le pays le plus connecté au monde.",
         capital: "Séoul",
+        pop: "51 M",
+        pol: "République<br><small>Président : Yoon Suk-yeol</small>",
         lang: "Coréen",
         currency: "Won (KRW)",
-        images: [
-          "https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1616053630366-07e32488d55c?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-           { type: "erasmus", name: "Clara M.", promo: "F2", city: "Séoul", org: "KAIST", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1616053630366-07e32488d55c?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "erasmus", name: "Clara M.", promo: "F2", city: "Séoul", org: "KAIST", link: "#" }]
       },
 
       // --- AMÉRIQUE ---
       canada: {
         name: "Canada",
         flag: "🇨🇦",
-        desc: "Terre de grands espaces et d'innovation technologique, idéale pour les amateurs de nature et de tech.",
+        desc: "Grands espaces et innovation technologique.",
         capital: "Ottawa",
+        pop: "38 M",
+        pol: "Monarchie Constit.<br><small>PM : Justin Trudeau</small>",
         lang: "Anglais / Français",
         currency: "CAD ($)",
-        images: [
-          "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-          { type: "stage", name: "Julie Martin", promo: "F3", city: "Montréal", org: "Ubisoft", link: "#" },
-          { type: "erasmus", name: "Thomas Dubois", promo: "F2", city: "Chicoutimi", org: "UQAC", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "stage", name: "Julie M.", promo: "F3", city: "Montréal", org: "Ubisoft", link: "#" }, { type: "erasmus", name: "Thomas D.", promo: "F2", city: "Chicoutimi", org: "UQAC", link: "#" }]
       },
       usa: {
         name: "États-Unis",
         flag: "🇺🇸",
-        desc: "La Silicon Valley, NYC, les campus à l'américaine... Le rêve pour beaucoup d'ingénieurs.",
+        desc: "Le rêve américain : Campus géants et Silicon Valley.",
         capital: "Washington D.C.",
+        pop: "332 M",
+        pol: "République Fédérale<br><small>Président : J. Biden / D. Trump</small>",
         lang: "Anglais",
         currency: "USD ($)",
-        images: [
-          "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1600&q=80", // NYC
-          "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&w=1600&q=80"  // California vibe
-        ],
-        testimonials: [
-          { type: "stage", name: "Maxime L.", promo: "F5", city: "San Francisco", org: "Tech Company", link: "#" },
-           { type: "erasmus", name: "Lea P.", promo: "F2", city: "Oklahoma", org: "OU", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "stage", name: "Maxime L.", promo: "F5", city: "San Francisco", org: "Tech Co", link: "#" }]
       },
       bresil: {
         name: "Brésil",
         flag: "🇧🇷",
-        desc: "Une culture chaleureuse et une économie émergente pleine de défis informatiques passionnants.",
+        desc: "Chaleur humaine et défis informatiques passionnants.",
         capital: "Brasilia",
+        pop: "214 M",
+        pol: "République Fédérale<br><small>Président : Lula da Silva</small>",
         lang: "Portugais",
         currency: "Réal (BRL)",
-        images: [
-          "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-           { type: "erasmus", name: "Hugo V.", promo: "F1", city: "Rio de Janeiro", org: "PUC-Rio", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "erasmus", name: "Hugo V.", promo: "F1", city: "Rio", org: "PUC-Rio", link: "#" }]
       },
 
       // --- AFRIQUE ---
       maroc: {
         name: "Maroc",
         flag: "🇲🇦",
-        desc: "Une porte d'entrée vers l'Afrique avec un secteur IT en pleine explosion et une proximité culturelle.",
+        desc: "Secteur IT en explosion et proximité culturelle.",
         capital: "Rabat",
+        pop: "37 M",
+        pol: "Monarchie Constit.<br><small>Roi : Mohammed VI</small>",
         lang: "Arabe / Français",
         currency: "Dirham (MAD)",
-        images: [
-          "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1564507004663-b6dfb3c824d5?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-           { type: "stage", name: "Amine K.", promo: "F4", city: "Casablanca", org: "Banque Info", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1564507004663-b6dfb3c824d5?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "stage", name: "Amine K.", promo: "F4", city: "Casablanca", org: "Banque Info", link: "#" }]
       },
       senegal: {
         name: "Sénégal",
         flag: "🇸🇳",
-        desc: "Le pays de la Teranga. Une plaque tournante du numérique en Afrique de l'Ouest.",
+        desc: "Le hub numérique de l'Afrique de l'Ouest.",
         capital: "Dakar",
+        pop: "17 M",
+        pol: "République<br><small>Président : B. Diomaye Faye</small>",
         lang: "Français / Wolof",
         currency: "Franc CFA",
-        images: [
-          "https://images.unsplash.com/photo-1572986422732-c6b0c2395565?auto=format&fit=crop&w=1600&q=80",
-          "https://images.unsplash.com/photo-1577793399438-2af387c9dc2e?auto=format&fit=crop&w=1600&q=80"
-        ],
-        testimonials: [
-           { type: "stage", name: "Fatou D.", promo: "F3", city: "Dakar", org: "Orange SN", link: "#" }
-        ]
+        images: ["https://images.unsplash.com/photo-1572986422732-c6b0c2395565?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1577793399438-2af387c9dc2e?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [{ type: "stage", name: "Fatou D.", promo: "F3", city: "Dakar", org: "Orange SN", link: "#" }]
       }
     };
 
@@ -485,6 +457,8 @@
       document.getElementById('d-name').innerText = data.name;
       document.getElementById('d-desc').innerText = data.desc;
       document.getElementById('d-capital').innerText = data.capital;
+      document.getElementById('d-pop').innerText = data.pop; 
+      document.getElementById('d-pol').innerHTML = data.pol;
       document.getElementById('d-lang').innerText = data.lang;
       document.getElementById('d-currency').innerText = data.currency;
 
