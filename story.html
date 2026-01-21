@@ -134,18 +134,12 @@
     
     .pc-card { 
       background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animation fluide */
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    
-    /* COULEURS BORDURES */
     .pc-card.pros { border-top: 5px solid var(--isima-green); }
     .pc-card.cons { border-top: 5px solid var(--isima-red); }
     
-    /* EFFET HOVER IDENTIQUE AUX CARTES */
-    .pc-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Ombre plus marquée */
-    }
+    .pc-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
 
     .pc-title { font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
     .pc-list li { margin-bottom: 8px; list-style: none; padding-left: 20px; position: relative; }
@@ -267,7 +261,7 @@
 
   <footer class="contact-footer">
     <h3>Entrer en contact</h3>
-    <p id="contact-text">Besoin de précisions ? Contacte les étudiants via leurs réseaux !</p>
+    <p id="contact-text">Besoin de précisions ?</p>
     <div class="contact-links" id="contact-area"></div>
   </footer>
 
@@ -304,17 +298,14 @@
             contact: { linkedin: "#", insta: "#", discord: "thomas#1234" }
           },
           {
-            name: "Sarah L.",
+            name: "Sarah (Sans contact)",
             filiere: "F2",
             dates: "Jan 2023 - Mai 2023",
             type: "Échange",
-            avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-            images: [
-              "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80",
-              "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?auto=format&fit=crop&w=1600&q=80"
-            ],
+            avatar: "", // Pas d'avatar
+            images: ["https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80"],
             visa: "AVE également. Attention, il fait très froid en arrivant en janvier !",
-            logement: "Coloc en ville à 10min en bus. Plus grand qu'en résidence.",
+            logement: "Coloc en ville à 10min en bus.",
             argent: "Un peu plus cher en hiver à cause de l'équipement.",
             sante: "RAS, assurance UQAC.",
             telecom: "Forfait Fido.",
@@ -323,7 +314,7 @@
             conseils: "Le festival des glaces est à ne pas manquer.",
             pros: ["Neige", "Sécurité"],
             cons: ["Nuit tombe tôt en hiver"],
-            contact: { mail: "sarah@isima.fr" }
+            contact: {} // VIDE POUR TESTER SOPHIE WALSH
           }
         ]
       },
@@ -380,7 +371,7 @@
       currentData.witnesses.forEach((w, index) => {
         const btn = document.createElement('div');
         btn.className = `witness-tab ${index === 0 ? 'active' : ''}`;
-        const imgHtml = w.avatar ? `<img src="${w.avatar}">` : `<i class="fas fa-user-circle"></i>`;
+        const imgHtml = w.avatar ? `<img src="${w.avatar}">` : `<i class="fas fa-user-circle" style="font-size:1.5rem"></i>`;
         btn.innerHTML = `${imgHtml} ${w.name}`;
         btn.onclick = () => switchWitness(index);
         tabsContainer.appendChild(btn);
@@ -431,16 +422,25 @@
       ulCons.innerHTML = "";
       w.cons.forEach(item => ulCons.innerHTML += `<li>${item}</li>`);
 
-      // Contact & Phrase Personnalisée
+      // =============================================
+      // GESTION INTELLIGENTE DES CONTACTS
+      // =============================================
       const contactText = document.getElementById('contact-text');
-      contactText.innerText = `Besoin de précisions ? Contacte ${w.name} via ses réseaux !`;
-
       const cArea = document.getElementById('contact-area');
-      cArea.innerHTML = "";
-      if(w.contact.mail) cArea.innerHTML += `<a href="${w.contact.mail}" class="contact-btn"><i class="fas fa-envelope"></i> Mail</a>`;
-      if(w.contact.linkedin) cArea.innerHTML += `<a href="${w.contact.linkedin}" target="_blank" class="contact-btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>`;
-      if(w.contact.insta) cArea.innerHTML += `<a href="${w.contact.insta}" target="_blank" class="contact-btn btn-insta"><i class="fab fa-instagram"></i> Instagram</a>`;
-      if(w.contact.discord) cArea.innerHTML += `<a href="#" onclick="alert('Discord : ${w.contact.discord}'); return false;" class="contact-btn btn-discord"><i class="fab fa-discord"></i> Discord</a>`;
+      cArea.innerHTML = ""; // On vide les anciens boutons
+
+      const hasContact = w.contact && (w.contact.mail || w.contact.linkedin || w.contact.insta || w.contact.discord);
+
+      if (hasContact) {
+        contactText.innerText = `Besoin de précisions ? Contacte ${w.name} via ses réseaux !`;
+        if(w.contact.mail) cArea.innerHTML += `<a href="${w.contact.mail}" class="contact-btn"><i class="fas fa-envelope"></i> Mail</a>`;
+        if(w.contact.linkedin) cArea.innerHTML += `<a href="${w.contact.linkedin}" target="_blank" class="contact-btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>`;
+        if(w.contact.insta) cArea.innerHTML += `<a href="${w.contact.insta}" target="_blank" class="contact-btn btn-insta"><i class="fab fa-instagram"></i> Instagram</a>`;
+        if(w.contact.discord) cArea.innerHTML += `<a href="#" onclick="alert('Discord : ${w.contact.discord}'); return false;" class="contact-btn btn-discord"><i class="fab fa-discord"></i> Discord</a>`;
+      } else {
+        contactText.innerText = "Besoin de précisions ? Contacte Sophie Walsh en charge des Relations Internationales de l'ISIMA";
+        cArea.innerHTML += `<a href="mailto:sophie.walsh@uca.fr" class="contact-btn"><i class="fas fa-envelope"></i> sophie.walsh@uca.fr</a>`;
+      }
     }
 
     // Slider Logic
