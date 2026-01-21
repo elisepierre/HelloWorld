@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Détails Pays - Hello World ISIMA</title>
+  <title>Détails Pays - Hello World</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,153 +28,88 @@
     h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
     a { text-decoration: none; }
 
-    /* NAVBAR */
+    /* ==============================
+       2. NAVBAR (IDENTIQUE A STORY.HTML)
+    ============================== */
     .navbar {
-      background: var(--isima-blue-dark);
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      background: var(--isima-blue-dark); padding: 15px 30px; 
+      display: flex; align-items: center; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2); height: 70px;
     }
-    .brand { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; }
-    .brand span { color: var(--isima-yellow); }
-    .btn-back { color: white; font-size: 0.9rem; transition: 0.3s; }
+    
+    /* Bouton retour (Gauche) */
+    .btn-back { 
+      color: white; cursor: pointer; transition: 0.3s; text-decoration: none; 
+      display: flex; align-items: center; gap: 8px; font-weight: 500; z-index: 102; font-size: 0.95rem;
+    }
     .btn-back:hover { color: var(--isima-yellow); transform: translateX(-5px); }
 
+    /* Logo (Centré Absolu) */
+    .brand-container {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      text-align: center; z-index: 101;
+    }
+    .brand { font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; color: white; }
+    .brand span { color: var(--isima-yellow); }
+
     /* ==============================
-       HEADER & SLIDER (CORRIGÉ)
+       3. HEADER IMAGE FIXE (PLUS DE SLIDER)
     ============================== */
     .country-header {
       position: relative;
-      height: 70vh; /* Un peu plus grand pour l'immersion */
-      overflow: hidden;
-      background: #000;
-    }
-
-    .slide {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
+      height: 60vh; /* Hauteur confortable */
       background-size: cover;
       background-position: center;
+      background-color: #000;
+      display: flex;
+      align-items: flex-end; /* Contenu en bas */
     }
-    .slide.active { opacity: 1; }
 
-    /* Overlay plus sombre en bas pour garantir la lisibilité */
+    /* Overlay dégradé pour lisibilité */
     .header-overlay {
-      position: absolute;
-      bottom: 0; left: 0; width: 100%; height: 70%;
-      background: linear-gradient(to top, var(--isima-blue-dark) 0%, rgba(13, 44, 77, 0.4) 50%, transparent 100%);
-      z-index: 2;
+      position: absolute; bottom: 0; left: 0; width: 100%; height: 80%;
+      background: linear-gradient(to top, var(--isima-blue-dark) 0%, rgba(13, 44, 77, 0.6) 50%, transparent 100%);
+      z-index: 1;
     }
 
     .header-content {
-      position: absolute;
-      bottom: 15%;
-      left: 130px;
-      right: 5%;
-      z-index: 3;
+      position: relative; z-index: 2;
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      padding: 0 20px 60px 20px; /* Padding bas pour ne pas coller */
       color: white;
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
       animation: fadeInUp 0.8s ease-out;
-      max-width: 900px;
     }
 
-    .country-flag { font-size: 4rem; margin-bottom: 5px; display: block; }
-    .country-title { font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 10px; text-transform: uppercase; }
-    .country-subtitle { font-size: 1.4rem; font-weight: 300; opacity: 0.9; line-height: 1.4; max-width: 80%; }
-
-    /* Navigation Slider écartée */
-    .slider-nav {
-      position: absolute;
-      top: 50%; width: 100%;
-      display: flex; justify-content: space-between;
-      padding: 0 30px; /* Ecarte les boutons du bord */
-      z-index: 10; 
-      transform: translateY(-50%);
-      pointer-events: none; /* Permet de cliquer à travers la zone vide */
-    }
-    .slider-btn {
-      pointer-events: auto; /* Réactive le clic sur les boutons */
-      background: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.5);
-      color: white;
-      width: 60px; height: 60px;
-      border-radius: 50%;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      transition: 0.3s;
-      font-size: 1.2rem;
-    }
-    .slider-btn:hover { background: var(--isima-yellow); color: var(--isima-blue-dark); border-color: var(--isima-yellow); transform: scale(1.1); }
+    .country-flag { font-size: 4rem; margin-bottom: 10px; display: block; }
+    .country-title { font-size: 4.5rem; font-weight: 800; line-height: 1; margin-bottom: 15px; text-transform: uppercase; }
+    .country-subtitle { font-size: 1.3rem; font-weight: 300; opacity: 0.95; line-height: 1.5; max-width: 800px; }
 
     /* ==============================
-       INFOS & CONTENU
+       4. INFOS & CONTENU
     ============================== */
     .info-section {
-      max-width: 1200px;
-      margin: -50px auto 40px;
-      position: relative;
-      z-index: 10;
-      padding: 0 20px;
+      max-width: 1200px; margin: -40px auto 40px; position: relative; z-index: 10; padding: 0 20px;
     }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
 
-    .info-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
-    }
-
-    /* ==============================
-       MISE A JOUR : CARTES INFOS
-    ============================== */
     .info-card {
-      background: white;
-      padding: 25px;
-      border-radius: var(--card-radius);
-      box-shadow: var(--shadow);
-      text-align: center;
-      /* Bordure bleue par défaut */
+      background: white; padding: 25px; border-radius: var(--card-radius);
+      box-shadow: var(--shadow); text-align: center;
       border-bottom: 4px solid var(--isima-blue-light);
-      
-      /* C'est ici que la magie opère : transition fluide */
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      cursor: default; /* Montre que ce n'est pas un bouton cliquable mais interactif */
     }
+    .info-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 44, 77, 0.15); border-bottom-color: var(--isima-yellow); }
+    .info-icon { font-size: 1.5rem; color: var(--isima-blue-dark); margin-bottom: 10px; transition: 0.3s; }
+    .info-card:hover .info-icon { transform: scale(1.2); color: var(--isima-yellow); }
+    .info-label { font-size: 0.8rem; color: #7f8c8d; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+    .info-value { font-size: 1.2rem; font-weight: 700; margin-top: 5px; color: var(--text-main); }
 
-    /* EFFET AU SURVOL DE LA CARTE */
-    .info-card:hover {
-      /* La carte monte de 10 pixels */
-      transform: translateY(-10px);
-      /* L'ombre devient plus grande et plus floue (effet 3D) */
-      box-shadow: 0 20px 40px rgba(0, 44, 77, 0.15);
-      /* La bordure passe au JAUNE ISIMA */
-      border-bottom-color: var(--isima-yellow);
-    }
-
-    /* BONUS : ANIMATION DE L'ICÔNE */
-    .info-icon {
-      font-size: 1.5rem;
-      color: var(--isima-blue-dark);
-      margin-bottom: 10px;
-      transition: 0.3s; /* Transition pour l'icône aussi */
-    }
-
-    /* Quand on survole la carte, l'icône grossit et tourne un peu */
-    .info-card:hover .info-icon {
-      transform: scale(1.2) rotate(10deg);
-      color: var(--isima-yellow);
-    }
-    .info-value { font-size: 1.3rem; font-weight: 700; }
-
+    /* Section Témoignages */
     .testimonials-section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
     .section-header { display: flex; align-items: center; margin-bottom: 40px; }
     .section-header h2 { font-size: 2rem; color: var(--isima-blue-dark); margin-right: 20px; }
-    .line { height: 3px; background: var(--isima-yellow); flex-grow: 1; }
+    .line { height: 3px; background: var(--isima-yellow); flex-grow: 1; opacity: 0.5; }
 
     /* Cartes Témoignages */
     .testimonial-card {
@@ -184,33 +119,24 @@
     }
     .testimonial-card:hover { transform: translateX(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
     
-    .t-left { width: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; color: white; text-align: center; }
+    .t-left { width: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; color: white; text-align: center; flex-shrink: 0; }
     .type-stage { background: var(--isima-blue-dark); }
     .type-erasmus { background: var(--isima-blue-light); }
-    
-    .t-content { flex-grow: 1; padding: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .type-double { background: var(--isima-red); }
+
+    .t-content { flex-grow: 1; padding: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
     .t-highlight { color: var(--isima-blue-light); font-weight: 600; }
-    .t-action { background: var(--bg-color); padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--isima-blue-dark); }
+    .t-action { background: var(--bg-color); padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--isima-blue-dark); transition: 0.3s; }
     .testimonial-card:hover .t-action { background: var(--isima-yellow); }
 
+    /* Animation d'apparition */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
     @media (max-width: 768px) {
-      .country-title { font-size: 2.5rem; }
-      
-      /* On remonte le texte et on le centre sur mobile */
-      .header-content { 
-          bottom: 80px; 
-          left: 20px;   /* On annule les 130px du desktop */
-          right: 20px;
-          text-align: center; /* Plus propre sur mobile */
-      }
-
-      /* On réduit un peu la taille des boutons sur mobile */
-      .slider-btn { width: 50px; height: 50px; font-size: 1rem; }
-      .slider-nav { padding: 0 10px; } /* On les rapproche du bord */
-
+      .country-title { font-size: 3rem; }
       .testimonial-card { flex-direction: column; }
-      .t-left { width: 100%; flex-direction: row; justify-content: flex-start; }
-    }
+      .t-left { width: 100%; flex-direction: row; justify-content: flex-start; gap: 10px; padding: 15px; }
+      .t-content { align-items: flex-start; }
     }
   </style>
 </head>
@@ -218,55 +144,47 @@
 
   <nav class="navbar">
     <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Retour carte</a>
-    <div class="brand">HELLO <span>WORLD</span></div>
-    <div style="width: 80px;"></div>
+    <div class="brand-container">
+      <div class="brand">HELLO <span>WORLD</span></div>
+    </div>
   </nav>
 
-  <header class="country-header" id="header-container">
+  <header class="country-header" id="header-bg">
     <div class="header-overlay"></div>
-    <div id="slides-container"></div>
-
     <div class="header-content">
       <span class="country-flag" id="d-flag"></span>
       <h1 class="country-title" id="d-name">Chargement...</h1>
       <p class="country-subtitle" id="d-desc"></p>
     </div>
-
-    <div class="slider-nav">
-      <button class="slider-btn" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-      <button class="slider-btn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-    </div>
   </header>
 
   <div class="info-section">
     <div class="info-grid">
-      
       <div class="info-card">
         <div class="info-icon"><i class="fas fa-city"></i></div>
         <div class="info-label">Capitale</div>
         <div class="info-value" id="d-capital">-</div>
       </div>
-
       <div class="info-card">
-        <div class="info-icon"><i class="fas fa-users"></i></div> <div class="info-label">Population</div>
+        <div class="info-icon"><i class="fas fa-users"></i></div>
+        <div class="info-label">Population</div>
         <div class="info-value" id="d-pop">-</div>
       </div>
-
       <div class="info-card">
-        <div class="info-icon"><i class="fas fa-landmark"></i></div> <div class="info-label">Politique</div>
-        <div class="info-value" id="d-pol" style="font-size: 1.1rem;">-</div> </div>
-
+        <div class="info-icon"><i class="fas fa-landmark"></i></div>
+        <div class="info-label">Politique</div>
+        <div class="info-value" id="d-pol" style="font-size: 1rem;">-</div>
+      </div>
       <div class="info-card">
-        <div class="info-icon"><i class="fas fa-comments"></i></div> <div class="info-label">Langue</div>
+        <div class="info-icon"><i class="fas fa-comments"></i></div>
+        <div class="info-label">Langue</div>
         <div class="info-value" id="d-lang">-</div>
       </div>
-
       <div class="info-card">
         <div class="info-icon"><i class="fas fa-coins"></i></div>
         <div class="info-label">Monnaie</div>
         <div class="info-value" id="d-currency">-</div>
       </div>
-
     </div>
   </div>
 
@@ -279,169 +197,95 @@
   </section>
 
   <script>
-
     // ==========================================
-    // 1. BASE DE DONNÉES COMPLÈTE (12 PAYS)
+    // 1. BASE DE DONNÉES PAYS
     // ==========================================
     const db = {
-      // --- EUROPE ---
       allemagne: {
-        name: "Allemagne",
-        flag: "🇩🇪",
+        name: "Allemagne", flag: "🇩🇪",
         desc: "Le moteur économique de l'Europe, alliant rigueur industrielle et qualité de vie.",
-        capital: "Berlin",
-        pop: "84 M",
-        pol: "République Fédérale<br><small>Chancelier : Olaf Scholz</small>",
-        lang: "Allemand",
-        currency: "Euro (€)",
-        images: ["https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1599946347371-68eb71b16afc?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "erasmus", name: "Lucas W.", promo: "F2", city: "Munich", org: "TU München", link: "#" }]
+        capital: "Berlin", pop: "84 M", pol: "République Fédérale<br><small>Chancelier : Olaf Scholz</small>",
+        lang: "Allemand", currency: "Euro (€)",
+        // On garde le tableau images mais on n'utilisera que la première [0]
+        images: ["https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: []
       },
       espagne: {
-        name: "Espagne",
-        flag: "🇪🇸",
+        name: "Espagne", flag: "🇪🇸",
         desc: "L'excellence académique sous le soleil méditerranéen.",
-        capital: "Madrid",
-        pop: "47 M",
-        pol: "Monarchie Parlem.<br><small>Roi : Felipe VI</small>",
-        lang: "Espagnol",
-        currency: "Euro (€)",
-        images: ["https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "erasmus", name: "Camille D.", promo: "F1", city: "Barcelone", org: "UPC", link: "#" }]
+        capital: "Madrid", pop: "47 M", pol: "Monarchie Parlem.<br><small>Roi : Felipe VI</small>",
+        lang: "Espagnol", currency: "Euro (€)",
+        images: ["https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: []
       },
-      norvege: {
-        name: "Norvège",
-        flag: "🇳🇴",
-        desc: "Nature grandiose et société numérique avancée.",
-        capital: "Oslo",
-        pop: "5.5 M",
-        pol: "Monarchie Constit.<br><small>PM : Jonas Gahr Støre</small>",
-        lang: "Norvégien",
-        currency: "Couronne (NOK)",
-        images: ["https://images.unsplash.com/photo-1516333916323-2895f36c57da?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1520183802803-06f731a2059f?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "erasmus", name: "Adrien M.", promo: "F3", city: "Trondheim", org: "NTNU", link: "#" }]
-      },
-      pologne: {
-        name: "Pologne",
-        flag: "🇵🇱",
-        desc: "Un hub technologique en pleine croissance en Europe centrale.",
-        capital: "Varsovie",
-        pop: "37 M",
-        pol: "République Parlem.<br><small>PM : Donald Tusk</small>",
-        lang: "Polonais",
-        currency: "Złoty (PLN)",
-        images: ["https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1603513492128-ba7bc9b3e143?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "erasmus", name: "Elise P.", promo: "F2", city: "Wrocław", org: "Politechnika", link: "#" }]
-      },
-
-      // --- ASIE ---
-      japon: {
-        name: "Japon",
-        flag: "🇯🇵",
-        desc: "Traditions millénaires et futurisme technologique.",
-        capital: "Tokyo",
-        pop: "125 M",
-        pol: "Monarchie Constit.<br><small>Empereur : Naruhito</small>",
-        lang: "Japonais",
-        currency: "Yen (¥)",
-        images: ["https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "stage", name: "Yanis B.", promo: "F5", city: "Tokyo", org: "Rakuten", link: "#" }]
-      },
-      chine: {
-        name: "Chine",
-        flag: "🇨🇳",
-        desc: "La démesure et l'innovation à grande échelle.",
-        capital: "Pékin",
-        pop: "1.4 Md",
-        pol: "République Populaire<br><small>Président : Xi Jinping</small>",
-        lang: "Mandarin",
-        currency: "Yuan (CNY)",
-        images: ["https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "stage", name: "Julien R.", promo: "F4", city: "Shanghai", org: "Start-up IA", link: "#" }]
-      },
-      coree: {
-        name: "Corée du Sud",
-        flag: "🇰🇷",
-        desc: "Le pays le plus connecté au monde.",
-        capital: "Séoul",
-        pop: "51 M",
-        pol: "République<br><small>Président : Yoon Suk-yeol</small>",
-        lang: "Coréen",
-        currency: "Won (KRW)",
-        images: ["https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1616053630366-07e32488d55c?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "erasmus", name: "Clara M.", promo: "F2", city: "Séoul", org: "KAIST", link: "#" }]
-      },
-
-      // --- AMÉRIQUE ---
       canada: {
-        name: "Canada",
-        flag: "🇨🇦",
-        desc: "Grands espaces et innovation technologique.",
-        capital: "Ottawa",
-        pop: "38 M",
-        pol: "Monarchie Constit.<br><small>PM : Justin Trudeau</small>",
-        lang: "Anglais / Français",
-        currency: "CAD ($)",
-        images: ["https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "stage", name: "Julie M.", promo: "F3", city: "Montréal", org: "Ubisoft", link: "story.html?id=canada-ubisoft" }, { type: "erasmus", name: "Thomas D.", promo: "F2", city: "Chicoutimi", org: "UQAC", link: "story.html?id=canada-uqac" }]
+        name: "Canada", flag: "🇨🇦",
+        desc: "Terre de grands espaces et d'innovation technologique, idéale pour les amateurs de nature et de tech.",
+        capital: "Ottawa", pop: "38 M", pol: "Monarchie Constit.<br><small>PM : Justin Trudeau</small>",
+        lang: "Anglais / Français", currency: "CAD ($)",
+        images: ["https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: [
+          { type: "stage", name: "Julie M.", promo: "F3", city: "Montréal", org: "Ubisoft", link: "story.html?id=canada-ubisoft" },
+          { type: "echange", name: "Thomas & Sarah", promo: "F2", city: "Chicoutimi", org: "UQAC", link: "story.html?id=canada-uqac" }
+        ]
       },
       usa: {
-        name: "États-Unis",
-        flag: "🇺🇸",
+        name: "États-Unis", flag: "🇺🇸",
         desc: "Le rêve américain : Campus géants et Silicon Valley.",
-        capital: "Washington D.C.",
-        pop: "332 M",
-        pol: "République Fédérale<br><small>Président : J. Biden / D. Trump</small>",
-        lang: "Anglais",
-        currency: "USD ($)",
-        images: ["https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1512453979798-5ea904ac66de?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "stage", name: "Maxime L.", promo: "F5", city: "San Francisco", org: "Tech Co", link: "#" }]
+        capital: "Washington D.C.", pop: "332 M", pol: "République Fédérale<br><small>Président : J. Biden</small>",
+        lang: "Anglais", currency: "USD ($)",
+        images: ["https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: []
+      },
+      japon: {
+        name: "Japon", flag: "🇯🇵",
+        desc: "Traditions millénaires et futurisme technologique.",
+        capital: "Tokyo", pop: "125 M", pol: "Monarchie Constit.<br><small>Empereur : Naruhito</small>",
+        lang: "Japonais", currency: "Yen (¥)",
+        images: ["https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: []
+      },
+      chine: {
+        name: "Chine", flag: "🇨🇳",
+        desc: "Innovation à grande échelle et culture millénaire.",
+        capital: "Pékin", pop: "1.4 Md", pol: "République Populaire<br><small>Président : Xi Jinping</small>",
+        lang: "Mandarin", currency: "Yuan (CNY)",
+        images: ["https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: []
       },
       bresil: {
-        name: "Brésil",
-        flag: "🇧🇷",
+        name: "Brésil", flag: "🇧🇷",
         desc: "Chaleur humaine et défis informatiques passionnants.",
-        capital: "Brasilia",
-        pop: "214 M",
-        pol: "République Fédérale<br><small>Président : Lula da Silva</small>",
-        lang: "Portugais",
-        currency: "Réal (BRL)",
-        images: ["https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "erasmus", name: "Hugo V.", promo: "F1", city: "Rio", org: "PUC-Rio", link: "#" }]
+        capital: "Brasilia", pop: "214 M", pol: "République Fédérale<br><small>Président : Lula</small>",
+        lang: "Portugais", currency: "Réal (BRL)",
+        images: ["https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: []
       },
-
-      // --- AFRIQUE ---
       maroc: {
-        name: "Maroc",
-        flag: "🇲🇦",
+        name: "Maroc", flag: "🇲🇦",
         desc: "Secteur IT en explosion et proximité culturelle.",
-        capital: "Rabat",
-        pop: "37 M",
-        pol: "Monarchie Constit.<br><small>Roi : Mohammed VI</small>",
-        lang: "Arabe / Français",
-        currency: "Dirham (MAD)",
-        images: ["https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1564507004663-b6dfb3c824d5?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "stage", name: "Amine K.", promo: "F4", city: "Casablanca", org: "Banque Info", link: "#" }]
+        capital: "Rabat", pop: "37 M", pol: "Monarchie Constit.<br><small>Roi : Mohammed VI</small>",
+        lang: "Arabe / Français", currency: "Dirham (MAD)",
+        images: ["https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: []
       },
       senegal: {
-        name: "Sénégal",
-        flag: "🇸🇳",
+        name: "Sénégal", flag: "🇸🇳",
         desc: "Le hub numérique de l'Afrique de l'Ouest.",
-        capital: "Dakar",
-        pop: "17 M",
-        pol: "République<br><small>Président : B. Diomaye Faye</small>",
-        lang: "Français / Wolof",
-        currency: "Franc CFA",
-        images: ["https://images.unsplash.com/photo-1572986422732-c6b0c2395565?auto=format&fit=crop&w=1600&q=80", "https://images.unsplash.com/photo-1577793399438-2af387c9dc2e?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [{ type: "stage", name: "Fatou D.", promo: "F3", city: "Dakar", org: "Orange SN", link: "#" }]
-      }
+        capital: "Dakar", pop: "17 M", pol: "République<br><small>Président : B. Diomaye Faye</small>",
+        lang: "Français / Wolof", currency: "Franc CFA",
+        images: ["https://images.unsplash.com/photo-1572986422732-c6b0c2395565?auto=format&fit=crop&w=1600&q=80"],
+        testimonials: []
+      },
+      norvege: { name: "Norvège", flag: "🇳🇴", desc: "Nature et Tech.", capital: "Oslo", pop: "5.5M", pol: "Monarchie", lang: "Norvégien", currency: "NOK", images: ["https://images.unsplash.com/photo-1516333916323-2895f36c57da?auto=format&fit=crop&w=1600&q=80"], testimonials: [] },
+      pologne: { name: "Pologne", flag: "🇵🇱", desc: "Hub IT Europe Centrale.", capital: "Varsovie", pop: "37M", pol: "République", lang: "Polonais", currency: "PLN", images: ["https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=1600&q=80"], testimonials: [] },
+      coree: { name: "Corée du Sud", flag: "🇰🇷", desc: "Pays connecté.", capital: "Séoul", pop: "51M", pol: "République", lang: "Coréen", currency: "KRW", images: ["https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80"], testimonials: [] }
     };
 
     // ==========================================
-    // 2. LOGIQUE DE CHARGEMENT DYNAMIQUE
+    // 2. CHARGEMENT PAYS
     // ==========================================
     function loadCountry() {
-      // Récupère l'ID dans l'URL (ex: pays.html?id=canada)
       const params = new URLSearchParams(window.location.search);
       const id = params.get('id');
       const data = db[id];
@@ -451,88 +295,67 @@
         return;
       }
 
-      // Remplissage Textes
+      // Titres & Infos
       document.title = data.name + " - Hello World";
       document.getElementById('d-flag').innerText = data.flag;
       document.getElementById('d-name').innerText = data.name;
       document.getElementById('d-desc').innerText = data.desc;
+      
+      // Image de Fond (Unique) - Prend la première image du tableau
+      if(data.images && data.images.length > 0) {
+        document.getElementById('header-bg').style.backgroundImage = `url('${data.images[0]}')`;
+      }
+
+      // Données Chiffrées
       document.getElementById('d-capital').innerText = data.capital;
-      document.getElementById('d-pop').innerText = data.pop; 
+      document.getElementById('d-pop').innerText = data.pop;
       document.getElementById('d-pol').innerHTML = data.pol;
       document.getElementById('d-lang').innerText = data.lang;
       document.getElementById('d-currency').innerText = data.currency;
 
-      // Remplissage Images (Slider)
-      const sliderContainer = document.getElementById('slides-container');
-      data.images.forEach((url, index) => {
-        const div = document.createElement('div');
-        div.className = `slide ${index === 0 ? 'active' : ''}`;
-        div.style.backgroundImage = `url('${url}')`;
-        sliderContainer.appendChild(div);
-      });
+      // Liste Témoignages
+      const container = document.getElementById('testimonials-container');
+      container.innerHTML = ""; // Reset
 
-      // Remplissage Témoignages
-      const reviewsContainer = document.getElementById('testimonials-container');
       if(data.testimonials.length === 0) {
-        reviewsContainer.innerHTML = "<p style='text-align:center; color:#777;'>Aucun témoignage pour le moment.</p>";
+        container.innerHTML = "<p style='text-align:center; color:#999; padding:20px;'>Aucun témoignage disponible pour ce pays pour l'instant.</p>";
       } else {
         data.testimonials.forEach(t => {
-          // Choix couleur/icone selon type
-          let typeClass = t.type === 'stage' ? 'type-stage' : 'type-erasmus';
-          let icon = t.type === 'stage' ? 'fa-briefcase' : 'fa-university';
-          let label = t.type === 'stage' ? 'Stage' : 'Échange';
-          let orgLabel = t.type === 'stage' ? 'Entreprise' : 'Université';
-          let borderCol = t.type === 'stage' ? 'var(--isima-blue-dark)' : 'var(--isima-blue-light)';
+          // Styles selon le type
+          let typeClass = "";
+          let icon = "";
+          let label = "";
+          let color = "";
+
+          if (t.type === 'stage') {
+             typeClass = 'type-stage'; icon = 'fa-briefcase'; label = 'Stage'; color = 'var(--isima-blue-dark)';
+          } else if (t.type === 'echange') {
+             typeClass = 'type-erasmus'; icon = 'fa-university'; label = 'Échange'; color = 'var(--isima-blue-light)';
+          } else {
+             typeClass = 'type-double'; icon = 'fa-certificate'; label = 'Double D.'; color = 'var(--isima-red)';
+          }
 
           const html = `
-            <a href="${t.link}" class="testimonial-card" style="border-left: 5px solid ${borderCol};">
+            <a href="${t.link}" class="testimonial-card" style="border-left: 5px solid ${color};">
               <div class="t-left ${typeClass}">
-                <i class="fas ${icon} t-type-icon" style="font-size:1.5rem; margin-bottom:5px;"></i>
+                <i class="fas ${icon}" style="font-size:1.5rem; margin-bottom:5px;"></i>
                 <span style="font-weight:700; text-transform:uppercase; font-size:0.9rem;">${label}</span>
               </div>
               <div class="t-content">
                 <div class="t-info">
                   <h3 style="font-size:1.3rem; color:#2c3e50; margin-bottom:5px;">${t.name} <span style="font-size:0.8rem; font-weight:400; color:#888;">(${t.promo})</span></h3>
                   <p style="color:#666; margin-bottom:5px;"><i class="fas fa-map-marker-alt" style="color:var(--isima-red); width:20px;"></i> <span class="t-highlight">${t.city}</span></p>
-                  <p style="color:#666;"><i class="fas fa-building" style="color:#7f8c8d; width:20px;"></i> ${orgLabel} : <strong>${t.org}</strong></p>
+                  <p style="color:#666;"><i class="fas fa-building" style="color:#7f8c8d; width:20px;"></i> ${t.org}</p>
                 </div>
                 <div class="t-action">Lire le récit &rarr;</div>
               </div>
             </a>
           `;
-          reviewsContainer.innerHTML += html;
+          container.innerHTML += html;
         });
       }
-      
-      // Initialiser le slider après avoir créé les divs
-      initSlider();
     }
 
-    // ==========================================
-    // 3. LOGIQUE DU SLIDER
-    // ==========================================
-    let currentSlide = 0;
-    let slides; // Sera rempli après load
-
-    function initSlider() {
-      slides = document.querySelectorAll('.slide');
-    }
-
-    function showSlide(index) {
-      if (!slides || slides.length === 0) return;
-      slides.forEach(slide => slide.classList.remove('active'));
-      
-      if (index >= slides.length) currentSlide = 0;
-      else if (index < 0) currentSlide = slides.length - 1;
-      else currentSlide = index;
-      
-      slides[currentSlide].classList.add('active');
-    }
-
-    function nextSlide() { showSlide(currentSlide + 1); }
-    function prevSlide() { showSlide(currentSlide - 1); }
-
-    // Démarrage
     document.addEventListener('DOMContentLoaded', loadCountry);
   </script>
 </body>
