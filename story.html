@@ -30,20 +30,18 @@
     h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
     /* ==============================
-       2. NAVBAR (Identique Country)
+       2. NAVBAR
     ============================== */
     .navbar {
       background: var(--isima-blue-dark); padding: 15px 30px; 
       display: flex; align-items: center; position: sticky; top: 0; z-index: 100;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2); height: 70px;
     }
-    
     .btn-back { 
       color: white; cursor: pointer; transition: 0.3s; text-decoration: none; 
       display: flex; align-items: center; gap: 8px; font-weight: 500; z-index: 102;
     }
     .btn-back:hover { color: var(--isima-yellow); transform: translateX(-5px); }
-
     .brand-container {
       position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
       text-align: center; z-index: 101;
@@ -54,26 +52,21 @@
     /* ==============================
        3. HEADER & SLIDER
     ============================== */
-    .story-header {
-      position: relative; height: 55vh; overflow: hidden; background: #000;
-    }
+    .story-header { position: relative; height: 55vh; overflow: hidden; background: #000; }
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       opacity: 0; transition: opacity 0.8s ease-in-out; background-size: cover; background-position: center;
     }
     .slide.active { opacity: 1; }
-    
     .header-overlay {
       position: absolute; bottom: 0; left: 0; width: 100%; height: 90%;
       background: linear-gradient(to top, var(--isima-blue-dark) 0%, rgba(13,44,77,0.4) 60%, transparent 100%); z-index: 2;
     }
-
     .header-content {
       position: absolute; bottom: 30px; left: 0; width: 100%; z-index: 3; color: white; text-align: center; padding: 0 20px;
     }
     .exp-title { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 5px; text-transform: uppercase; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     .exp-place { font-size: 1.3rem; font-weight: 300; opacity: 0.9; margin-bottom: 20px; }
-
     .slider-nav {
       position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; padding: 0 30px; z-index: 10; transform: translateY(-50%); pointer-events: none;
     }
@@ -90,21 +83,19 @@
       display: flex; justify-content: center; gap: 15px; margin: -25px auto 30px; 
       position: relative; z-index: 20; flex-wrap: wrap; padding: 0 10px;
     }
-    
     .witness-tab {
       background: white; padding: 12px 25px; border-radius: 50px; cursor: pointer;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-weight: 700; color: var(--text-main);
       display: flex; align-items: center; gap: 10px; border: 2px solid transparent; transition: 0.3s;
     }
     .witness-tab img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
-    
     .witness-tab.active {
       background: var(--isima-yellow); color: var(--isima-blue-dark); border-color: var(--isima-yellow); transform: translateY(-3px);
     }
     .witness-tab:hover:not(.active) { transform: translateY(-2px); background: #f0f0f0; }
 
     /* ==============================
-       5. CONTENU GRID
+       5. CONTENU & FORMATAGE
     ============================== */
     .main-container { max-width: 1100px; margin: 0 auto 60px; padding: 0 20px; }
     
@@ -118,48 +109,79 @@
 
     .theme-card {
       background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow);
-      border-bottom: 4px solid var(--isima-blue-light); transition: 0.3s; animation: fadeInUp 0.5s ease-out;
+      border-bottom: 4px solid var(--isima-blue-light); 
+      transition: 0.3s; position: relative;
+      animation: fadeInUp 0.5s ease-out;
+      display: flex; flex-direction: column;
     }
     .theme-card:hover { transform: translateY(-5px); border-bottom-color: var(--isima-yellow); }
     
     .tc-header { display: flex; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
     .tc-icon { font-size: 1.5rem; color: var(--isima-blue-dark); margin-right: 15px; }
     .tc-title { font-size: 1.1rem; font-weight: 800; color: var(--isima-blue-dark); text-transform: uppercase; }
-    .tc-content { font-size: 0.95rem; color: #555; white-space: pre-line; }
-
-    /* ==============================
-       6. PROS & CONS (Même effet Hover)
-    ============================== */
-    .pros-cons-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 40px; }
     
+    /* STYLE DU TEXTE RICHE */
+    .tc-content { 
+      font-size: 0.95rem; color: #555; 
+      /* Par défaut, on laisse le navigateur gérer, mais JS va ajouter .clamped si trop long */
+      line-height: 1.7;
+    }
+    .tc-content strong, .tc-content b { color: var(--isima-blue-dark); font-weight: 700; }
+    .tc-content ul { padding-left: 20px; margin: 10px 0; }
+    .tc-content li { margin-bottom: 5px; list-style-type: disc; color: var(--isima-blue-light); }
+    .tc-content li span { color: #555; }
+
+    /* EFFET ACCORDÉON (Textes longs) */
+    .tc-content.clamped {
+      max-height: 180px;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    }
+
+    /* BOUTON DÉROULER */
+    .expand-btn {
+      align-self: center;
+      margin-top: 15px;
+      background: var(--isima-blue-light);
+      color: white;
+      width: 35px; height: 35px;
+      border-radius: 50%;
+      display: none; /* Caché par défaut */
+      align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border: 2px solid white;
+    }
+    .expand-btn:hover { background: var(--isima-yellow); transform: scale(1.1); }
+    .expand-btn.active { transform: rotate(180deg); background: var(--isima-blue-dark); }
+
+    /* PROS & CONS */
+    .pros-cons-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 40px; }
     .pc-card { 
       background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .pc-card.pros { border-top: 5px solid var(--isima-green); }
     .pc-card.cons { border-top: 5px solid var(--isima-red); }
-    
     .pc-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
-
     .pc-title { font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
     .pc-list li { margin-bottom: 8px; list-style: none; padding-left: 20px; position: relative; }
     .pc-list li::before { content: '•'; position: absolute; left: 0; font-weight: bold; }
 
-    /* CONTACT FOOTER */
-    .contact-footer {
-      background: var(--isima-blue-dark); color: white; padding: 50px 20px; text-align: center; margin-top: 60px; border-radius: 20px 20px 0 0;
-    }
+    /* FOOTER */
+    .contact-footer { background: var(--isima-blue-dark); color: white; padding: 50px 20px; text-align: center; margin-top: 60px; border-radius: 20px 20px 0 0; }
     .contact-links { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
     .contact-btn {
       background: rgba(255,255,255,0.1); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-weight: 600;
     }
     .contact-btn:hover { background: var(--isima-yellow); color: var(--isima-blue-dark); transform: translateY(-3px); }
-    
     .btn-discord:hover { background: var(--discord-color); color: white; }
     .btn-linkedin:hover { background: #0077b5; color: white; }
     .btn-insta:hover { background: #E1306C; color: white; }
 
-    /* ANIMATIONS */
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -183,12 +205,10 @@
   <header class="story-header">
     <div class="header-overlay"></div>
     <div id="slides-container"></div>
-
     <div class="header-content">
       <h1 class="exp-title" id="d-title">Chargement...</h1>
       <p class="exp-place"><i class="fas fa-map-marker-alt" style="color:var(--isima-yellow)"></i> <span id="d-location">...</span></p>
     </div>
-
     <div class="slider-nav">
       <button class="slider-btn" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
       <button class="slider-btn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
@@ -211,32 +231,39 @@
 
       <div class="theme-grid">
         <div class="theme-card">
-          <div class="tc-header"><i class="fas fa-passport tc-icon"></i><span class="tc-title">Visa & Administratifs</span></div>
+          <div class="tc-header"><i class="fas fa-passport tc-icon"></i><span class="tc-title">Visa & Admin</span></div>
           <div class="tc-content" id="txt-visa"></div>
+          <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
         <div class="theme-card">
           <div class="tc-header"><i class="fas fa-home tc-icon"></i><span class="tc-title">Logement</span></div>
           <div class="tc-content" id="txt-logement"></div>
+          <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
         <div class="theme-card">
           <div class="tc-header"><i class="fas fa-wallet tc-icon"></i><span class="tc-title">Budget</span></div>
           <div class="tc-content" id="txt-argent"></div>
+          <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
         <div class="theme-card">
           <div class="tc-header"><i class="fas fa-heartbeat tc-icon"></i><span class="tc-title">Santé</span></div>
           <div class="tc-content" id="txt-sante"></div>
+          <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
         <div class="theme-card">
           <div class="tc-header"><i class="fas fa-wifi tc-icon"></i><span class="tc-title">Télécoms</span></div>
           <div class="tc-content" id="txt-telecom"></div>
+          <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
         <div class="theme-card">
           <div class="tc-header"><i class="fas fa-coffee tc-icon"></i><span class="tc-title">Quotidien</span></div>
           <div class="tc-content" id="txt-quotidien"></div>
+          <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
         <div class="theme-card" style="grid-column: 1 / -1;">
-          <div class="tc-header"><i class="fas fa-graduation-cap tc-icon"></i><span class="tc-title">Vie Universitaire / Professionnelle</span></div>
+          <div class="tc-header"><i class="fas fa-graduation-cap tc-icon"></i><span class="tc-title">Vie Universitaire / Pro</span></div>
           <div class="tc-content" id="txt-univ"></div>
+          <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
       </div>
 
@@ -254,6 +281,7 @@
       <div class="theme-card" style="margin-top:30px; border-bottom-color:var(--isima-yellow);">
          <div class="tc-header"><i class="fas fa-lightbulb tc-icon" style="color:var(--isima-yellow)"></i><span class="tc-title">Derniers Conseils</span></div>
          <div class="tc-content" id="txt-conseils"></div>
+         <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
       </div>
 
     </div> 
@@ -270,6 +298,36 @@
     // DONNÉES
     // ==========================================
     const storiesDB = {
+      "taiwan-yuanze": {
+        title: "Échange à Yuan Ze University",
+        location: "Taoyuan, Taïwan",
+        countryId: "taiwan",
+        witnesses: [
+          {
+            name: "Elise PIERRE",
+            filiere: "F1",
+            dates: "Février 2026 - Juin 2026",
+            type: "Échange Académique",
+            avatar: "",
+            images: [
+              "https://images.unsplash.com/photo-1552993873-0dd1110e025f?auto=format&fit=crop&w=1600&q=80", 
+              "https://images.unsplash.com/photo-1508248467877-f8278075841b?auto=format&fit=crop&w=1600&q=80"
+            ],
+            // EXEMPLE DE TEXTE FORMATÉ HTML
+            visa: "<ul><li><b>Passeport et VISA obligatoires</b> : Commencez vos démarches dès septembre si besoin !</li><li><b>Délais</b> : L'acceptation de l'école peut prendre du temps (reçue le 11 déc. 2025).</li><li><b>Billet d'avion</b> : Nécessaire pour la demande de visa. Coût env. 975€ (Eva Air sans escale).</li><li><b>Coût Visa</b> : 71€ pour le Visa à Entrée Simple au Bureau de Représentation de Taipei en France (délai 3 jours ouvrés, passeport physique requis).</li></ul>",
+            logement: "Dortoirs sur le campus (économiques mais stricts) ou colocation à Taoyuan.",
+            argent: "<b>Coût de la vie très bas !</b><br>On mange dehors pour 3-4€. Transport pas cher. Budget total : 600-800€/mois tout confort.",
+            sante: "Système excellent. Assurance obligatoire via l'université.",
+            telecom: "Carte SIM Chunghwa Telecom (4G/5G illimité) à prendre à l'aéroport.",
+            quotidien: "Night Markets pour manger tous les soirs ! À 40min de Taipei en train.",
+            univ: "Campus magnifique (architecture béton brut). Cours en anglais disponibles.",
+            conseils: "Apprenez quelques bases de Mandarin, les locaux adorent ! Attention aux typhons en juin.",
+            pros: ["Nourriture incroyable", "Sécurité totale", "Voyage en Asie facile"],
+            cons: ["Humidité élevée", "Dortoirs stricts (couvre-feu)"],
+            contact: { mail: "elise.pierre@isima.fr" }
+          }
+        ]
+      },
       "canada-uqac": {
         title: "Échange à l'UQAC",
         location: "Chicoutimi, Québec",
@@ -281,10 +339,7 @@
             dates: "Août 2023 - Déc 2023",
             type: "Échange",
             avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-            images: [
-              "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?auto=format&fit=crop&w=1600&q=80",
-              "https://images.unsplash.com/photo-1549637642-90187f64f420?auto=format&fit=crop&w=1600&q=80"
-            ],
+            images: ["https://images.unsplash.com/photo-1433838552652-f9a46b332c40?auto=format&fit=crop&w=1600&q=80"],
             visa: "AVE suffisant (-6 mois). Coût 7$.",
             logement: "Résidence sur le campus. 350 CAD/mois. Ambiance géniale.",
             argent: "Budget 900€/mois. La vie est moins chère qu'à Montréal.",
@@ -304,9 +359,9 @@
             type: "Échange",
             avatar: "", 
             images: ["https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80"],
-            visa: "AVE également. Attention, il fait très froid en arrivant en janvier !",
+            visa: "AVE également. Attention au froid en janvier !",
             logement: "Coloc en ville à 10min en bus.",
-            argent: "Un peu plus cher en hiver à cause de l'équipement.",
+            argent: "Un peu plus cher en hiver (équipement).",
             sante: "RAS, assurance UQAC.",
             telecom: "Forfait Fido.",
             quotidien: "Raquettes, ski et chocolat chaud.",
@@ -341,10 +396,7 @@
             dates: "Sept 2023 - Jan 2024",
             type: "Stage",
             avatar: "https://randomuser.me/api/portraits/women/68.jpg",
-            images: [
-              "https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fit=crop&w=1600&q=80",
-              "https://images.unsplash.com/photo-1519178173668-2fc416dde9e7?auto=format&fit=crop&w=1600&q=80"
-            ],
+            images: ["https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fit=crop&w=1600&q=80"],
             visa: "Permis Stage Coop (EIC). Démarches longues (3 mois).",
             logement: "Plateau Mont-Royal. Cher (700 CAD) mais top.",
             argent: "Vie chère, mais indemnité de stage correcte.",
@@ -370,10 +422,7 @@
             dates: "Février 2025 - Mai 2025",
             type: "Erasmus",
             avatar: "", 
-            images: [
-              "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80",
-              "https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?auto=format&fit=crop&w=1600&q=80"
-            ],
+            images: ["https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80"],
             visa: "Depuis le Brexit, passeport obligatoire ! Statut visiteur pour moins de 6 mois.",
             logement: "The Green (résidence étudiante) est top et écolo.",
             argent: "Comptez 800-1000£ par mois tout compris.",
@@ -385,35 +434,6 @@
             pros: ["Immersion Anglais", "Coût vs Londres", "Proximité Leeds"],
             cons: ["Météo", "Ville industrielle"],
             contact: { mail: "clement.verin@isima.fr" }
-          }
-        ]
-      },
-      "taiwan-yuanze": {
-        title: "Échange à Yuan Ze University",
-        location: "Taoyuan, Taïwan",
-        countryId: "taiwan",
-        witnesses: [
-          {
-            name: "Elise PIERRE",
-            filiere: "F1",
-            dates: "Février 2026 - Juin 2026",
-            type: "Échange Académique",
-            avatar: "",
-            images: [
-              "https://images.unsplash.com/photo-1552993873-0dd1110e025f?auto=format&fit=crop&w=1600&q=80", 
-              "https://images.unsplash.com/photo-1508248467877-f8278075841b?auto=format&fit=crop&w=1600&q=80"
-            ],
-            visa: "Passeport et VISA obligatoires (si besoin, commencez vos démarches pour le passeport dès septembre si vous compter aller dans un pays hors UE)! L'acceptation de l'école prend un peu de temps, je ne l'ai reçu que le 11 décembre 2025 et nécessitera plusieurs démarches administratives (bilan santé, assurance, VISA...). Pour le VISA, nous devions présenter les billets d'avions aller-retour. À Eva Air, sans escale, les billets m'ont coûtés 974.93€, deux mois avant le départ.Enfin, j'ai pris un Visa à Entrée Simple au Bureau de Représentation de Taipei en France (sur place) qui m'a coûté 71€ pour qu'il me soit délivré en 3 jours ouvrés et non 7 (⚠ ils leur faut votre passeport physique, pas une copie).",
-            logement: "",
-            argent: "Bourses : Budget mois : Budget total avant : ",
-            sante: "",
-            telecom: "",
-            quotidien: "",
-            univ: "",
-            conseils: "",
-            pros: [""],
-            cons: [""],
-            contact: { linkedin: "#", insta: "#", discord: "#", mail: "elise.pierre@isima.fr" }
           }
         ]
       }
@@ -480,7 +500,25 @@
 
       const fields = ['visa', 'logement', 'argent', 'sante', 'telecom', 'quotidien', 'univ', 'conseils'];
       fields.forEach(f => {
-        document.getElementById('txt-' + f).innerText = w[f] || "Non renseigné.";
+        const el = document.getElementById('txt-' + f);
+        // Important : innerHTML pour supporter le gras et les listes
+        el.innerHTML = w[f] || "Non renseigné.";
+        
+        // Reset Accordéon
+        el.classList.remove('clamped');
+        const btn = el.parentElement.querySelector('.expand-btn');
+        if(btn) btn.style.display = 'none';
+        
+        // Vérification taille après rendu (petit délai pour laisser le temps au DOM)
+        setTimeout(() => {
+          if (el.scrollHeight > 180) { // Si hauteur réelle > 180px
+            el.classList.add('clamped');
+            if(btn) {
+              btn.style.display = 'flex';
+              btn.classList.remove('active'); // Remettre flèche vers le bas
+            }
+          }
+        }, 50);
       });
 
       // Pros / Cons
@@ -492,12 +530,10 @@
       ulCons.innerHTML = "";
       w.cons.forEach(item => ulCons.innerHTML += `<li>${item}</li>`);
 
-      // =============================================
-      // GESTION INTELLIGENTE DES CONTACTS
-      // =============================================
+      // Contacts
       const contactText = document.getElementById('contact-text');
       const cArea = document.getElementById('contact-area');
-      cArea.innerHTML = ""; // On vide les anciens boutons
+      cArea.innerHTML = ""; 
 
       const hasContact = w.contact && (w.contact.mail || w.contact.linkedin || w.contact.insta || w.contact.discord);
 
@@ -511,6 +547,13 @@
         contactText.innerText = "Besoin de précisions ? Contacte Sophie Walsh en charge des Relations Internationales de l'ISIMA";
         cArea.innerHTML += `<a href="mailto:sophie.walsh@uca.fr" class="contact-btn"><i class="fas fa-envelope"></i> sophie.walsh@uca.fr</a>`;
       }
+    }
+
+    // Fonction Accordéon (Lire la suite)
+    function toggleText(btn) {
+      const content = btn.parentElement.querySelector('.tc-content');
+      content.classList.toggle('clamped');
+      btn.classList.toggle('active');
     }
 
     // Slider Logic
