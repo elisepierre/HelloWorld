@@ -105,67 +105,39 @@
     .info-label { font-size: 0.8rem; color: #7f8c8d; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
     .info-value { font-size: 1.2rem; font-weight: 700; margin-top: 5px; color: var(--text-main); }
 
-    /* ==============================
-       CORRECTION TÉMOIGNAGES (CSS)
-    ============================== */
+    /* Section Témoignages */
+    .testimonials-section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+    .section-header { display: flex; align-items: center; margin-bottom: 40px; }
+    .section-header h2 { font-size: 2rem; color: var(--isima-blue-dark); margin-right: 20px; }
+    .line { height: 3px; background: var(--isima-yellow); flex-grow: 1; opacity: 0.5; }
+
+    /* Cartes Témoignages */
     .testimonial-card {
-      background: white; 
-      border-radius: var(--card-radius); 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      margin-bottom: 25px; 
-      display: flex; 
-      overflow: hidden; /* Important pour que la couleur suive l'arrondi */
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      border: 1px solid rgba(0,0,0,0.05); /* Juste une bordure fine grise tout autour */
-      text-decoration: none; 
-      color: inherit;
-      position: relative;
+      background: white; border-radius: var(--card-radius); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 25px; display: flex; overflow: hidden; transition: 0.3s;
+      border: 1px solid rgba(0,0,0,0.05); text-decoration: none; color: inherit;
     }
-
-    /* Effet de levée au survol */
-    .testimonial-card:hover {
-      transform: translateY(-5px); /* On monte au lieu de décaler à droite, c'est plus moderne */
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
+    .testimonial-card:hover { transform: translateX(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
     
-    .t-left {
-      width: 140px; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 20px; 
-      color: white; 
-      text-align: center; 
-      flex-shrink: 0; /* Empêche le bloc de rétrécir */
-      align-self: stretch; /* Force la hauteur à 100% de la carte */
-    }
-
-    /* Les couleurs de fond appliquées au bloc de gauche */
+    .t-left { width: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; color: white; text-align: center; flex-shrink: 0; }
     .type-stage { background: var(--isima-blue-dark); }
     .type-erasmus { background: var(--isima-blue-light); }
     .type-double { background: var(--isima-red); }
 
-    .t-content { 
-      flex-grow: 1; 
-      padding: 25px; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      flex-wrap: wrap; 
-      gap: 15px; 
-    }
+    .t-content { flex-grow: 1; padding: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+    .t-highlight { color: var(--isima-blue-light); font-weight: 600; }
+    .t-action { background: var(--bg-color); padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--isima-blue-dark); transition: 0.3s; }
+    .testimonial-card:hover .t-action { background: var(--isima-yellow); }
 
-    /* Responsive mobile */
+    /* Animation d'apparition */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
     @media (max-width: 768px) {
+      .country-title { font-size: 3rem; }
       .testimonial-card { flex-direction: column; }
       .t-left { width: 100%; flex-direction: row; justify-content: flex-start; gap: 10px; padding: 15px; }
       .t-content { align-items: flex-start; }
     }
-
-    /* Animation d'apparition */
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    
   </style>
 </head>
 <body>
@@ -363,11 +335,8 @@
              typeClass = 'type-double'; icon = 'fa-certificate'; label = 'Double D.'; color = 'var(--isima-red)';
           }
 
-          // On supprime la variable 'color' car elle ne sert plus pour la bordure
-          // On garde juste les classes CSS
-
           const html = `
-            <a href="${t.link}" class="testimonial-card">
+            <a href="${t.link}" class="testimonial-card" style="border-left: 5px solid ${color};">
               <div class="t-left ${typeClass}">
                 <i class="fas ${icon}" style="font-size:1.5rem; margin-bottom:5px;"></i>
                 <span style="font-weight:700; text-transform:uppercase; font-size:0.9rem;">${label}</span>
