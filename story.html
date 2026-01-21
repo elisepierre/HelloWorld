@@ -12,163 +12,145 @@
     :root {
       --isima-blue: #0d2c4d;
       --isima-yellow: #f3b749;
-      --bg-color: #fdfdfd;
-      --text-main: #1a1a1a;
-      --card-radius: 16px;
+      --bg-color: #ffffff;
+      --text-main: #2d3436;
+      --text-sub: #636e72;
+      --card-radius: 20px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; background: var(--bg-color); color: var(--text-main); line-height: 1.7; }
+    body { font-family: 'Roboto', sans-serif; background: var(--bg-color); color: var(--text-main); line-height: 1.8; }
 
-    /* NAVBAR */
+    /* NAVBAR ÉPURÉE */
     .navbar {
-      background: rgba(13, 44, 77, 0.95); padding: 15px 40px; display: flex; 
-      justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000;
-      backdrop-filter: blur(10px);
+      padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; 
+      position: fixed; width: 100%; top: 0; z-index: 1000; transition: 0.3s;
     }
-    .btn-back { color: white; cursor: pointer; font-weight: 500; transition: 0.3s; text-decoration: none; }
-    .btn-back:hover { color: var(--isima-yellow); }
+    .navbar.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .navbar.scrolled .btn-back, .navbar.scrolled .brand { color: var(--isima-blue); }
 
-    /* HERO SECTION MASSIVE */
+    .btn-back { color: white; cursor: pointer; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .brand { color: white; font-weight: 900; letter-spacing: 2px; }
+
+    /* HERO MAGAZINE STYLE */
     .story-hero {
-      height: 75vh; min-height: 550px; background-size: cover; background-position: center;
-      position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
+      height: 60vh; background-size: cover; background-position: center;
+      position: relative; display: flex; align-items: center; justify-content: center;
     }
     .hero-overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(13, 44, 77, 0.9));
+      background: rgba(13, 44, 77, 0.5); /* Overlay plus léger */
     }
 
-    .hero-content {
-      position: relative; z-index: 10; color: white; max-width: 1000px; padding: 0 20px;
-    }
-    .hero-content h1 { 
-      font-family: 'Montserrat', sans-serif; font-size: 5rem; font-weight: 900; 
-      text-transform: uppercase; line-height: 0.9; margin-bottom: 20px; letter-spacing: -2px;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .hero-content .student-name {
-      font-size: 2rem; font-weight: 400; color: var(--isima-yellow); margin-bottom: 15px;
-      display: block; font-family: 'Montserrat'; letter-spacing: 2px;
-    }
-    .travel-dates {
-      font-size: 1.1rem; background: var(--isima-yellow); color: var(--isima-blue);
-      display: inline-block; padding: 6px 25px; border-radius: 50px; margin-bottom: 30px; font-weight: 700;
-    }
+    .hero-content { position: relative; z-index: 10; color: white; text-align: center; max-width: 800px; }
+    .hero-content h1 { font-family: 'Montserrat'; font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 10px; }
+    .hero-content .student-name { font-size: 1.4rem; color: var(--isima-yellow); font-family: 'Montserrat'; text-transform: uppercase; letter-spacing: 3px; }
 
-    /* LAYOUT */
-    .container { max-width: 1100px; margin: -80px auto 60px; position: relative; z-index: 20; padding: 0 20px; }
-    .grid-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
-    .card { background: white; padding: 40px; border-radius: var(--card-radius); box-shadow: 0 15px 45px rgba(0,0,0,0.1); margin-bottom: 30px; }
+    /* LAYOUT EDITORIAL */
+    .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 350px; gap: 60px; padding: 60px 20px; }
 
-    .section-title {
-      font-family: 'Montserrat'; font-size: 1.6rem; color: var(--isima-blue);
-      margin-bottom: 25px; display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;
+    /* TEXT CONTENT */
+    .story-body h2 { font-family: 'Montserrat'; font-size: 1.8rem; margin: 40px 0 20px; color: var(--isima-blue); display: flex; align-items: center; gap: 15px; }
+    .story-body h2 i { font-size: 1.2rem; color: var(--isima-yellow); }
+    .story-body p { margin-bottom: 25px; font-size: 1.1rem; color: var(--text-main); font-weight: 400; }
+
+    /* MINI GALERIE CLIQUEREUSE */
+    .mini-gallery { display: flex; gap: 15px; margin: 30px 0; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; }
+    .gallery-item { 
+      flex: 0 0 150px; height: 100px; border-radius: 12px; cursor: pointer; 
+      overflow: hidden; border: 2px solid transparent; transition: 0.3s;
     }
-    .section-title i { color: var(--isima-yellow); }
+    .gallery-item:hover { border-color: var(--isima-yellow); transform: translateY(-3px); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* GALERIE D'IMAGES */
-    .image-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 35px 0; }
-    .image-gallery img { width: 100%; height: 280px; object-fit: cover; border-radius: 12px; transition: 0.4s; }
-    .image-gallery img:hover { transform: scale(1.02); }
-    .img-wide { grid-column: span 2; height: 450px !important; }
-
-    /* INFOS PRATIQUES (SIDEBAR) */
-    .info-box { background: #f4f7f9; padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid var(--isima-yellow); }
-    .info-box h4 { margin-bottom: 10px; color: var(--isima-blue); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
-
-    /* CONTACT */
-    .contact-section { text-align: center; background: var(--isima-blue); color: white; padding: 40px; border-radius: var(--card-radius); }
-    .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 25px; }
-    .social-links a { 
-      width: 50px; height: 50px; border-radius: 50%; color: white; background: rgba(255,255,255,0.1); 
-      display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: 0.3s;
+    /* LIGHTBOX (IMAGE PLEIN ÉCRAN AU CLIC) */
+    #lightbox {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+      display: none; align-items: center; justify-content: center; z-index: 2000; cursor: pointer;
     }
-    .social-links a:hover { background: var(--isima-yellow); color: var(--isima-blue); transform: translateY(-5px); }
+    #lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
 
-    @media (max-width: 768px) {
-      .hero-content h1 { font-size: 3rem; }
-      .grid-layout { grid-template-columns: 1fr; }
-      .container { margin-top: -40px; }
-      .image-gallery { grid-template-columns: 1fr; }
-      .img-wide { grid-column: span 1; }
+    /* SIDEBAR "FACTS" */
+    .sidebar { position: sticky; top: 100px; height: fit-content; }
+    .fact-card { background: #f9f9f9; padding: 30px; border-radius: var(--card-radius); }
+    .fact-item { margin-bottom: 25px; }
+    .fact-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sub); font-weight: 700; margin-bottom: 5px; display: block; }
+    .fact-value { font-size: 1rem; color: var(--isima-blue); font-weight: 600; }
+
+    .contact-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--isima-blue); color: white; padding: 15px; border-radius: 12px;
+      margin-top: 20px; transition: 0.3s; font-weight: 600;
+    }
+    .contact-btn:hover { background: var(--isima-yellow); color: var(--isima-blue); }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .hero-content h1 { font-size: 2.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <a href="#" class="btn-back" onclick="goBack()"><i class="fas fa-chevron-left"></i> Retour au pays</a>
-    <div style="color:white; font-weight:900; letter-spacing:2px;">HELLO <span style="color:var(--isima-yellow)">WORLD</span></div>
+  <nav class="navbar" id="navbar">
+    <div class="btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> Retour</div>
+    <div class="brand">HELLO WORLD</div>
+    <div style="width: 50px;"></div>
   </nav>
 
   <header class="story-hero" id="h-bg">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="travel-dates" id="s-dates">Dates du séjour</div>
-      <span class="student-name" id="s-name">Nom de l'étudiant</span>
-      <h1 id="s-title">Titre de l'expérience</h1>
+      <span class="student-name" id="s-name">Julie Martin</span>
+      <h1 id="s-title">Software Engineering @ Ubisoft</h1>
     </div>
   </header>
 
   <div class="container">
-    <div class="grid-layout">
-      
-      <main>
-        <div class="card">
-          <h3 class="section-title"><i class="fas fa-globe-americas"></i> L'expérience</h3>
-          <p id="txt-intro" style="font-size: 1.1rem; color: #444; margin-bottom: 30px;"></p>
-          
-          <div class="image-gallery">
-            <img src="" id="img1" class="img-wide">
-            <img src="" id="img2">
-            <img src="" id="img3">
-          </div>
+    <article class="story-body">
+      <h2><i class="fas fa-feather-alt"></i> L'expérience</h2>
+      <p id="txt-intro"></p>
 
-          <h3 class="section-title"><i class="fas fa-passport"></i> Visa et Démarches</h3>
-          <p id="txt-visa"></p>
+      <div class="mini-gallery" id="gallery">
         </div>
 
-        <div class="card">
-          <h3 class="section-title"><i class="fas fa-home"></i> Logement & Vie Locale</h3>
-          <p id="txt-logement"></p>
-          <img src="" id="img4" class="img-wide" style="margin-top:25px; border-radius:12px;">
+      <h2><i class="fas fa-passport"></i> Démarches & Visa</h2>
+      <p id="txt-visa"></p>
+
+      <h2><i class="fas fa-home"></i> Logement & Vie locale</h2>
+      <p id="txt-logement"></p>
+
+      <h2><i class="fas fa-lightbulb"></i> Conseils de survie</h2>
+      <p id="txt-vie"></p>
+    </article>
+
+    <aside class="sidebar">
+      <div class="fact-card">
+        <div class="fact-item">
+          <span class="fact-label">Période</span>
+          <span class="fact-value" id="s-dates">...</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-label">Budget Moyen</span>
+          <span class="fact-value" id="s-budget">...</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-label">Santé</span>
+          <span class="fact-value" id="txt-sante">...</span>
+        </div>
+        <div class="fact-item">
+          <span class="fact-label">Télécommunications</span>
+          <span class="fact-value" id="txt-telecom">...</span>
         </div>
 
-        <div class="card">
-            <h3 class="section-title"><i class="fas fa-lightbulb"></i> Conseils & Vie Quotidienne</h3>
-            <p id="txt-vie"></p>
-        </div>
-      </main>
+        <div id="contact-area"></div>
+      </div>
+    </aside>
+  </div>
 
-      <aside>
-        <div class="card">
-          <h3 class="section-title" style="font-size: 1.1rem; border:none;">Données Pratiques</h3>
-          
-          <div class="info-box">
-            <h4>Santé</h4>
-            <p id="txt-sante" style="font-size:0.9rem;"></p>
-          </div>
-
-          <div class="info-box">
-            <h4>Télécommunications</h4>
-            <p id="txt-telecom" style="font-size:0.9rem;"></p>
-          </div>
-
-          <div class="info-box">
-            <h4>Budget Mensuel</h4>
-            <p id="txt-budget" style="font-size:0.9rem; font-weight:bold; color:var(--isima-blue);"></p>
-          </div>
-        </div>
-
-        <div class="contact-section">
-          <h4 style="font-family:Montserrat;">Besoin d'aide ?</h4>
-          <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 10px;">Tu peux me contacter directement pour échanger sur mon expérience !</p>
-          <div class="social-links" id="contact-area"></div>
-        </div>
-      </aside>
-
-    </div>
+  <div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="">
   </div>
 
   <script>
@@ -176,41 +158,42 @@
       "temoignage-julie": {
         countryId: "canada",
         name: "Julie Martin",
-        dates: "Septembre 2023 — Janvier 2024",
-        title: "Stage Software Engineer @ Ubisoft",
+        dates: "Sept. 2023 — Janv. 2024",
+        title: "Software Engineering @ Ubisoft",
         cover: "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80",
-        img1: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-        img2: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=600&q=80",
-        img3: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=600&q=80",
-        img4: "https://images.unsplash.com/photo-1519178173668-2fc416dde9e7?auto=format&fit=crop&w=800&q=80",
-        intro: "Mon expérience à Montréal a été une révélation. Travailler sur des projets AAA chez Ubisoft permet de découvrir une rigueur technique incroyable dans une ambiance décontractée.",
-        visa: "Le processus EIC (Stage Coop) demande de l'anticipation. Commencez les démarches au moins 4 mois avant le départ.",
-        logement: "Le quartier du Plateau est idéal pour la vie étudiante, bien que les loyers augmentent chaque année.",
-        vie: "Ne manquez pas les week-ends à Québec ou au Mont-Tremblant. L'hiver est rude mais la ville est parfaitement adaptée.",
-        sante: "Formulaire SE-401-Q-102 indispensable pour la couverture santé.",
-        telecom: "Fizz ou Koodo offrent des forfaits flexibles sans engagement.",
-        budget: "Env. 1400 CAD / mois",
-        linkedin: "https://linkedin.com",
-        insta: "https://instagram.com"
+        images: [
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1519178173668-2fc416dde9e7?auto=format&fit=crop&w=800&q=80"
+        ],
+        intro: "Partir à Montréal pour mon stage chez Ubisoft a été la meilleure décision de mon cursus. L'immersion dans une équipe de production AAA est intense mais incroyablement formatrice.",
+        visa: "Permis de stage Coop obligatoire. Anticipez les délais EIC (3-4 mois).",
+        logement: "Colocation recommandée sur le Plateau. Budget loyer élevé mais ambiance imbattable.",
+        vie: "Vivre l'hiver québécois demande de bons vêtements, mais la ville souterraine et les festivals de lumière compensent largement le froid.",
+        sante: "RAMQ via formulaire SE-401-Q-102.",
+        telecom: "Forfaits Fizz ou Koodo (sans engagement).",
+        budget: "1300€ / mois",
+        linkedin: "https://linkedin.com"
       },
       "temoignage-thomas": {
         countryId: "canada",
         name: "Thomas Dubois",
-        dates: "Août 2023 — Décembre 2023",
+        dates: "Août 2023 — Déc. 2023",
         title: "Échange Universitaire @ UQAC",
         cover: "https://images.unsplash.com/photo-1507728996651-789a691c7816?auto=format&fit=crop&w=1600&q=80",
-        img1: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80",
-        img2: "https://images.unsplash.com/photo-1533512930330-4ac257c86793?auto=format&fit=crop&w=600&q=80",
-        img3: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80",
-        img4: "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?auto=format&fit=crop&w=800&q=80",
-        intro: "Partir à Chicoutimi, c'est choisir l'immersion totale. L'UQAC offre un cadre d'étude chaleureux entouré par la nature sauvage du Saguenay.",
-        visa: "Un permis d'études n'est pas nécessaire pour un semestre seul, l'AVE suffit généralement.",
-        logement: "Les résidences de l'UQAC sont le meilleur moyen de rencontrer du monde rapidement.",
-        vie: "La vie à Saguenay est moins chère qu'à Montréal. Profitez du plein air : kayak, randonnée et aurores boréales.",
-        sante: "L'assurance de l'université couvre l'essentiel, mais vérifiez les options ISIMA.",
-        telecom: "Le Wi-Fi du campus est excellent, pas besoin de gros forfait data.",
-        budget: "Env. 950 CAD / mois",
-        linkedin: "https://linkedin.com",
+        images: [
+          "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80",
+          "https://images.unsplash.com/photo-1517059224940-d4af9eec41b7?auto=format&fit=crop&w=800&q=80"
+        ],
+        intro: "Chicoutimi offre une expérience nature unique. L'UQAC est une petite université très accueillante où la proximité avec les professeurs est réelle.",
+        visa: "AVE suffisant pour un séjour de moins de 6 mois.",
+        logement: "Résidences universitaires abordables et parfaites pour faire des rencontres.",
+        vie: "Randonnées, kayak et aurores boréales. C'est l'endroit rêvé pour les amoureux de plein air.",
+        sante: "Assurance université requise.",
+        telecom: "Wi-Fi du campus performant.",
+        budget: "950€ / mois",
         insta: "https://instagram.com"
       }
     };
@@ -219,36 +202,53 @@
       const params = new URLSearchParams(window.location.search);
       const id = params.get('id');
       const data = storiesDB[id];
-
       if (!data) return;
 
       document.getElementById('h-bg').style.backgroundImage = `url('${data.cover}')`;
       document.getElementById('s-name').innerText = data.name;
       document.getElementById('s-title').innerText = data.title;
       document.getElementById('s-dates').innerText = data.dates;
+      document.getElementById('s-budget').innerText = data.budget;
       document.getElementById('txt-intro').innerText = data.intro;
       document.getElementById('txt-visa').innerText = data.visa;
       document.getElementById('txt-logement').innerText = data.logement;
       document.getElementById('txt-vie').innerText = data.vie;
       document.getElementById('txt-sante').innerText = data.sante;
       document.getElementById('txt-telecom').innerText = data.telecom;
-      document.getElementById('txt-budget').innerText = data.budget;
-      document.getElementById('img1').src = data.img1;
-      document.getElementById('img2').src = data.img2;
-      document.getElementById('img3').src = data.img3;
-      document.getElementById('img4').src = data.img4;
 
+      // Galerie cliquable
+      const gall = document.getElementById('gallery');
+      data.images.forEach(imgUrl => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.onclick = () => openLightbox(imgUrl);
+        div.innerHTML = `<img src="${imgUrl}">`;
+        gall.appendChild(div);
+      });
+
+      // Contact
       const area = document.getElementById('contact-area');
-      if(data.linkedin) area.innerHTML += `<a href="${data.linkedin}" target="_blank"><i class="fab fa-linkedin-in"></i></a>`;
-      if(data.insta) area.innerHTML += `<a href="${data.insta}" target="_blank"><i class="fab fa-instagram"></i></a>`;
+      if(data.linkedin) area.innerHTML += `<a href="${data.linkedin}" target="_blank" class="contact-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>`;
+      if(data.insta) area.innerHTML += `<a href="${data.insta}" target="_blank" class="contact-btn"><i class="fab fa-instagram"></i> Instagram</a>`;
       
       window.countryBackId = data.countryId;
     }
 
-    function goBack() {
-      window.location.href = `pays.html?id=${window.countryBackId || ''}`;
+    // LIGHTBOX FUNCTIONS
+    function openLightbox(url) {
+      document.getElementById('lightbox-img').src = url;
+      document.getElementById('lightbox').style.display = 'flex';
     }
+    function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
 
+    // NAVBAR SCROLL EFFECT
+    window.onscroll = () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 100) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    };
+
+    function goBack() { window.location.href = `pays.html?id=${window.countryBackId || ''}`; }
     document.addEventListener('DOMContentLoaded', loadStory);
   </script>
 </body>
