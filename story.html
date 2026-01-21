@@ -20,6 +20,7 @@
       --isima-green: #27ae60;
       --bg-color: #f8f9fa;
       --text-main: #2c3e50;
+      --text-gray: #555555; /* Nouvelle variable pour le gris standard */
       --card-radius: 12px;
       --shadow: 0 10px 30px rgba(0,0,0,0.08);
       --discord-color: #5865F2;
@@ -120,42 +121,57 @@
     .tc-icon { font-size: 1.5rem; color: var(--isima-blue-dark); margin-right: 15px; }
     .tc-title { font-size: 1.1rem; font-weight: 800; color: var(--isima-blue-dark); text-transform: uppercase; }
     
-    /* STYLE DU TEXTE RICHE */
+    /* --- CORRECTION COULEURS TEXTE --- */
     .tc-content { 
-      font-size: 0.95rem; color: #555; 
-      /* Par défaut, on laisse le navigateur gérer, mais JS va ajouter .clamped si trop long */
-      line-height: 1.7;
+      font-size: 0.95rem; 
+      color: var(--text-gray); /* Gris standard pour tout le monde */
+      line-height: 1.6;
     }
-    .tc-content strong, .tc-content b { color: var(--isima-blue-dark); font-weight: 700; }
+    
+    /* Gras en couleur sombre */
+    .tc-content strong, .tc-content b { 
+      color: var(--text-main); 
+      font-weight: 700; 
+    }
+    
+    /* Listes : Texte gris, Puces bleues */
     .tc-content ul { padding-left: 20px; margin: 10px 0; }
-    .tc-content li { margin-bottom: 5px; list-style-type: disc; color: var(--isima-blue-light); }
-    .tc-content li span { color: #555; }
+    .tc-content li { 
+      margin-bottom: 5px; 
+      list-style-type: disc; 
+      color: var(--text-gray); /* Texte GRIS */
+    }
+    /* Ciblage spécifique pour la couleur de la puce (le rond) */
+    .tc-content li::marker {
+      color: var(--isima-blue-light);
+    }
 
-    /* EFFET ACCORDÉON (Textes longs) */
+    /* --- CORRECTION TAILLE CADRES --- */
     .tc-content.clamped {
-      max-height: 180px;
+      max-height: 100px; /* <--- RÉDUIT À 100PX (Avant 180px) */
       overflow: hidden;
       position: relative;
-      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
     }
 
     /* BOUTON DÉROULER */
     .expand-btn {
       align-self: center;
-      margin-top: 15px;
+      margin-top: 10px; /* Un peu plus près */
       background: var(--isima-blue-light);
       color: white;
-      width: 35px; height: 35px;
+      width: 30px; height: 30px; /* Plus petit et discret */
       border-radius: 50%;
-      display: none; /* Caché par défaut */
+      display: none; 
       align-items: center; justify-content: center;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       border: 2px solid white;
+      font-size: 0.8rem;
     }
-    .expand-btn:hover { background: var(--isima-yellow); transform: scale(1.1); }
+    .expand-btn:hover { background: var(--isima-yellow); transform: scale(1.1); color: var(--isima-blue-dark); }
     .expand-btn.active { transform: rotate(180deg); background: var(--isima-blue-dark); }
 
     /* PROS & CONS */
@@ -231,7 +247,7 @@
 
       <div class="theme-grid">
         <div class="theme-card">
-          <div class="tc-header"><i class="fas fa-passport tc-icon"></i><span class="tc-title">Visa & Admin</span></div>
+          <div class="tc-header"><i class="fas fa-passport tc-icon"></i><span class="tc-title">Visa & Administratifs</span></div>
           <div class="tc-content" id="txt-visa"></div>
           <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
@@ -261,7 +277,7 @@
           <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
         <div class="theme-card" style="grid-column: 1 / -1;">
-          <div class="tc-header"><i class="fas fa-graduation-cap tc-icon"></i><span class="tc-title">Vie Universitaire / Pro</span></div>
+          <div class="tc-header"><i class="fas fa-graduation-cap tc-icon"></i><span class="tc-title">Vie Universitaire / Professionnelle </span></div>
           <div class="tc-content" id="txt-univ"></div>
           <div class="expand-btn" onclick="toggleText(this)"><i class="fas fa-chevron-down"></i></div>
         </div>
@@ -315,16 +331,16 @@
             ],
             // EXEMPLE DE TEXTE FORMATÉ HTML
             visa: "<ul><li><b>Passeport et VISA obligatoires</b> : Commencez vos démarches dès septembre si besoin !</li><li><b>Délais</b> : L'acceptation de l'école peut prendre du temps (reçue le 11 déc. 2025).</li><li><b>Billet d'avion</b> : Nécessaire pour la demande de visa. Coût env. 975€ (Eva Air sans escale).</li><li><b>Coût Visa</b> : 71€ pour le Visa à Entrée Simple au Bureau de Représentation de Taipei en France (délai 3 jours ouvrés, passeport physique requis).</li></ul>",
-            logement: "Dortoirs sur le campus (économiques mais stricts) ou colocation à Taoyuan.",
+            logement: "Dortoirs sur le campus (économiques mais stricts)",
             argent: "<b>Coût de la vie très bas !</b><br>On mange dehors pour 3-4€. Transport pas cher. Budget total : 600-800€/mois tout confort.",
-            sante: "Système excellent. Assurance obligatoire via l'université.",
-            telecom: "Carte SIM Chunghwa Telecom (4G/5G illimité) à prendre à l'aéroport.",
-            quotidien: "Night Markets pour manger tous les soirs ! À 40min de Taipei en train.",
-            univ: "Campus magnifique (architecture béton brut). Cours en anglais disponibles.",
-            conseils: "Apprenez quelques bases de Mandarin, les locaux adorent ! Attention aux typhons en juin.",
-            pros: ["Nourriture incroyable", "Sécurité totale", "Voyage en Asie facile"],
-            cons: ["Humidité élevée", "Dortoirs stricts (couvre-feu)"],
-            contact: { mail: "elise.pierre@isima.fr" }
+            sante: "",
+            telecom: "",
+            quotidien: "",
+            univ: "",
+            conseils: "A",
+            pros: [""],
+            cons: [""],
+            contact: { linkedin: "#", insta: "#", discord: "#", mail: "elise.pierre@isima.fr" }
           }
         ]
       },
@@ -359,9 +375,9 @@
             type: "Échange",
             avatar: "", 
             images: ["https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1600&q=80"],
-            visa: "AVE également. Attention au froid en janvier !",
+            visa: "AVE également. Attention, il fait très froid en arrivant en janvier !",
             logement: "Coloc en ville à 10min en bus.",
-            argent: "Un peu plus cher en hiver (équipement).",
+            argent: "Un peu plus cher en hiver à cause de l'équipement.",
             sante: "RAS, assurance UQAC.",
             telecom: "Forfait Fido.",
             quotidien: "Raquettes, ski et chocolat chaud.",
@@ -511,7 +527,7 @@
         
         // Vérification taille après rendu (petit délai pour laisser le temps au DOM)
         setTimeout(() => {
-          if (el.scrollHeight > 180) { // Si hauteur réelle > 180px
+          if (el.scrollHeight > 100) { // <--- SEUIL DÉTECTION (100px)
             el.classList.add('clamped');
             if(btn) {
               btn.style.display = 'flex';
