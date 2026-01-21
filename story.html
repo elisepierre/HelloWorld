@@ -22,7 +22,7 @@
       --text-main: #2c3e50;
       --card-radius: 12px;
       --shadow: 0 10px 30px rgba(0,0,0,0.08);
-      --discord-color: #5865F2; /* Couleur officielle Discord */
+      --discord-color: #5865F2;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,7 +30,7 @@
     h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
 
     /* ==============================
-       2. NAVBAR (Logo Centré)
+       2. NAVBAR (Identique Country)
     ============================== */
     .navbar {
       background: var(--isima-blue-dark); padding: 15px 30px; 
@@ -38,14 +38,12 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2); height: 70px;
     }
     
-    /* Le bouton retour reste à gauche dans le flux */
     .btn-back { 
       color: white; cursor: pointer; transition: 0.3s; text-decoration: none; 
       display: flex; align-items: center; gap: 8px; font-weight: 500; z-index: 102;
     }
-    .btn-back:hover { color: var(--isima-yellow); }
+    .btn-back:hover { color: var(--isima-yellow); transform: translateX(-5px); }
 
-    /* Le Logo est sorti du flux pour être centré absolument */
     .brand-container {
       position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
       text-align: center; z-index: 101;
@@ -76,7 +74,6 @@
     .exp-title { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 5px; text-transform: uppercase; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     .exp-place { font-size: 1.3rem; font-weight: 300; opacity: 0.9; margin-bottom: 20px; }
 
-    /* Navigation Slider */
     .slider-nav {
       position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; padding: 0 30px; z-index: 10; transform: translateY(-50%); pointer-events: none;
     }
@@ -87,7 +84,7 @@
     .slider-btn:hover { background: var(--isima-yellow); color: var(--isima-blue-dark); border-color: var(--isima-yellow); }
 
     /* ==============================
-       4. SÉLECTEUR DE TÉMOINS (ONGLETS)
+       4. SÉLECTEUR DE TÉMOINS
     ============================== */
     .witness-selector {
       display: flex; justify-content: center; gap: 15px; margin: -25px auto 30px; 
@@ -99,7 +96,6 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-weight: 700; color: var(--text-main);
       display: flex; align-items: center; gap: 10px; border: 2px solid transparent; transition: 0.3s;
     }
-    
     .witness-tab img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
     
     .witness-tab.active {
@@ -112,16 +108,12 @@
     ============================== */
     .main-container { max-width: 1100px; margin: 0 auto 60px; padding: 0 20px; }
     
-    /* Barre info Étudiant */
-    .student-meta {
-      text-align: center; margin-bottom: 40px; animation: fadeIn 0.5s;
-    }
+    .student-meta { text-align: center; margin-bottom: 40px; animation: fadeIn 0.5s; }
     .meta-badges { display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
     .badge { padding: 6px 15px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; background: #e0e6ed; color: var(--isima-blue-dark); }
     .badge-dates { background: #e3f2fd; color: #1565c0; }
     .badge-filiere { background: #fff3e0; color: #ef6c00; }
 
-    /* Grille Cartes */
     .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 
     .theme-card {
@@ -135,11 +127,26 @@
     .tc-title { font-size: 1.1rem; font-weight: 800; color: var(--isima-blue-dark); text-transform: uppercase; }
     .tc-content { font-size: 0.95rem; color: #555; white-space: pre-line; }
 
-    /* PROS / CONS */
+    /* ==============================
+       6. PROS & CONS (Même effet Hover)
+    ============================== */
     .pros-cons-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 40px; }
-    .pc-card { background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow); }
+    
+    .pc-card { 
+      background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animation fluide */
+    }
+    
+    /* COULEURS BORDURES */
     .pc-card.pros { border-top: 5px solid var(--isima-green); }
     .pc-card.cons { border-top: 5px solid var(--isima-red); }
+    
+    /* EFFET HOVER IDENTIQUE AUX CARTES */
+    .pc-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Ombre plus marquée */
+    }
+
     .pc-title { font-weight: 800; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
     .pc-list li { margin-bottom: 8px; list-style: none; padding-left: 20px; position: relative; }
     .pc-list li::before { content: '•'; position: absolute; left: 0; font-weight: bold; }
@@ -154,7 +161,6 @@
     }
     .contact-btn:hover { background: var(--isima-yellow); color: var(--isima-blue-dark); transform: translateY(-3px); }
     
-    /* Couleurs spécifiques réseaux */
     .btn-discord:hover { background: var(--discord-color); color: white; }
     .btn-linkedin:hover { background: #0077b5; color: white; }
     .btn-insta:hover { background: #E1306C; color: white; }
@@ -182,7 +188,9 @@
 
   <header class="story-header">
     <div class="header-overlay"></div>
-    <div id="slides-container"></div> <div class="header-content">
+    <div id="slides-container"></div>
+
+    <div class="header-content">
       <h1 class="exp-title" id="d-title">Chargement...</h1>
       <p class="exp-place"><i class="fas fa-map-marker-alt" style="color:var(--isima-yellow)"></i> <span id="d-location">...</span></p>
     </div>
@@ -194,8 +202,7 @@
   </header>
 
   <div class="main-container">
-    <div class="witness-selector" id="tabs-container">
-      </div>
+    <div class="witness-selector" id="tabs-container"></div>
 
     <div id="witness-content">
       
@@ -255,23 +262,20 @@
          <div class="tc-content" id="txt-conseils"></div>
       </div>
 
-    </div> </div>
+    </div> 
+  </div>
 
   <footer class="contact-footer">
     <h3>Entrer en contact</h3>
-    <p>Besoin de précisions ? Contacte les étudiants via leurs réseaux !</p>
+    <p id="contact-text">Besoin de précisions ? Contacte les étudiants via leurs réseaux !</p>
     <div class="contact-links" id="contact-area"></div>
   </footer>
 
   <script>
     // ==========================================
-    // 1. BASE DE DONNÉES STRUCTURÉE
-    // Clé = ID de l'expérience (ex: "canada-uqac")
-    // Contenu = Infos générales + Liste des témoins (witnesses)
+    // DONNÉES
     // ==========================================
     const storiesDB = {
-      
-      // EXEMPLE 1 : PLUSIEURS TÉMOINS (UQAC)
       "canada-uqac": {
         title: "Échange à l'UQAC",
         location: "Chicoutimi, Québec",
@@ -282,7 +286,7 @@
             filiere: "F2",
             dates: "Août 2023 - Déc 2023",
             type: "Échange",
-            avatar: "https://randomuser.me/api/portraits/men/32.jpg", // Optionnel (pour onglet)
+            avatar: "https://randomuser.me/api/portraits/men/32.jpg",
             images: [
               "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?auto=format&fit=crop&w=1600&q=80",
               "https://images.unsplash.com/photo-1549637642-90187f64f420?auto=format&fit=crop&w=1600&q=80"
@@ -311,7 +315,7 @@
             ],
             visa: "AVE également. Attention, il fait très froid en arrivant en janvier !",
             logement: "Coloc en ville à 10min en bus. Plus grand qu'en résidence.",
-            argent: "Un peu plus cher en hiver à cause de l'équipement (manteau, bottes).",
+            argent: "Un peu plus cher en hiver à cause de l'équipement.",
             sante: "RAS, assurance UQAC.",
             telecom: "Forfait Fido.",
             quotidien: "Raquettes, ski et chocolat chaud.",
@@ -323,8 +327,6 @@
           }
         ]
       },
-
-      // EXEMPLE 2 : UN SEUL TÉMOIN (Ubisoft)
       "canada-ubisoft": {
         title: "Stage Ubisoft",
         location: "Montréal, Québec",
@@ -357,56 +359,48 @@
     };
 
     // ==========================================
-    // 2. LOGIQUE JS
+    // LOGIQUE JS
     // ==========================================
-    let currentData = null; // Données globales de l'expérience
-    let currentWitnessIndex = 0; // Index du témoin affiché
+    let currentData = null;
+    let currentWitnessIndex = 0;
 
     function loadStory() {
       const params = new URLSearchParams(window.location.search);
-      const id = params.get('id'); // ex: "canada-uqac"
-      
+      const id = params.get('id');
       currentData = storiesDB[id];
       if (!currentData) return;
 
-      // 1. Infos Générales (Titre)
       document.title = "Témoignage - " + currentData.title;
       document.getElementById('d-title').innerText = currentData.title;
       document.getElementById('d-location').innerText = currentData.location;
       window.countryBackId = currentData.countryId;
 
-      // 2. Générer les Onglets Témoins
       const tabsContainer = document.getElementById('tabs-container');
-      tabsContainer.innerHTML = ""; // Reset
-
+      tabsContainer.innerHTML = "";
       currentData.witnesses.forEach((w, index) => {
         const btn = document.createElement('div');
         btn.className = `witness-tab ${index === 0 ? 'active' : ''}`;
-        // Si avatar existe, on l'affiche, sinon icone générique
-        const imgHtml = w.avatar ? `<img src="${w.avatar}">` : `<i class="fas fa-user-circle" style="font-size:1.5rem"></i>`;
+        const imgHtml = w.avatar ? `<img src="${w.avatar}">` : `<i class="fas fa-user-circle"></i>`;
         btn.innerHTML = `${imgHtml} ${w.name}`;
-        
         btn.onclick = () => switchWitness(index);
         tabsContainer.appendChild(btn);
       });
 
-      // 3. Charger le premier témoin
       switchWitness(0);
     }
 
-    // Fonction pour changer de témoin sans recharger la page
     function switchWitness(index) {
       currentWitnessIndex = index;
       const w = currentData.witnesses[index];
 
-      // Mise à jour classe Active des onglets
+      // Onglets
       const tabs = document.querySelectorAll('.witness-tab');
       tabs.forEach((t, i) => {
         if(i === index) t.classList.add('active');
         else t.classList.remove('active');
       });
 
-      // Mise à jour Slider Images
+      // Slider
       const sliderContainer = document.getElementById('slides-container');
       sliderContainer.innerHTML = "";
       w.images.forEach((url, i) => {
@@ -415,9 +409,9 @@
         div.style.backgroundImage = `url('${url}')`;
         sliderContainer.appendChild(div);
       });
-      initSlider(); // Relancer logique slider
+      initSlider();
 
-      // Mise à jour Textes
+      // Textes
       document.getElementById('w-name').innerText = w.name;
       document.getElementById('w-filiere').innerText = w.filiere;
       document.getElementById('w-dates').innerText = w.dates;
@@ -437,20 +431,19 @@
       ulCons.innerHTML = "";
       w.cons.forEach(item => ulCons.innerHTML += `<li>${item}</li>`);
 
-      // Contact
+      // Contact & Phrase Personnalisée
+      const contactText = document.getElementById('contact-text');
+      contactText.innerText = `Besoin de précisions ? Contacte ${w.name} via ses réseaux !`;
+
       const cArea = document.getElementById('contact-area');
       cArea.innerHTML = "";
       if(w.contact.mail) cArea.innerHTML += `<a href="${w.contact.mail}" class="contact-btn"><i class="fas fa-envelope"></i> Mail</a>`;
       if(w.contact.linkedin) cArea.innerHTML += `<a href="${w.contact.linkedin}" target="_blank" class="contact-btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>`;
       if(w.contact.insta) cArea.innerHTML += `<a href="${w.contact.insta}" target="_blank" class="contact-btn btn-insta"><i class="fab fa-instagram"></i> Instagram</a>`;
-      
-      // AJOUT DISCORD
-      if(w.contact.discord) {
-        cArea.innerHTML += `<a href="#" onclick="alert('Discord : ${w.contact.discord}'); return false;" class="contact-btn btn-discord"><i class="fab fa-discord"></i> Discord</a>`;
-      }
+      if(w.contact.discord) cArea.innerHTML += `<a href="#" onclick="alert('Discord : ${w.contact.discord}'); return false;" class="contact-btn btn-discord"><i class="fab fa-discord"></i> Discord</a>`;
     }
 
-    // --- SLIDER LOGIC ---
+    // Slider Logic
     let currentSlide = 0;
     let slides;
     function initSlider() { slides = document.querySelectorAll('.slide'); currentSlide = 0; }
@@ -463,7 +456,6 @@
     function nextSlide() { showSlide(currentSlide + 1); }
     function prevSlide() { showSlide(currentSlide - 1); }
 
-    // --- NAV ---
     function goBack() { window.location.href = `country.html?id=${window.countryBackId || ''}`; }
 
     document.addEventListener('DOMContentLoaded', loadStory);
