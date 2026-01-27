@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* ==============================
-       1. VARIABLES & CHARTE
-    ============================== */
     :root {
       --isima-blue-dark: #0d2c4d;
       --isima-blue-light: #005b96;
@@ -28,70 +25,41 @@
     h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
     a { text-decoration: none; }
 
-    /* ==============================
-       2. NAVBAR (IDENTIQUE A STORY.HTML)
-    ============================== */
     .navbar {
       background: var(--isima-blue-dark); padding: 15px 30px; 
       display: flex; align-items: center; position: sticky; top: 0; z-index: 100;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2); height: 70px;
     }
-    
-    /* Bouton retour (Gauche) */
-    .btn-back { 
-      color: white; cursor: pointer; transition: 0.3s; text-decoration: none; 
-      display: flex; align-items: center; gap: 8px; font-weight: 500; z-index: 102; font-size: 0.95rem;
-    }
+    .btn-back { color: white; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-weight: 500; z-index: 102; }
     .btn-back:hover { color: var(--isima-yellow); transform: translateX(-5px); }
-
-    /* Logo (Centré Absolu) */
-    .brand-container {
-      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-      text-align: center; z-index: 101;
-    }
+    .brand-container { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 101; }
     .brand { font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; color: white; }
     .brand span { color: var(--isima-yellow); }
 
-    /* ==============================
-       3. HEADER IMAGE FIXE (PLUS DE SLIDER)
-    ============================== */
     .country-header {
-      position: relative;
-      height: 60vh; /* Hauteur confortable */
-      background-size: cover;
-      background-position: center;
-      background-color: #000;
-      display: flex;
-      align-items: flex-end; /* Contenu en bas */
+      position: relative; height: 60vh; background-size: cover; background-position: center;
+      display: flex; align-items: flex-end;
     }
-
-    /* Overlay dégradé pour lisibilité */
     .header-overlay {
       position: absolute; bottom: 0; left: 0; width: 100%; height: 80%;
       background: linear-gradient(to top, var(--isima-blue-dark) 0%, rgba(13, 44, 77, 0.6) 50%, transparent 100%);
       z-index: 1;
     }
-
     .header-content {
-      position: relative; z-index: 2;
-      width: 100%; max-width: 1200px; margin: 0 auto;
-      padding: 0 20px 60px 20px; /* Padding bas pour ne pas coller */
-      color: white;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      position: relative; z-index: 2; width: 100%; max-width: 1200px; margin: 0 auto;
+      padding: 0 20px 60px 20px; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
       animation: fadeInUp 0.8s ease-out;
     }
-
     .country-flag { font-size: 4rem; margin-bottom: 10px; display: block; }
-    .country-title { font-size: 4.5rem; font-weight: 800; line-height: 1; margin-bottom: 15px; text-transform: uppercase; }
+    .country-title { font-size: 4.5rem; font-weight: 800; text-transform: uppercase; line-height: 1; margin-bottom: 15px; }
     .country-subtitle { font-size: 1.3rem; font-weight: 300; opacity: 0.95; line-height: 1.5; max-width: 800px; }
 
-    /* ==============================
-       4. INFOS & CONTENU
-    ============================== */
-    .info-section {
-      max-width: 1200px; margin: -40px auto 40px; position: relative; z-index: 10; padding: 0 20px;
+    .info-section { max-width: 1200px; margin: -40px auto 40px; position: relative; z-index: 10; padding: 0 20px; }
+    .info-grid { 
+      display: grid; 
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 20px; 
     }
-    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
 
     .info-card {
       background: white; padding: 25px; border-radius: var(--card-radius);
@@ -99,19 +67,16 @@
       border-bottom: 4px solid var(--isima-blue-light);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    .info-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 44, 77, 0.15); border-bottom-color: var(--isima-yellow); }
+    .info-card:hover { transform: translateY(-10px); border-bottom-color: var(--isima-yellow); }
     .info-icon { font-size: 1.5rem; color: var(--isima-blue-dark); margin-bottom: 10px; transition: 0.3s; }
-    .info-card:hover .info-icon { transform: scale(1.2); color: var(--isima-yellow); }
-    .info-label { font-size: 0.8rem; color: #7f8c8d; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+    .info-label { font-size: 0.8rem; color: #7f8c8d; text-transform: uppercase; font-weight: 700; }
     .info-value { font-size: 1.2rem; font-weight: 700; margin-top: 5px; color: var(--text-main); }
 
-    /* Section Témoignages */
     .testimonials-section { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
     .section-header { display: flex; align-items: center; margin-bottom: 40px; }
     .section-header h2 { font-size: 2rem; color: var(--isima-blue-dark); margin-right: 20px; }
     .line { height: 3px; background: var(--isima-yellow); flex-grow: 1; opacity: 0.5; }
 
-    /* Cartes Témoignages */
     .testimonial-card {
       background: white; border-radius: var(--card-radius); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       margin-bottom: 25px; display: flex; overflow: hidden; transition: 0.3s;
@@ -121,7 +86,7 @@
     
     .t-left { width: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; color: white; text-align: center; flex-shrink: 0; }
     .type-stage { background: var(--isima-blue-dark); }
-    .type-erasmus { background: var(--isima-blue-light); }
+    .type-echange { background: var(--isima-blue-light); }
     .type-double { background: var(--isima-red); }
 
     .t-content { flex-grow: 1; padding: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
@@ -129,14 +94,13 @@
     .t-action { background: var(--bg-color); padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; color: var(--isima-blue-dark); transition: 0.3s; }
     .testimonial-card:hover .t-action { background: var(--isima-yellow); }
 
-    /* Animation d'apparition */
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      .info-grid { grid-template-columns: repeat(2, 1fr); }
       .country-title { font-size: 3rem; }
       .testimonial-card { flex-direction: column; }
       .t-left { width: 100%; flex-direction: row; justify-content: flex-start; gap: 10px; padding: 15px; }
-      .t-content { align-items: flex-start; }
     }
   </style>
 </head>
@@ -192,42 +156,28 @@
   </section>
 
   <script>
-    // ==========================================
-    // 1. BASE DE DONNÉES PAYS
-    // ==========================================
     const db = {
       uk: {
-        name: "Royaume-Uni", flag: "🇬🇧",
-        desc: "Une immersion anglophone totale, entre traditions universitaires prestigieuses et modernité.",
-        capital: "Londres", pop: "67 M", pol: "Monarchie Parlem.<br><small>Roi : Charles III</small>",
-        lang: "Anglais", currency: "Livre (£)",
+        name: "Royaume-Uni", flag: "🇬🇧", desc: "Une immersion anglophone totale, entre traditions universitaires prestigieuses et modernité.",
+        capital: "Londres", pop: "67 M", lang: "Anglais", currency: "Livre (£)",
         images: ["https://images.unsplash.com/photo-1486299267070-83823f5448dd?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [
-          { type: "echange", name: "Clément V.", promo: "F1", city: "Bradford", org: "Bradford University", link: "story.html?id=uk-bradford" }
-        ]
+        testimonials: [{ type: "echange", name: "Clément V.", promo: "F1", city: "Bradford", org: "Bradford University", link: "story.html?id=uk-bradford" }]
       },
       allemagne: {
-        name: "Allemagne", flag: "🇩🇪",
-        desc: "Le moteur économique de l'Europe, alliant rigueur industrielle et qualité de vie.",
-        capital: "Berlin", pop: "84 M", pol: "République Fédérale<br><small>Chancelier : Olaf Scholz</small>",
-        lang: "Allemand", currency: "Euro (€)",
-        // On garde le tableau images mais on n'utilisera que la première [0]
+        name: "Allemagne", flag: "🇩🇪", desc: "Le moteur économique de l'Europe, alliant rigueur industrielle et qualité de vie.",
+        capital: "Berlin", pop: "84 M", lang: "Allemand", currency: "Euro (€)",
         images: ["https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=80"],
         testimonials: []
       },
       espagne: {
-        name: "Espagne", flag: "🇪🇸",
-        desc: "L'excellence académique sous le soleil méditerranéen.",
-        capital: "Madrid", pop: "47 M", pol: "Monarchie Parlem.<br><small>Roi : Felipe VI</small>",
-        lang: "Espagnol", currency: "Euro (€)",
+        name: "Espagne", flag: "🇪🇸", desc: "L'excellence académique sous le soleil méditerranéen.",
+        capital: "Madrid", pop: "47 M", lang: "Espagnol", currency: "Euro (€)",
         images: ["https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1600&q=80"],
         testimonials: []
       },
       canada: {
-        name: "Canada", flag: "🇨🇦",
-        desc: "Terre de grands espaces et d'innovation technologique, idéale pour les amateurs de nature et de tech.",
-        capital: "Ottawa", pop: "38 M", pol: "Monarchie Constit.<br><small>PM : Justin Trudeau</small>",
-        lang: "Anglais / Français", currency: "CAD ($)",
+        name: "Canada", flag: "🇨🇦", desc: "Terre de grands espaces et d'innovation technologique, idéale pour les amateurs de nature et de tech.",
+        capital: "Ottawa", pop: "38 M", lang: "Anglais / Français", currency: "CAD ($)",
         images: ["https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=1600&q=80"],
         testimonials: [
           { type: "stage", name: "Julie M.", promo: "F3", city: "Montréal", org: "Ubisoft", link: "story.html?id=canada-ubisoft" },
@@ -235,126 +185,83 @@
         ]
       },
       usa: {
-        name: "États-Unis", flag: "🇺🇸",
-        desc: "Le rêve américain : Campus géants et Silicon Valley.",
-        capital: "Washington D.C.", pop: "332 M", pol: "République Fédérale<br><small>Président : J. Biden</small>",
-        lang: "Anglais", currency: "USD ($)",
+        name: "États-Unis", flag: "🇺🇸", desc: "Le rêve américain : Campus géants et Silicon Valley.",
+        capital: "Washington D.C.", pop: "332 M", lang: "Anglais", currency: "USD ($)",
         images: ["https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1600&q=80"],
         testimonials: []
       },
       japon: {
-        name: "Japon", flag: "🇯🇵",
-        desc: "Traditions millénaires et futurisme technologique.",
-        capital: "Tokyo", pop: "125 M", pol: "Monarchie Constit.<br><small>Empereur : Naruhito</small>",
-        lang: "Japonais", currency: "Yen (¥)",
+        name: "Japon", flag: "🇯🇵", desc: "Traditions millénaires et futurisme technologique.",
+        capital: "Tokyo", pop: "125 M", lang: "Japonais", currency: "Yen (¥)",
         images: ["https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1600&q=80"],
         testimonials: []
       },
       chine: {
-        name: "Chine", flag: "🇨🇳",
-        desc: "Innovation à grande échelle et culture millénaire.",
-        capital: "Pékin", pop: "1.4 Md", pol: "République Populaire<br><small>Président : Xi Jinping</small>",
-        lang: "Mandarin", currency: "Yuan (CNY)",
+        name: "Chine", flag: "🇨🇳", desc: "Innovation à grande échelle et culture millénaire.",
+        capital: "Pékin", pop: "1.4 Md", lang: "Mandarin", currency: "Yuan (CNY)",
         images: ["https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1600&q=80"],
         testimonials: []
       },     
       taiwan: {
-        name: "Taïwan", flag: "🇹🇼",
-        desc: "L'île aux hautes technologies. Un mélange unique de culture chinoise traditionnelle et de liberté moderne.",
-        capital: "Taipei", pop: "23.5 M", pol: "République<br><small>Président : Lai Ching-te</small>",
-        lang: "Mandarin", currency: "Nouv. Dollar (TWD)",
+        name: "Taïwan", flag: "🇹🇼", desc: "L'île aux hautes technologies. Un mélange unique de culture chinoise traditionnelle et de liberté moderne.",
+        capital: "Taipei", pop: "23.5 M", lang: "Mandarin", currency: "TWD ($)",
         images: ["https://images.unsplash.com/photo-1470004914212-05527e49370b?auto=format&fit=crop&w=1600&q=80"],
-        testimonials: [
-          { type: "echange", name: "Elise P.", promo: "F1", city: "Taoyuan", org: "Yuan Ze University", link: "story.html?id=taiwan-yuanze" }
-        ]
+        testimonials: [{ type: "echange", name: "Elise P.", promo: "F1", city: "Taoyuan", org: "Yuan Ze University", link: "story.html?id=taiwan-yuanze" }]
       },
       bresil: {
-        name: "Brésil", flag: "🇧🇷",
-        desc: "Chaleur humaine et défis informatiques passionnants.",
-        capital: "Brasilia", pop: "214 M", pol: "République Fédérale<br><small>Président : Lula</small>",
-        lang: "Portugais", currency: "Réal (BRL)",
+        name: "Brésil", flag: "🇧🇷", desc: "Chaleur humaine et défis informatiques passionnants.",
+        capital: "Brasilia", pop: "214 M", lang: "Portugais", currency: "Réal (BRL)",
         images: ["https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1600&q=80"],
         testimonials: []
       },
       maroc: {
-        name: "Maroc", flag: "🇲🇦",
-        desc: "Secteur IT en explosion et proximité culturelle.",
-        capital: "Rabat", pop: "37 M", pol: "Monarchie Constit.<br><small>Roi : Mohammed VI</small>",
-        lang: "Arabe / Français", currency: "Dirham (MAD)",
+        name: "Maroc", flag: "🇲🇦", desc: "Secteur IT en explosion et proximité culturelle.",
+        capital: "Rabat", pop: "37 M", lang: "Arabe / Français", currency: "Dirham (MAD)",
         images: ["https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=1600&q=80"],
         testimonials: []
       },
       senegal: {
-        name: "Sénégal", flag: "🇸🇳",
-        desc: "Le hub numérique de l'Afrique de l'Ouest.",
-        capital: "Dakar", pop: "17 M", pol: "République<br><small>Président : B. Diomaye Faye</small>",
-        lang: "Français / Wolof", currency: "Franc CFA",
+        name: "Sénégal", flag: "🇸🇳", desc: "Le hub numérique de l'Afrique de l'Ouest.",
+        capital: "Dakar", pop: "17 M", lang: "Français / Wolof", currency: "Franc CFA",
         images: ["https://images.unsplash.com/photo-1572986422732-c6b0c2395565?auto=format&fit=crop&w=1600&q=80"],
         testimonials: []
       },
-      norvege: { name: "Norvège", flag: "🇳🇴", desc: "Nature et Tech.", capital: "Oslo", pop: "5.5M", pol: "Monarchie", lang: "Norvégien", currency: "NOK", images: ["https://images.unsplash.com/photo-1516333916323-2895f36c57da?auto=format&fit=crop&w=1600&q=80"], testimonials: [] },
-      pologne: { name: "Pologne", flag: "🇵🇱", desc: "Hub IT Europe Centrale.", capital: "Varsovie", pop: "37M", pol: "République", lang: "Polonais", currency: "PLN", images: ["https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=1600&q=80"], testimonials: [] },
-      coree: { name: "Corée du Sud", flag: "🇰🇷", desc: "Pays connecté.", capital: "Séoul", pop: "51M", pol: "République", lang: "Coréen", currency: "KRW", images: ["https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80"], testimonials: [] }
+      norvege: { name: "Norvège", flag: "🇳🇴", desc: "Nature et Tech.", capital: "Oslo", pop: "5.5M", lang: "Norvégien", currency: "NOK", images: ["https://images.unsplash.com/photo-1516333916323-2895f36c57da?auto=format&fit=crop&w=1600&q=80"], testimonials: [] },
+      pologne: { name: "Pologne", flag: "🇵🇱", desc: "Hub IT Europe Centrale.", capital: "Varsovie", pop: "37M", lang: "Polonais", currency: "PLN", images: ["https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=1600&q=80"], testimonials: [] },
+      coree: { name: "Corée du Sud", flag: "🇰🇷", desc: "Pays connecté.", capital: "Séoul", pop: "51M", lang: "Coréen", currency: "KRW", images: ["https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1600&q=80"], testimonials: [] }
     };
 
-    // ==========================================
-    // 2. CHARGEMENT PAYS
-    // ==========================================
     function loadCountry() {
       const params = new URLSearchParams(window.location.search);
       const id = params.get('id');
       const data = db[id];
+      if (!data) return;
 
-      if (!data) {
-        document.getElementById('d-name').innerText = "Pays introuvable";
-        return;
-      }
-
-      // Titres & Infos
       document.title = data.name + " - Hello World";
       document.getElementById('d-flag').innerText = data.flag;
       document.getElementById('d-name').innerText = data.name;
       document.getElementById('d-desc').innerText = data.desc;
-      
-      // Image de Fond (Unique) - Prend la première image du tableau
-      if(data.images && data.images.length > 0) {
-        document.getElementById('header-bg').style.backgroundImage = `url('${data.images[0]}')`;
-      }
-
-      // Données Chiffrées
+      document.getElementById('header-bg').style.backgroundImage = `url('${data.images[0]}')`;
       document.getElementById('d-capital').innerText = data.capital;
       document.getElementById('d-pop').innerText = data.pop;
-      document.getElementById('d-pol').innerHTML = data.pol;
       document.getElementById('d-lang').innerText = data.lang;
       document.getElementById('d-currency').innerText = data.currency;
 
-      // Liste Témoignages
       const container = document.getElementById('testimonials-container');
-      container.innerHTML = ""; // Reset
-
+      container.innerHTML = "";
       if(data.testimonials.length === 0) {
-        container.innerHTML = "<p style='text-align:center; color:#999; padding:20px;'>Aucun témoignage disponible pour ce pays pour l'instant.</p>";
+        container.innerHTML = "<p style='text-align:center; color:#999; padding:20px;'>Aucun témoignage disponible pour l'instant.</p>";
       } else {
         data.testimonials.forEach(t => {
-          // Styles selon le type
-          let typeClass = "";
-          let icon = "";
-          let label = "";
-          let color = "";
+          let label = t.type === 'stage' ? 'Stage' : (t.type === 'echange' ? 'Échange' : 'Double Diplôme');
+          let color = t.type === 'stage' ? 'var(--isima-blue-dark)' : (t.type === 'echange' ? 'var(--isima-blue-light)' : 'var(--isima-red)');
+          let icon = t.type === 'stage' ? 'fa-briefcase' : (t.type === 'echange' ? 'fa-university' : 'fa-certificate');
 
-          if (t.type === 'stage') {
-             typeClass = 'type-stage'; icon = 'fa-briefcase'; label = 'Stage'; color = 'var(--isima-blue-dark)';
-          } else if (t.type === 'echange') {
-             typeClass = 'type-erasmus'; icon = 'fa-university'; label = 'Échange'; color = 'var(--isima-blue-light)';
-          } else {
-             typeClass = 'type-double'; icon = 'fa-certificate'; label = 'Double D.'; color = 'var(--isima-red)';
-          }
-
-          const html = `
+          container.innerHTML += `
             <a href="${t.link}" class="testimonial-card" style="border-left: 5px solid ${color};">
-              <div class="t-left ${typeClass}">
+              <div class="t-left type-${t.type}">
                 <i class="fas ${icon}" style="font-size:1.5rem; margin-bottom:5px;"></i>
-                <span style="font-weight:700; text-transform:uppercase; font-size:0.9rem;">${label}</span>
+                <span style="font-weight:700; text-transform:uppercase; font-size:0.8rem;">${label}</span>
               </div>
               <div class="t-content">
                 <div class="t-info">
@@ -364,13 +271,10 @@
                 </div>
                 <div class="t-action">Lire le récit &rarr;</div>
               </div>
-            </a>
-          `;
-          container.innerHTML += html;
+            </a>`;
         });
       }
     }
-
     document.addEventListener('DOMContentLoaded', loadCountry);
   </script>
 </body>
