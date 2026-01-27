@@ -81,6 +81,7 @@
     }
     .theme-card:hover { transform: translateY(-5px); border-top-color: var(--isima-yellow); }
 
+    /* CARTES PLEINE LARGEUR */
     .full-width-card {
       background: white; padding: 30px; border-radius: var(--card-radius);
       box-shadow: var(--shadow); margin-bottom: 25px; border-left: 6px solid var(--isima-blue-dark);
@@ -95,13 +96,70 @@
     .tc-content ul { padding-left: 20px; margin: 10px 0; }
     .tc-content li { margin-bottom: 5px; }
 
-    /* PROS & CONS */
-    .pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px; }
-    .pc-box { padding: 15px; border-radius: 8px; font-size: 0.9rem; }
-    .pc-box.pros { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-    .pc-box.cons { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+    /* ==============================
+       MODERN PROS & CONS DESIGN
+    ============================== */
+    .pc-grid { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 25px; 
+      margin-top: 20px; 
+    }
+    .pc-box { 
+      padding: 25px; 
+      border-radius: 15px; 
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+    }
+    .pc-box.pros { 
+      background: #f0fdf4; 
+      color: #166534; 
+      border: 1px solid #bbf7d0; 
+    }
+    .pc-box.cons { 
+      background: #fef2f2; 
+      color: #991b1b; 
+      border: 1px solid #fecaca; 
+    }
+    .pc-box strong {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .pc-box ul { 
+      list-style: none; 
+      padding-left: 5px; 
+    }
+    .pc-box li { 
+      margin-bottom: 10px; 
+      padding-left: 25px; 
+      position: relative; 
+      line-height: 1.4;
+    }
+    /* Custom bullets */
+    .pc-box.pros li::before {
+      content: '\f058'; /* FontAwesome check-circle */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--isima-green);
+    }
+    .pc-box.cons li::before {
+      content: '\f057'; /* FontAwesome times-circle */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--isima-red);
+    }
 
-    /* CONTACT FOOTER */
+    /* CONTACT */
     .contact-footer { background: var(--isima-blue-dark); color: white; padding: 40px; text-align: center; border-radius: 20px; margin-top: 40px; }
     .contact-area { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 25px; }
     .contact-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: 0.3s; }
@@ -168,8 +226,14 @@
     <div class="full-width-card">
       <div class="tc-header"><i class="fas fa-star tc-icon"></i><span class="tc-title">Bilan de l'expérience</span></div>
       <div class="pc-grid">
-        <div class="pc-box pros"><strong><i class="fas fa-thumbs-up"></i> Points Positifs</strong><ul id="list-pros" style="margin-top:10px;"></ul></div>
-        <div class="pc-box cons"><strong><i class="fas fa-thumbs-down"></i> Points Négatifs</strong><ul id="list-cons" style="margin-top:10px;"></ul></div>
+        <div class="pc-box pros">
+          <strong><i class="fas fa-check-circle"></i> Ce que j'ai adoré</strong>
+          <ul id="list-pros"></ul>
+        </div>
+        <div class="pc-box cons">
+          <strong><i class="fas fa-exclamation-circle"></i> Les difficultés</strong>
+          <ul id="list-cons"></ul>
+        </div>
       </div>
     </div>
 
@@ -179,7 +243,7 @@
     </div>
 
     <footer class="contact-footer">
-      <h3>Une question spécifique ?</h3>
+      <h3>Besoin de précisions ?</h3>
       <div class="contact-area" id="contact-area"></div>
     </footer>
   </div>
@@ -197,14 +261,14 @@
             dates: "Février 2026 - Juin 2026",
             type: "Échange Académique",
             images: ["https://images.unsplash.com/photo-1552993873-0dd1110e025f?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1508248467877-f8278075841b?auto=format&fit=crop&w=1200&q=80"],
-            visa: "<ul><li><b>Passeport et VISA obligatoires</b></li><li><b>Délais</b> : L'acceptation de l'école peut prendre du temps (reçue le 11 décembre 2025).</li><li><b>Billets d'avion aller-retour</b> : Nécessaire pour la demande de visa.</li><li><b>Visa</b> : Bureau de Représentation de Taipei en France (délai de traitement après réception entre 3 et 7 jours ouvrés, passeport physique requis).</li></ul>",
+            visa: "<ul><li><b>Passeport et VISA obligatoires</b></li><li><b>Délais</b> : L'acceptation de l'école peut prendre du temps (reçue le 11 décembre 2025).</li><li><b>Billets d'avion aller-retour</b> : Nécessaire pour la demande de visa.</li><li><b>Visa</b> : Bureau de Représentation de Taipei en France (délai de traitement entre 3 et 7 jours ouvrés, passeport physique requis).</li></ul>",
             logement: "Dortoirs sur le campus (économiques mais stricts).",
             argent: "<ul><li><b>Billets d'avion</b> : 974.93€ (aller-retour Eva Air sans escale).</li><li><b>Visa</b> : 71€ pour le Visa à Entrée Simple en délai 3 jours ouvrés.</li></ul>",
-            sante: "L'acceptation nécessite plusieurs démarches administratives (bilan santé, assurance, VISA...). Pour le VISA, nous devions présenter les billets d'avions aller-retour. ⚠ Ils ont besoin de votre passeport physique, pas une copie.",
-            telecom: "Carte SIM Chunghwa Telecom facile à obtenir à l'aéroport.",
+            sante: "Bilan santé, assurance et VISA requis. Pour le VISA, billets aller-retour obligatoires. ⚠ Le Bureau de Taipei exige le passeport physique.",
+            telecom: "Chunghwa Telecom à l'aéroport.",
             quotidien: "Street food omniprésente, transports excellents.",
-            univ: "Campus moderne, infrastructures de qualité, projets de groupe réguliers.",
-            conseils: "Commencez vos démarches pour le passeport dès septembre si vous comptez aller hors UE !",
+            univ: "Campus moderne, projets de groupe.",
+            conseils: "Commencez les démarches pour le passeport dès septembre !",
             pros: ["Sécurité totale", "Culture incroyable", "Coût de la vie abordable"],
             cons: ["Humidité importante", "Barrière de la langue hors campus"],
             contact: { mail: "elise.pierre@isima.fr", linkedin: "#", insta: "elise_tw" }
@@ -219,47 +283,23 @@
           {
             name: "Thomas D.", filiere: "F2", dates: "Août 2023 - Déc 2023", type: "Échange",
             images: ["https://images.unsplash.com/photo-1433838552652-f9a46b332c40?auto=format&fit=crop&w=1200&q=80"],
-            visa: "AVE suffisant (-6 mois). Coût 7$.",
-            logement: "Résidence sur le campus. 350 CAD/mois. Ambiance géniale.",
-            argent: "Budget 900€/mois. Vie moins chère qu'à Montréal.",
-            sante: "Assurance Desjardins obligatoire via l'UQAC.",
-            telecom: "Forfait Fido ou Fizz.",
-            quotidien: "Beaucoup de nature, rando, sorties en résidence.",
-            univ: "Cours pratiques, tutoiement des profs.",
-            conseils: "Louez une voiture pour explorer le fjord le week-end !",
-            pros: ["Nature", "Coût vie", "Accueil"],
-            cons: ["Froid", "Voiture nécessaire"],
+            visa: "AVE (7$).", logement: "Résidence campus (350 CAD).", argent: "900€/mois.",
+            sante: "Assurance Desjardins.", telecom: "Forfait Fido.", quotidien: "Nature, rando.",
+            univ: "Approche pratique.", conseils: "Louez une voiture !",
+            pros: ["Nature", "Coût de la vie"], cons: ["Froid"],
             contact: { discord: "thomas#1234", linkedin: "#" }
           },
           {
             name: "Sarah", filiere: "F2", dates: "Jan 2023 - Mai 2023", type: "Échange",
             images: ["https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80"],
-            visa: "AVE également. Attention, il fait très froid en arrivant en janvier !",
-            logement: "Coloc en ville à 10min en bus.",
-            argent: "Un peu plus cher en hiver à cause de l'équipement.",
-            sante: "Assurance UQAC.",
-            telecom: "Forfait Fido.",
-            quotidien: "Ski et chocolat chaud.",
-            univ: "Cours de gestion de projet au top.",
-            conseils: "Le festival des glaces est à ne pas manquer !",
-            pros: ["Neige", "Sécurité"],
-            cons: ["Nuit tombe tôt"],
-            contact: { insta: "sarah_qc" }
+            visa: "AVE.", logement: "Colocation en ville.", quotidien: "Ski, chocolat chaud.",
+            pros: ["Neige"], cons: ["Nuit tombe tôt"], contact: { insta: "sarah_qc" }
           },
           {
             name: "Elisa", filiere: "F2", dates: "Jan 2023 - Mai 2023", type: "Échange",
             images: ["https://images.unsplash.com/photo-1519178173668-2fc416dde9e7?auto=format&fit=crop&w=1200&q=80"],
-            visa: "AVE.",
-            logement: "Résidence sur le campus.",
-            argent: "Budget standard.",
-            sante: "RAS.",
-            telecom: "WiFi campus.",
-            quotidien: "Vie étudiante riche.",
-            univ: "Qualité d'enseignement.",
-            conseils: "Profitez de chaque instant !",
-            pros: ["Cours"],
-            cons: ["Distance"],
-            contact: { linkedin: "#" }
+            visa: "AVE.", logement: "Résidence.", univ: "Super cours.",
+            pros: ["Qualité des cours"], cons: ["Distance"], contact: { linkedin: "#" }
           }
         ]
       },
@@ -279,8 +319,8 @@
             quotidien: "Ville souterraine, festivals, poutine.",
             univ: "Ambiance de travail incroyable, très pro et relax.",
             conseils: "Anticipez le visa, c'est le plus stressant !",
-            pros: ["Ambiance", "Tech", "Ville"],
-            cons: ["Hiver", "Taxes"],
+            pros: ["Ambiance de travail", "Ville dynamique", "Tech de pointe"],
+            cons: ["Hiver rigoureux", "Taxes élevées"],
             contact: { linkedin: "#", discord: "julie_dev" }
           }
         ]
@@ -293,15 +333,15 @@
           {
             name: "Clément VERIN", filiere: "F1", dates: "Février 2025 - Mai 2025", type: "Erasmus",
             images: ["https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80"],
-            visa: "Depuis le Brexit, passeport obligatoire ! Statut visiteur pour moins de 6 mois.",
-            logement: "The Green (résidence étudiante) est top et écolo.",
+            visa: "Brexit : passeport obligatoire ! Statut visiteur pour moins de 6 mois.",
+            logement: "The Green (résidence étudiante).",
             argent: "Budget 800-1000£ par mois tout compris.",
-            sante: "CEAM + Assurance complémentaire conseillée.",
-            telecom: "Giffgaff (carte SIM commandable à l'avance).",
-            quotidien: "Ville multiculturelle, proche de Leeds.",
-            univ: "Université orientée pratique, infrastructures modernes.",
-            conseils: "Prenez un bon imperméable et visitez l'Ecosse !",
-            pros: ["Immersion", "Coût", "Proximité Leeds"],
+            sante: "CEAM indispensable.",
+            telecom: "Giffgaff (SIM à l'avance).",
+            quotidien: "Proche de Leeds, vie multiculturelle.",
+            univ: "Infrastructures modernes.",
+            conseils: "Visitez l'Ecosse !",
+            pros: ["Immersion totale", "Coût réduit", "Lien avec Leeds"],
             cons: ["Météo", "Ville industrielle"],
             contact: { mail: "clement.verin@isima.fr" }
           }
