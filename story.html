@@ -81,7 +81,6 @@
     }
     .theme-card:hover { transform: translateY(-5px); border-top-color: var(--isima-yellow); }
 
-    /* CARTES PLEINE LARGEUR */
     .full-width-card {
       background: white; padding: 30px; border-radius: var(--card-radius);
       box-shadow: var(--shadow); margin-bottom: 25px; border-left: 6px solid var(--isima-blue-dark);
@@ -96,9 +95,7 @@
     .tc-content ul { padding-left: 20px; margin: 10px 0; }
     .tc-content li { margin-bottom: 5px; }
 
-    /* ==============================
-       MODERN PROS & CONS DESIGN
-    ============================== */
+    /* MODERN PROS & CONS */
     .pc-grid { 
       display: grid; 
       grid-template-columns: 1fr 1fr; 
@@ -109,55 +106,15 @@
       padding: 25px; 
       border-radius: 15px; 
       font-size: 0.95rem;
-      position: relative;
-      overflow: hidden;
       box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
     }
-    .pc-box.pros { 
-      background: #f0fdf4; 
-      color: #166534; 
-      border: 1px solid #bbf7d0; 
-    }
-    .pc-box.cons { 
-      background: #fef2f2; 
-      color: #991b1b; 
-      border: 1px solid #fecaca; 
-    }
-    .pc-box strong {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .pc-box ul { 
-      list-style: none; 
-      padding-left: 5px; 
-    }
-    .pc-box li { 
-      margin-bottom: 10px; 
-      padding-left: 25px; 
-      position: relative; 
-      line-height: 1.4;
-    }
-    /* Custom bullets */
-    .pc-box.pros li::before {
-      content: '\f058'; /* FontAwesome check-circle */
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: var(--isima-green);
-    }
-    .pc-box.cons li::before {
-      content: '\f057'; /* FontAwesome times-circle */
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: var(--isima-red);
-    }
+    .pc-box.pros { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .pc-box.cons { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+    .pc-box strong { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; }
+    .pc-box ul { list-style: none; padding-left: 5px; }
+    .pc-box li { margin-bottom: 10px; padding-left: 25px; position: relative; line-height: 1.4; }
+    .pc-box.pros li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--isima-green); }
+    .pc-box.cons li::before { content: '\f057'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; color: var(--isima-red); }
 
     /* CONTACT */
     .contact-footer { background: var(--isima-blue-dark); color: white; padding: 40px; text-align: center; border-radius: 20px; margin-top: 40px; }
@@ -210,8 +167,12 @@
         <div class="tc-content" id="txt-argent"></div>
       </div>
       <div class="theme-card">
-        <div class="tc-header"><i class="fas fa-notes-medical tc-icon"></i><span class="tc-title">Santé & Télécoms</span></div>
+        <div class="tc-header"><i class="fas fa-notes-medical tc-icon"></i><span class="tc-title">Santé</span></div>
         <div class="tc-content" id="txt-sante"></div>
+      </div>
+      <div class="theme-card">
+        <div class="tc-header"><i class="fas fa-wifi tc-icon"></i><span class="tc-title">Télécoms</span></div>
+        <div class="tc-content" id="txt-telecom"></div>
       </div>
       <div class="theme-card">
         <div class="tc-header"><i class="fas fa-graduation-cap tc-icon"></i><span class="tc-title">Vie Universitaire / Pro</span></div>
@@ -256,15 +217,12 @@
         countryId: "taiwan",
         witnesses: [
           {
-            name: "Elise PIERRE",
-            filiere: "F1",
-            dates: "Février 2026 - Juin 2026",
-            type: "Échange Académique",
+            name: "Elise PIERRE", filiere: "F1", dates: "Février 2026 - Juin 2026", type: "Échange Académique",
             images: ["https://images.unsplash.com/photo-1552993873-0dd1110e025f?auto=format&fit=crop&w=1200&q=80", "https://images.unsplash.com/photo-1508248467877-f8278075841b?auto=format&fit=crop&w=1200&q=80"],
             visa: "<ul><li><b>Passeport et VISA obligatoires</b></li><li><b>Délais</b> : L'acceptation de l'école peut prendre du temps (reçue le 11 décembre 2025).</li><li><b>Billets d'avion aller-retour</b> : Nécessaire pour la demande de visa.</li><li><b>Visa</b> : Bureau de Représentation de Taipei en France (délai de traitement entre 3 et 7 jours ouvrés, passeport physique requis).</li></ul>",
             logement: "Dortoirs sur le campus (économiques mais stricts).",
             argent: "<ul><li><b>Billets d'avion</b> : 974.93€ (aller-retour Eva Air sans escale).</li><li><b>Visa</b> : 71€ pour le Visa à Entrée Simple en délai 3 jours ouvrés.</li></ul>",
-            sante: "Bilan santé, assurance et VISA requis. Pour le VISA, billets aller-retour obligatoires. ⚠ Le Bureau de Taipei exige le passeport physique.",
+            sante: "Bilan santé, assurance et VISA requis. ⚠ Le Bureau de Taipei exige le passeport physique.",
             telecom: "Chunghwa Telecom à l'aéroport.",
             quotidien: "Street food omniprésente, transports excellents.",
             univ: "Campus moderne, projets de groupe.",
@@ -285,21 +243,21 @@
             images: ["https://images.unsplash.com/photo-1433838552652-f9a46b332c40?auto=format&fit=crop&w=1200&q=80"],
             visa: "AVE (7$).", logement: "Résidence campus (350 CAD).", argent: "900€/mois.",
             sante: "Assurance Desjardins.", telecom: "Forfait Fido.", quotidien: "Nature, rando.",
-            univ: "Approche pratique.", conseils: "Louez une voiture !",
-            pros: ["Nature", "Coût de la vie"], cons: ["Froid"],
+            univ: "Pratique.", conseils: "Louez une voiture !",
+            pros: ["Nature", "Coût"], cons: ["Froid"],
             contact: { discord: "thomas#1234", linkedin: "#" }
           },
           {
             name: "Sarah", filiere: "F2", dates: "Jan 2023 - Mai 2023", type: "Échange",
             images: ["https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80"],
-            visa: "AVE.", logement: "Colocation en ville.", quotidien: "Ski, chocolat chaud.",
-            pros: ["Neige"], cons: ["Nuit tombe tôt"], contact: { insta: "sarah_qc" }
+            visa: "AVE.", logement: "Coloc en ville.", quotidien: "Ski, chocolat chaud.",
+            pros: ["Neige"], cons: ["Nuit tôt"], contact: { insta: "sarah_qc" }
           },
           {
             name: "Elisa", filiere: "F2", dates: "Jan 2023 - Mai 2023", type: "Échange",
             images: ["https://images.unsplash.com/photo-1519178173668-2fc416dde9e7?auto=format&fit=crop&w=1200&q=80"],
             visa: "AVE.", logement: "Résidence.", univ: "Super cours.",
-            pros: ["Qualité des cours"], cons: ["Distance"], contact: { linkedin: "#" }
+            pros: ["Cours"], cons: ["Distance"], contact: { linkedin: "#" }
           }
         ]
       },
@@ -311,16 +269,9 @@
           {
             name: "Julie M.", filiere: "F3 - SI", dates: "Sept 2023 - Jan 2024", type: "Stage",
             images: ["https://images.unsplash.com/photo-1556075798-4825dfaaf498?auto=format&fit=crop&w=1200&q=80"],
-            visa: "Permis Stage Coop (EIC). Démarches longues (3 mois).",
-            logement: "Plateau Mont-Royal. Cher (700 CAD) mais top.",
-            argent: "Vie chère, mais indemnité de stage correcte.",
-            sante: "Formulaire SE-401-Q-102 (RAMQ).",
-            telecom: "Forfait Fizz (100% online).",
-            quotidien: "Ville souterraine, festivals, poutine.",
-            univ: "Ambiance de travail incroyable, très pro et relax.",
-            conseils: "Anticipez le visa, c'est le plus stressant !",
-            pros: ["Ambiance de travail", "Ville dynamique", "Tech de pointe"],
-            cons: ["Hiver rigoureux", "Taxes élevées"],
+            visa: "Permis Stage Coop (EIC). 3 mois.", logement: "Plateau (700 CAD).", argent: "Cher.",
+            sante: "RAMQ.", telecom: "Fizz.", quotidien: "Poutine.", univ: "Pro et relax.",
+            conseils: "Anticipez !", pros: ["Ambiance", "Tech"], cons: ["Hiver"],
             contact: { linkedin: "#", discord: "julie_dev" }
           }
         ]
@@ -333,17 +284,9 @@
           {
             name: "Clément VERIN", filiere: "F1", dates: "Février 2025 - Mai 2025", type: "Erasmus",
             images: ["https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80"],
-            visa: "Brexit : passeport obligatoire ! Statut visiteur pour moins de 6 mois.",
-            logement: "The Green (résidence étudiante).",
-            argent: "Budget 800-1000£ par mois tout compris.",
-            sante: "CEAM indispensable.",
-            telecom: "Giffgaff (SIM à l'avance).",
-            quotidien: "Proche de Leeds, vie multiculturelle.",
-            univ: "Infrastructures modernes.",
-            conseils: "Visitez l'Ecosse !",
-            pros: ["Immersion totale", "Coût réduit", "Lien avec Leeds"],
-            cons: ["Météo", "Ville industrielle"],
-            contact: { mail: "clement.verin@isima.fr" }
+            visa: "Passeport.", logement: "The Green.", argent: "800-1000£.", sante: "CEAM.",
+            telecom: "Giffgaff.", quotidien: "Leeds.", univ: "Pratique.", conseils: "Ecosse !",
+            pros: ["Anglais"], cons: ["Météo"], contact: { mail: "clement.verin@isima.fr" }
           }
         ]
       }
@@ -378,10 +321,10 @@
         <span style="background:#f1f1f1; color:#555; padding:5px 15px; border-radius:50px; font-weight:600; font-size:0.85rem;"><i class="far fa-calendar-alt"></i> ${w.dates}</span>
       `;
       
-      const fields = { visa:'txt-visa', logement:'txt-logement', argent:'txt-argent', sante:'txt-sante', univ:'txt-univ', quotidien:'txt-quotidien', conseils:'txt-conseils' };
+      const fields = { visa:'txt-visa', logement:'txt-logement', argent:'txt-argent', sante:'txt-sante', telecom:'txt-telecom', univ:'txt-univ', quotidien:'txt-quotidien', conseils:'txt-conseils' };
       Object.keys(fields).forEach(key => {
-        const el = document.getElementById(fields[key]);
-        el.innerHTML = w[key] || "Non renseigné.";
+        const el = document.getElementById('txt-' + key);
+        if(el) el.innerHTML = w[key] || "Non renseigné.";
       });
 
       document.getElementById('list-pros').innerHTML = (w.pros||[]).map(p => `<li>${p}</li>`).join('');
