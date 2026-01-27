@@ -64,6 +64,16 @@
     .witness-tab { background: white; padding: 12px 22px; border-radius: 50px; cursor: pointer; box-shadow: var(--shadow); font-weight: 700; transition: 0.3s; display: flex; align-items: center; gap: 8px; border: 2px solid transparent; }
     .witness-tab.active { background: var(--isima-yellow); color: var(--isima-blue-dark); border-color: var(--isima-yellow); transform: translateY(-5px); }
 
+    /* BADGES INFO HOVER */
+    .w-badge { padding: 5px 15px; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; }
+    .w-badge:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .badge-filiere { background: #e3f2fd; color: #1565c0; }
+    .badge-filiere:hover { background: #1565c0; color: white; }
+    .badge-type { background: #fff3e0; color: #ef6c00; }
+    .badge-type:hover { background: #ef6c00; color: white; }
+    .badge-dates { background: #f1f1f1; color: #555; }
+    .badge-dates:hover { background: var(--isima-blue-dark); color: white; }
+
     .main-container { max-width: 1100px; margin: 0 auto 60px; padding: 0 20px; }
 
     /* MASONRY */
@@ -75,10 +85,10 @@
     .tc-title { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; color: var(--isima-blue-dark); }
     .tc-content { font-size: 0.95rem; color: var(--text-gray); }
 
-    /* BILAN PROS/CONS */
+    /* BILAN PROS/CONS HOVER */
     .pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
     .pc-box { padding: 25px; border-radius: 15px; font-size: 0.95rem; transition: 0.3s; border: 1px solid transparent; }
-    .pc-box:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .pc-box:hover { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
     .pc-box.pros { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
     .pc-box.cons { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
     .pc-box strong { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 1.1rem; }
@@ -89,14 +99,20 @@
 
     .full-width-card { background: white; padding: 30px; border-radius: var(--card-radius); box-shadow: var(--shadow); margin-bottom: 25px; border-left: 6px solid var(--isima-blue-dark); }
 
-    /* CONTACT */
+    /* CONTACT HOVER */
     .contact-footer { background: var(--isima-blue-dark); color: white; padding: 40px; text-align: center; border-radius: 20px; margin-top: 40px; }
     .contact-area { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 25px; }
-    .contact-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: 0.3s; }
+    .contact-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; }
+    .contact-btn:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    
     .btn-mail { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); }
+    .btn-mail:hover { background: var(--isima-yellow); color: var(--isima-blue-dark); }
     .btn-linkedin { background: var(--linkedin-color); }
+    .btn-linkedin:hover { filter: brightness(1.2); }
     .btn-discord { background: var(--discord-color); }
+    .btn-discord:hover { filter: brightness(1.2); }
     .btn-insta { background: var(--insta-color); }
+    .btn-insta:hover { filter: brightness(1.2); }
 
     @media (max-width: 800px) { .masonry-wrapper { column-count: 1; } .pc-grid { grid-template-columns: 1fr; } }
   </style>
@@ -154,7 +170,7 @@
       <div class="tc-content" id="txt-conseils" style="font-style: italic; font-size:1.1rem;"></div>
     </div>
 
-    <footer class="contact-footer"><div class="contact-area" id="contact-area"></div></footer>
+    <footer class="contact-footer"><h3>Une question spécifique ?</h3><div class="contact-area" id="contact-area"></div></footer>
   </div>
 
   <script>
@@ -235,7 +251,6 @@
       const data = storiesDB[id];
       if (!data) return;
 
-      // Tri des témoins du plus récent au plus vieux
       data.witnesses.sort((a, b) => parseDate(b.dates) - parseDate(a.dates));
 
       document.getElementById('d-title').innerText = data.title;
@@ -261,9 +276,9 @@
       const w = data.witnesses[index];
       document.getElementById('w-name').innerText = w.name;
       document.getElementById('w-badges').innerHTML = `
-        <span style="background:#e3f2fd; color:#1565c0; padding:5px 15px; border-radius:50px; font-weight:600;">${w.filiere}</span>
-        <span style="background:#fff3e0; color:#ef6c00; padding:5px 15px; border-radius:50px; font-weight:600;">${w.type}</span>
-        <span style="background:#f1f1f1; color:#555; padding:5px 15px; border-radius:50px; font-weight:600;"><i class="far fa-calendar-alt"></i> ${w.dates}</span>`;
+        <span class="w-badge badge-filiere">${w.filiere}</span>
+        <span class="w-badge badge-type">${w.type}</span>
+        <span class="w-badge badge-dates"><i class="far fa-calendar-alt"></i> ${w.dates}</span>`;
 
       ['visa', 'logement', 'argent', 'sante', 'telecom', 'univ', 'quotidien', 'conseils'].forEach(f => {
         document.getElementById('txt-' + f).innerHTML = w[f] || "Non renseigné.";
